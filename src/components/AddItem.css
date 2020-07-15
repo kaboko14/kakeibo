@@ -1,0 +1,105 @@
+button {
+  border: none;
+}
+
+.label {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 4px;
+}
+
+.container {
+  width: 100%;
+  max-width: 340px;
+  padding: 0 10px;
+}
+.button-container-3cl {
+  display: grid;
+  grid-template-columns: repeat(3, 29%);
+  gap: 10px;
+  justify-items: center;
+  align-items: center;
+  margin-bottom: 26px;
+}
+.button {
+  width: 100%;
+  color: #fff;
+  border-radius: 12px;
+  padding: 4px;
+  overflow: hidden;
+}
+
+.form-wrapper {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.form {
+  width: 250px;
+  line-height: 1.5;
+  font-size: 16px;
+  padding: 0 4px;
+  border-radius: 4px;
+  border: 1px solid #707070;
+}
+.form-date,
+.form-category,
+.form-price {
+  margin-bottom: 10px;
+}
+.clear-button {
+  width: 26px;
+  height: 26px;
+  color: #fff;
+  background-color: #707070;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.button-category {
+  height: 60px;
+  background: #7DD983;
+}
+.button-plus {
+  height: 40px;
+  background: #D97D90;
+}
+.button-minus {
+  height: 40px;
+  background: #7D99D9;
+}
+
+.button-container-2cl {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 26px;
+}
+
+.button-need {
+  font-size: 18px;
+  font-weight: bold;
+  height:58px;
+  background: #7DD3D9;
+}
+
+.button-want {
+  font-size: 18px;
+  font-weight: bold;
+  height: 58px;
+  background: #D97D7D;
+}
+
+.preview-wrapper {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.preview-date {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+.preview {
+  font-size: 20px;
+}

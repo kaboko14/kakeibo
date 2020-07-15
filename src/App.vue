@@ -9,7 +9,12 @@
 </template>
 
 <style>
-#app {
+@import 'HTML5_Doctor_CSS Reset.css';
+* {
+  font-family: "Yu-Gothic",sans-serif;
+  color: #333;
+}
+/* #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -28,5 +33,5 @@
 
 #nav a.router-link-exact-active {
   color: #42b983;
-}
+} */
 </style>
