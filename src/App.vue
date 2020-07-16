@@ -11,6 +11,7 @@
 <style>
 @import 'HTML5_Doctor_CSS Reset.css';
 * {
+  box-sizing: border-box;
   font-family: "Yu-Gothic",sans-serif;
   color: #333;
 }
