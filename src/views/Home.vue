@@ -1,40 +1,34 @@
 <template>
-  <div class="home home-container">
-    <AddItem @my-click="addItem" />
-    <div class="container-rigth">
-      <Remainder :remainder="getRemainder()" />
-      <ItemTable @my-click="deleateItem" :items="items" />
-    </div>
+    <div>
+      <AddItem @click="addItem($event)"/>
+      <ItemTable
+      :items="items"/>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import AddItem from "@/components/AddItem.vue";
-import ItemTable from "@/components/ItemTable.vue";
-import Remainder from "@/components/Remainder.vue";
+import AddItem from "@/components/templates/AddItem.vue";
+import ItemTable from "@/components/organisms/ItemTable.vue";
 
 export default {
   name: "Home",
   components: {
     AddItem,
     ItemTable,
-    Remainder
   },
   data() {
     return {
       items: [],
-
-      //仮の残高
-      remainder: 10000
     };
   },
   methods: {
-    addItem(object) {
-      let item = { ...object };
-      this.items.push(item);
+    addItem(item) {
+      this.items.push(Object.assign({}, item));
       this.items.sort((a, b) => {
-        return a.date < b.date ? 1 : -1;
+        if (a.date > b.date) return -1;
+        if (a.date < b.date) return 1;
+        if (a.id > b.id) return -1;
+        if (a.id < b.id) return 1;
       });
     },
     deleateItem(index) {
