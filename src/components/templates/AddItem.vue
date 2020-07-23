@@ -108,7 +108,7 @@ export default {
   watch: {
     "newItem.category"() {
       if (!this.newItem.category) {
-        this.newItem.category = "その他";
+        this.newItem.category = "";
       }
     },
     "newItem.price"() {
@@ -122,7 +122,6 @@ export default {
 <style scoped lang="scss">
 .add-item {
   &__container {
-    padding: 10px;
     text-align: center;
   }
   &__category-buttons {

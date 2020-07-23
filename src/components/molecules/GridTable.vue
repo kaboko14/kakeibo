@@ -13,7 +13,8 @@
       {{ item.price.toLocaleString() }}
     </td>
     <td class="grid-table__delete-button">
-      <Button :button-label="['×']" :button-class="'button-delete-item'" />
+      <Button :button-label="['×']" :button-class="'button-delete-item'"
+      @click="sendDeleteItemId(item.id)"/>
     </td>
   </tr>
 </template>
@@ -31,6 +32,11 @@ export default {
   },
   data() {
     return {};
+  },
+  methods: {
+    sendDeleteItemId(id){
+      this.$emit("click",id)
+    }
   },
 };
 </script>

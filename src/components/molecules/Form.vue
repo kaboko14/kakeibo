@@ -4,7 +4,6 @@
     <div class="form__wrapper">
       <Input
         :input-type="formProperty.inputType"
-        :form-placeholder="formPlaceholder"
         :value="formValue"
         @input="sendValue($event)"
       />
@@ -31,22 +30,25 @@ export default {
     formProperty: {
       type: Object,
     },
-    formPlaceholder: {},
+    value: {},
   },
   data() {
     return {
-      formValue: null,
+      formValue: this.value,
     };
   },
   methods: {
     sendValue(value) {
-      this.formValue = value;
-      this.$emit("input", this.formValue);
+      this.$emit("input", value);
     },
     clearFormValue() {
       this.formValue = null;
-      this.$emit("input", this.formValue);
     },
+  },
+  watch: {
+    value(){
+      this.formValue=this.value;
+    }
   },
 };
 </script>

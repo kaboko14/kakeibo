@@ -1,6 +1,7 @@
 <template>
   <table class="item-table__container">
-    <GridTable v-for="(item, index) in items" :key="index" :item="item" />
+    <GridTable v-for="(item, index) in items" :key="index" :item="item"
+    @click="sendDeleteItemId($event)"/>
   </table>
 </template>
 <script>
@@ -14,6 +15,11 @@ export default {
     items: {
       type: Array,
     },
+  },
+  methods: {
+    sendDeleteItemId(id){
+      this.$emit("click",id)
+    }
   },
 };
 </script>

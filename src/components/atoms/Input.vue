@@ -3,8 +3,7 @@
     :type="inputType"
     class="input"
     @input="sendValue($event.target.value)"
-    :value="inputType === 'date' ? formPlaceholder : value"
-    :placeholder="formPlaceholder"
+    :value="value"
   />
 </template>
 <script>
@@ -14,13 +13,17 @@ export default {
     inputType: {
       type: String,
     },
-    value: {},
-    formPlaceholder: {},
+    value: {}
   },
   methods: {
     sendValue(value) {
       this.$emit("input", value);
     },
+  },
+  watch: {
+    value(){
+      this.$emit("input", this.value);
+    }
   },
 };
 </script>

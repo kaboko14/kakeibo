@@ -2,23 +2,20 @@
   <div>
     <Form
       :form-property="dateForm"
-      :form-placeholder="itemData.date"
-      v-model="formsValue.date"
+      :value="formsValue.date"
       @input="$emit('inputDate', $event)"
-      class="forms__form"
+      class="forms__date-form"
     />
     <Form
       :form-property="textForm"
-      :form-placeholder="itemData.category"
       v-model="formsValue.category"
-      @input="$emit('inputCategory', $event)"
-      class="forms__form"
+      @input="$emit('inputCategory',$event )"
+      class="forms__category-form"
     />
     <Form
       :form-property="priceForm"
-      :form-placeholder="itemData.price"
-      v-model="formsValue.price"
-      @input="$emit('inputPrice', $event)"
+      v-model.number="formsValue.price"
+      @input="$emit('inputPrice',$event )"
     />
   </div>
 </template>
@@ -38,9 +35,9 @@ export default {
   data() {
     return {
       formsValue: {
-        date: "",
-        category: "",
-        price: 0,
+        date: this.itemData.date,
+        category: this.itemData.category,
+        price: this.itemData.price,
       },
       dateForm: {
         inputType: "date",
@@ -56,12 +53,25 @@ export default {
       },
     };
   },
-  methods: {},
+  watch: {
+    "itemData.date"(){
+      this.formsValue.date=this.itemData.date;
+    },
+    "itemData.category"(){
+      this.formsValue.category=this.itemData.category;
+    },
+    "itemData.price"(){
+      this.formsValue.price=this.itemData.price;
+    }
+  },
 };
 </script>
 <style scoped lang="scss">
 .forms {
-  &__form {
+  &__date-form {
+    margin-bottom: 10px;
+  }
+  &__category-form {
     margin-bottom: 10px;
   }
 }
