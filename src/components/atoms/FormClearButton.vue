@@ -1,10 +1,15 @@
 <template>
-  <button class="clear-button" @click="$emit('click')">×</button>
+  <button
+    class="clear-button"
+    @click="$emit('click')"
+  >
+    ×
+  </button>
 </template>
 <script>
 export default {
-  name: "FormClearButton",
-};
+  name: 'FormClearButton'
+}
 </script>
 <style scoped lang="scss">
 .clear-button {

@@ -1,41 +1,53 @@
 <template>
   <div class="buttons--3col">
     <Button
-      v-for="(item, index) in categoryItems"
+      v-for="(button, index) in buttonPropertys"
       :key="index"
-      :button-label="[item.name,`￥${item.price.toLocaleString()}`]"
-      :button-class="buttonClass"
-      @click="sendCategoryItem(item)"
-    />
+      :button-class="button.className"
+      @click="onChange(categoryItems[index])"
+    >
+      {{ button.labelName }}<br>
+      {{ button.labelPrice }}
+    </Button>
   </div>
 </template>
 <script>
-import Button from "@/components/atoms/Button.vue";
+import Button from '@/components/atoms/Button.vue'
+
+// 仮カテゴリ
+const categorys = [
+  { name: 'コンビニ', price: 150 },
+  { name: 'スーパー', price: 2000 },
+  { name: '外食', price: 1000 },
+  { name: '自販機', price: 130 },
+  { name: '消耗品', price: 200 }
+]
 
 export default {
-  name: "CategoryButtons",
+  name: 'CategoryButtons',
   components: {
-    Button,
+    Button
   },
-  data() {
-    return {
-      //仮のカテゴリ
-      categoryItems: [
-        { name: "コンビニ", price: 150 },
-        { name: "スーパー", price: 2000 },
-        { name: "外食", price: 1000 },
-        { name: "自販機", price: 130 },
-        { name: "消耗品", price: 200 },
-      ],
-      buttonClass:"button-category"
-    };
-  },
-  methods: {
-    sendCategoryItem(item){
-      this.$emit("click",item)
+  computed: {
+    categoryItems () {
+      return Object.assign([], categorys)
+    },
+    buttonPropertys () {
+      return this.categoryItems.map(item => {
+        return {
+          labelName: item.name,
+          labelPrice: `￥${item.price.toLocaleString()}`,
+          className: 'button-category'
+        }
+      })
     }
   },
-};
+  methods: {
+    onChange (item) {
+      this.$emit('clickCategoryButton', item)
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

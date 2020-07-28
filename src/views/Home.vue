@@ -1,6 +1,9 @@
 <template>
   <div class="home__container">
-    <AddItem @click="addItem($event)" class="home__add-item" />
+    <AddItem
+      class="home__add-item"
+      @clickAddItemButton="addItem"
+    />
     <ItemTable
       :items="items"
       class="home__item-table"
@@ -10,41 +13,44 @@
 </template>
 
 <script>
-import AddItem from "@/components/templates/AddItem.vue";
-import ItemTable from "@/components/organisms/ItemTable.vue";
+import AddItem from '@/components/templates/AddItem.vue'
+import ItemTable from '@/components/organisms/ItemTable.vue'
 
 export default {
-  name: "Home",
+  name: 'Home',
   components: {
     AddItem,
-    ItemTable,
+    ItemTable
   },
-  data() {
+  data () {
     return {
       items: [],
-    };
+      itemId: 0
+    }
   },
   methods: {
-    addItem(item) {
-      this.items.push(Object.assign({}, item));
+    addItem (item) {
+      const newItem = Object.assign({}, item)
+      newItem.id = this.itemId++
+      this.items.push(newItem)
       this.items.sort((a, b) => {
-        if (a.date > b.date) return -1;
-        if (a.date < b.date) return 1;
-        if (a.id > b.id) return -1;
-        if (a.id < b.id) return 1;
-      });
+        if (a.date > b.date) return -1
+        if (a.date < b.date) return 1
+        if (a.id > b.id) return -1
+        if (a.id < b.id) return 1
+      })
     },
-    deleteItem(id) {
-      this.items = this.items.filter((item) => id !== item.id);
-    },
+    deleteItem (id) {
+      this.items = this.items.filter((item) => id !== item.id)
+    }
     // getRemainder() {
     //   let expense = this.items.reduce((result, item) => {
     //     return result + item.price;
     //   }, 0);
     //   return this.remainder - expense;
     // },
-  },
-};
+  }
+}
 </script>
 <style scoped lang="scss">
 .home {

@@ -1,33 +1,42 @@
 <template>
   <div class="buttons--2col">
     <Button
-      v-for="(value, index) in purpose"
+      v-for="(button, index) in buttonPropertys"
       :key="index"
-      :button-label="[value.toUpperCase()]"
-      :button-class="`button-${value}`"
-      @click="sendValue(value)"
-    />
+      :button-class="button.className"
+      @click="onChange(purposes[index])"
+    >
+      {{ button.label }}
+    </Button>
   </div>
 </template>
 <script>
-import Button from "@/components/atoms/Button.vue";
+import Button from '@/components/atoms/Button.vue'
 
 export default {
-  name: "AddItemButtons",
+  name: 'AddItemButtons',
   components: {
-    Button,
+    Button
   },
-  data() {
+  data () {
     return {
-      purpose: ["need", "want"],
-    };
-  },
-  methods: {
-    sendValue(value){
-      this.$emit("click",value)
+      purposes: ['need', 'want']
     }
   },
-};
+  computed: {
+    buttonPropertys () {
+      const purposes = this.purposes
+      return purposes.map(purpose => {
+        return { label: purpose.toUpperCase(), className: `button-${purpose}` }
+      })
+    }
+  },
+  methods: {
+    onChange (value) {
+      this.$emit('clickAddItemButton', value)
+    }
+  }
+}
 </script>
 <style scoped lang="scss">
 .buttons--2col {

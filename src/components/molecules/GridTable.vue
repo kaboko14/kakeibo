@@ -3,7 +3,10 @@
     <td class="grid-table__date">
       {{ item.date.replace(/-/g, "/") }}
     </td>
-    <td class="grid-table__purpose" :class="item.purpose">
+    <td
+      class="grid-table__purpose"
+      :class="item.purpose"
+    >
       {{ item.purpose }}
     </td>
     <td class="grid-table__category">
@@ -13,32 +16,37 @@
       {{ item.price.toLocaleString() }}
     </td>
     <td class="grid-table__delete-button">
-      <Button :button-label="['×']" :button-class="'button-delete-item'"
-      @click="sendDeleteItemId(item.id)"/>
+      <Button
+        :button-class="'button-delete-item'"
+        @click="sendDeleteItemId(item.id)"
+      >
+        ×
+      </Button>
     </td>
   </tr>
 </template>
 <script>
-import Button from "@/components/atoms/Button.vue";
+import Button from '@/components/atoms/Button.vue'
 export default {
-  name: "GridTable",
+  name: 'GridTable',
   components: {
-    Button,
+    Button
   },
   props: {
     item: {
       type: Object,
-    },
-  },
-  data() {
-    return {};
-  },
-  methods: {
-    sendDeleteItemId(id){
-      this.$emit("click",id)
+      required: true
     }
   },
-};
+  data () {
+    return {}
+  },
+  methods: {
+    sendDeleteItemId (id) {
+      this.$emit('click', id)
+    }
+  }
+}
 </script>
 <style scoped lang="scss">
 .grid-table {

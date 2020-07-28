@@ -1,40 +1,50 @@
 <template>
   <div class="add-item__container">
     <CategoryButtons
-      @click="changeItem($event)"
       class="add-item__category-buttons"
+      @clickCategoryButton="[ChangeData($event.name,'category'),ChangeData($event.price,'price')]"
     />
     <div class="add-item__preview-container">
-      <ItemPreview class="add-item__item-preview" :item="newItem" />
-      <Button
-        :buttonLabel="['フォーム入力']"
-        buttonClass="button-edit"
-        @click="openForm()"
-        class="add-item__form-open-button"
+      <ItemPreview
+        class="add-item__item-preview"
+        :item-date="newItem.date"
+        :item-category="newItem.category"
+        :item-price="newItem.price"
       />
+      <Button
+        button-class="button-edit"
+        class="add-item__form-open-button"
+        @click="openForm()"
+      >
+        フォーム入力
+      </Button>
     </div>
     <Forms
-      :item-data="newItem"
-      @inputDate="upDataDate($event)"
-      @inputCategory="upDataCategory($event)"
-      @inputPrice="upDataPrice($event)"
       class="add-item__forms"
-      :class="{ formview: formView }"
+      :item-date="newItem.date"
+      :item-category="newItem.category"
+      :item-price="newItem.price"
+      :class="{formview : formView}"
+      @inputDateForm="ChangeData($event,'date')"
+      @inputCategoryForm="ChangeData($event,'category')"
+      @inputPriceForm="ChangeData($event,'price')"
     />
     <IncrementButtons
-      @click="incrementPrice($event)"
       class="add-item__increment-buttons"
+      @clickIncrementButton="incrementPrice"
     />
-    <AddItemButtons @click="sendItem($event)" />
+    <AddItemButtons
+      @clickAddItemButton="addNewItem"
+    />
   </div>
 </template>
 <script>
-import CategoryButtons from "@/components/organisms/CategoryButtons.vue";
-import ItemPreview from "@/components/atoms/ItemPreview.vue";
-import Button from "@/components/atoms/Button.vue";
-import Forms from "@/components/organisms/Forms.vue";
-import IncrementButtons from "@/components/organisms/IncrementButtons.vue";
-import AddItemButtons from "@/components/organisms/AddItemButtons.vue";
+import CategoryButtons from '@/components/organisms/CategoryButtons.vue'
+import ItemPreview from '@/components/atoms/ItemPreview.vue'
+import Button from '@/components/atoms/Button.vue'
+import Forms from '@/components/organisms/Forms.vue'
+import IncrementButtons from '@/components/organisms/IncrementButtons.vue'
+import AddItemButtons from '@/components/organisms/AddItemButtons.vue'
 
 export default {
   components: {
@@ -43,81 +53,65 @@ export default {
     Button,
     Forms,
     IncrementButtons,
-    AddItemButtons,
+    AddItemButtons
   },
-  data() {
+  props: {
+  },
+  data () {
     return {
-      newItem: {
-        id: 0,
-        date: this.getDate(),
-        category: "その他",
-        price: "0",
-        purpose: "",
-      },
-      formView: false,
-    };
+      date: this.getDate(),
+      category: 'その他',
+      price: 0,
+      formView: false
+    }
+  },
+  computed: {
+    newItem () {
+      return {
+        date: this.date,
+        category: !this.category
+          ? ''
+          : this.category,
+        price: !this.price
+          ? 0
+          : this.price
+      }
+    }
   },
   methods: {
-    upDataDate(date) {
-      this.newItem.date = date;
+    ChangeData ($event, property) {
+      this[property] = $event
     },
-    upDataCategory(category) {
-      this.newItem.category = category;
+    incrementPrice (number) {
+      this.price *= 1
+      this.price += number
     },
-    upDataPrice(price) {
-      this.newItem.price = price;
+    openForm () {
+      this.formView = !this.formView
     },
-    changeItem(item) {
-      this.newItem.category = item.name;
-      this.newItem.price = item.price;
+    addNewItem (value) {
+      this.newItem.purpose = value
+      this.$emit('clickAddItemButton', this.newItem)
     },
-    incrementPrice(number) {
-      this.newItem.price *= 1;
-      this.newItem.price += number;
-    },
-    openForm() {
-      this.formView = !this.formView;
-    },
-    sendItem(value) {
-      this.newItem.purpose = value;
-      this.$emit("click",this.newItem);
-      this.newItem.id++;
-      this.newItem.date = this.getDate();
-      this.newItem.category = "その他";
-      this.newItem.price = 0;
-      this.newItem.purpose = "";
-    },
-    getDate() {
-      let today = new Date();
-      let year = today.getFullYear();
-      let month = today.getMonth() + 1;
-      let day = today.getDate();
-      function getNumber(num, digit) {
-        num = String(num);
+    getDate () {
+      const today = new Date()
+      const year = today.getFullYear()
+      const month = today.getMonth() + 1
+      const day = today.getDate()
+      function getNumber (num, digit) {
+        num = String(num)
         if (num.length < digit) {
-          num = "0" + num;
+          num = '0' + num
         }
-        return num;
+        return num
       }
-      let yyyy = getNumber(year, 4);
-      let mm = getNumber(month, 2);
-      let dd = getNumber(day, 2);
-      return `${yyyy}-${mm}-${dd}`;
-    },
-  },
-  watch: {
-    "newItem.category"() {
-      if (!this.newItem.category) {
-        this.newItem.category = "";
-      }
-    },
-    "newItem.price"() {
-      if (!this.newItem.price) {
-        this.newItem.price = 0;
-      }
-    },
-  },
-};
+      const yyyy = getNumber(year, 4)
+      const mm = getNumber(month, 2)
+      const dd = getNumber(day, 2)
+      return `${yyyy}-${mm}-${dd}`
+    }
+  }
+}
 </script>
 <style scoped lang="scss">
 .add-item {

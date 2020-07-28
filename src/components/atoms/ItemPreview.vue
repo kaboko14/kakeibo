@@ -1,22 +1,31 @@
 <template>
   <div class="item-preview-wrapper">
     <p class="item-preview__date">
-      {{ item.date.replace(/-/g, "/") }}
+      {{ itemDate.replace(/-/g, "/") }}
     </p>
     <p class="item-preview__text">
-      {{ item.category }} ￥{{ item.price.toLocaleString() }}
+      {{ itemCategory }} ￥{{ itemPrice.toLocaleString() }}
     </p>
   </div>
 </template>
 <script>
 export default {
-  name: "ItemPreview",
+  name: 'ItemPreview',
   props: {
-    item: {
-      type: Object,
+    itemDate: {
+      type: String,
+      required: true
     },
-  },
-};
+    itemCategory: {
+      type: String,
+      required: true
+    },
+    itemPrice: {
+      type: Number,
+      required: true
+    }
+  }
+}
 </script>
 <style scoped lang="scss">
 .item-preview {

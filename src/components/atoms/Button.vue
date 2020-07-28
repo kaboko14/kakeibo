@@ -1,27 +1,29 @@
 <template>
-  <button :class="[button, buttonClass]" @click="$emit('click')">
-    <p v-for="(label, index) in buttonLabel" :key="index">
-      {{ label }}
+  <button
+    :class="className"
+    @click="$emit('click')"
+  >
+    <p class="button__label">
+      <slot />
     </p>
   </button>
 </template>
 <script>
 export default {
-  name: "Button",
+  name: 'Button',
   props: {
-    buttonLabel: {
-      type: Array,
-    },
     buttonClass: {
       type: String,
-    },
+      required: false,
+      default: ''
+    }
   },
-  data() {
-    return {
-      button: "button",
-    };
-  },
-};
+  computed: {
+    className () {
+      return `button ${this.buttonClass}`
+    }
+  }
+}
 </script>
 <style scoped lang="scss">
 .button {
@@ -32,7 +34,7 @@ export default {
   border-radius: 3px;
   cursor: pointer;
 
-  > p {
+  &__label {
     color: #fff;
   }
 

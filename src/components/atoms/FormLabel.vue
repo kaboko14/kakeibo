@@ -3,13 +3,15 @@
 </template>
 <script>
 export default {
-  name: "FormLabel",
+  name: 'FormLabel',
   props: {
     labelText: {
       type: String,
-    },
-  },
-};
+      required: false,
+      default: ''
+    }
+  }
+}
 </script>
 <style scoped lang="scss">
 .label {

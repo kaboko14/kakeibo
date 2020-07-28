@@ -1,31 +1,37 @@
 <template>
   <input
     :type="inputType"
+    :placeholder="placeholder"
     class="input"
-    @input="sendValue($event.target.value)"
     :value="value"
-  />
+    @input="onChange"
+  >
 </template>
 <script>
 export default {
-  name: "Input",
+  name: 'Input',
   props: {
     inputType: {
       type: String,
+      required: true
     },
-    value: {}
-  },
-  methods: {
-    sendValue(value) {
-      this.$emit("input", value);
+    placeholder: {
+      type: [String, Number],
+      required: false,
+      default: null
     },
-  },
-  watch: {
-    value(){
-      this.$emit("input", this.value);
+    value: {
+      type: [String, Number],
+      required: false,
+      default: null
     }
   },
-};
+  methods: {
+    onChange (event) {
+      this.$emit('input', event.target.value)
+    }
+  }
+}
 </script>
 <style scoped lang="scss">
 .input {

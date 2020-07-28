@@ -1,70 +1,102 @@
 <template>
   <div>
     <Form
-      :form-property="dateForm"
-      :value="formsValue.date"
-      @input="$emit('inputDate', $event)"
+      :value="itemDate"
+      :form-property="dateFormProperty"
       class="forms__date-form"
+      @input="onChange($event,'inputDateForm')"
     />
     <Form
-      :form-property="textForm"
-      v-model="formsValue.category"
-      @input="$emit('inputCategory',$event )"
+      :value="itemCategory"
+      :form-property="textFormProperty"
       class="forms__category-form"
+      @input="onChange($event,'inputCategoryForm')"
     />
     <Form
-      :form-property="priceForm"
-      v-model.number="formsValue.price"
-      @input="$emit('inputPrice',$event )"
+      :value="itemPrice"
+      :form-property="priceFormProperty"
+      @input="onChange($event,'inputPriceForm')"
     />
   </div>
 </template>
 <script>
-import Form from "@/components/molecules/Form.vue";
+import Form from '@/components/molecules/Form.vue'
 
 export default {
-  name: "Forms",
+  name: 'Forms',
   components: {
-    Form,
+    Form
   },
   props: {
-    itemData: {
-      type: Object,
+    itemDate: {
+      type: String,
+      required: true
     },
-  },
-  data() {
-    return {
-      formsValue: {
-        date: this.itemData.date,
-        category: this.itemData.category,
-        price: this.itemData.price,
-      },
-      dateForm: {
-        inputType: "date",
-        labelText: "日付",
-      },
-      textForm: {
-        inputType: "text",
-        labelText: "摘要",
-      },
-      priceForm: {
-        inputType: "number",
-        labelText: "金額",
-      },
-    };
-  },
-  watch: {
-    "itemData.date"(){
-      this.formsValue.date=this.itemData.date;
+    itemCategory: {
+      type: String,
+      required: false,
+      default: ''
     },
-    "itemData.category"(){
-      this.formsValue.category=this.itemData.category;
-    },
-    "itemData.price"(){
-      this.formsValue.price=this.itemData.price;
+    itemPrice: {
+      type: Number,
+      required: false,
+      default: 0
     }
   },
-};
+  data () {
+    return {
+      dateFormProperty: {
+        inputType: 'date',
+        labelText: '日付'
+      },
+      textFormProperty: {
+        inputType: 'text',
+        labelText: '摘要',
+        placeholder: '入力してください'
+      },
+      priceFormProperty: {
+        inputType: 'number',
+        labelText: '金額',
+        placeholder: 0
+      }
+    }
+  },
+  computed: {
+  },
+  methods: {
+    onChange ($event, eventName) {
+      this.$emit(eventName, $event)
+    },
+    getDate () {
+      const today = new Date()
+      const year = today.getFullYear()
+      const month = today.getMonth() + 1
+      const day = today.getDate()
+      function getNumber (num, digit) {
+        num = String(num)
+        if (num.length < digit) {
+          num = '0' + num
+        }
+        return num
+      }
+      const yyyy = getNumber(year, 4)
+      const mm = getNumber(month, 2)
+      const dd = getNumber(day, 2)
+      return `${yyyy}-${mm}-${dd}`
+    }
+  }
+  // watch: {
+  //   'itemData.date' () {
+  //     this.formsValue.date = this.itemData.date
+  //   },
+  //   'itemData.category' () {
+  //     this.formsValue.category = this.itemData.category
+  //   },
+  //   'itemData.price' () {
+  //     this.formsValue.price = this.itemData.price
+  //   }
+  // }
+}
 </script>
 <style scoped lang="scss">
 .forms {

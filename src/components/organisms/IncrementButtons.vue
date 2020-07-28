@@ -1,35 +1,52 @@
 <template>
   <div class="buttons--3col">
     <Button
-      v-for="(number, index) in incrementNumbers"
+      v-for="(button, index) in buttonPropertys"
       :key="index"
-      :button-label="number>0?[`+￥${number.toLocaleString()}`]:[`-￥${(-1*number).toLocaleString()}`]"
-      :button-class="number > 0 ? plusButtonClass : minusButtonClass"
-      @click="sendIncrementNumber(number)"
-    />
+      :button-class="button.className"
+      @click="sendIncrementNumber(button.num)"
+    >
+      {{ button.label }}
+    </Button>
   </div>
 </template>
 
 <script>
-import Button from "@/components/atoms/Button.vue";
+import Button from '@/components/atoms/Button.vue'
 export default {
-  name: "IncrementButtons",
+  name: 'IncrementButtons',
   components: {
-    Button,
+    Button
   },
-  data() {
+  data () {
     return {
-      incrementNumbers: [1000, 100, 10, -1000, -100, -10],
-      plusButtonClass: "button-plus",
-      minusButtonClass: "button-minus",
-    };
-  },
-  methods: {
-    sendIncrementNumber(number){
-      this.$emit("click",number)
+      incrementNumbers: [1000, 100, 10, -1000, -100, -10]
     }
   },
-};
+  computed: {
+    buttonPropertys () {
+      const numbers = this.incrementNumbers
+      return numbers.map(number => {
+        return number > 0
+          ? {
+            label: `+￥${number.toLocaleString()}`,
+            num: number,
+            className: 'button-plus'
+          }
+          : {
+            label: `-￥${(-1 * number).toLocaleString()}`,
+            num: number,
+            className: 'button-minus'
+          }
+      })
+    }
+  },
+  methods: {
+    sendIncrementNumber (number) {
+      this.$emit('clickIncrementButton', number)
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
