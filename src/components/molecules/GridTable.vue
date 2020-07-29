@@ -1,7 +1,7 @@
 <template>
   <tr class="grid-table__wrapper">
     <td class="grid-table__date">
-      {{ item.date.replace(/-/g, "/") }}
+      {{ item.date }}
     </td>
     <td
       class="grid-table__purpose"

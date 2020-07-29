@@ -7,9 +7,7 @@
     <div class="add-item__preview-container">
       <ItemPreview
         class="add-item__item-preview"
-        :item-date="newItem.date"
-        :item-category="newItem.category"
-        :item-price="newItem.price"
+        :new-item="newItem"
       />
       <Button
         button-class="button-edit"
@@ -21,9 +19,7 @@
     </div>
     <Forms
       class="add-item__forms"
-      :item-date="newItem.date"
-      :item-category="newItem.category"
-      :item-price="newItem.price"
+      :new-item="newItem"
       :class="{formview : formView}"
       @inputDateForm="ChangeData($event,'date')"
       @inputCategoryForm="ChangeData($event,'category')"
@@ -45,8 +41,10 @@ import Button from '@/components/atoms/Button.vue'
 import Forms from '@/components/organisms/Forms.vue'
 import IncrementButtons from '@/components/organisms/IncrementButtons.vue'
 import AddItemButtons from '@/components/organisms/AddItemButtons.vue'
+import moment from 'moment'
 
 export default {
+  name: 'AddItem',
   components: {
     CategoryButtons,
     ItemPreview,
@@ -59,7 +57,7 @@ export default {
   },
   data () {
     return {
-      date: this.getDate(),
+      date: this.moment(),
       category: 'その他',
       price: 0,
       formView: false
@@ -68,7 +66,7 @@ export default {
   computed: {
     newItem () {
       return {
-        date: this.date,
+        date: this.momentFormat(this.date),
         category: !this.category
           ? ''
           : this.category,
@@ -92,23 +90,19 @@ export default {
     addNewItem (value) {
       this.newItem.purpose = value
       this.$emit('clickAddItemButton', this.newItem)
+      this.itemInit()
     },
-    getDate () {
-      const today = new Date()
-      const year = today.getFullYear()
-      const month = today.getMonth() + 1
-      const day = today.getDate()
-      function getNumber (num, digit) {
-        num = String(num)
-        if (num.length < digit) {
-          num = '0' + num
-        }
-        return num
-      }
-      const yyyy = getNumber(year, 4)
-      const mm = getNumber(month, 2)
-      const dd = getNumber(day, 2)
-      return `${yyyy}-${mm}-${dd}`
+    itemInit () {
+      this.date = this.moment()
+      this.category = 'その他'
+      this.price = 0
+    },
+    moment () {
+      return moment()
+    },
+    momentFormat (date) {
+      const m = moment(date, 'YYYY-MM-DD')
+      return m.format('YYYY/MM/DD')
     }
   }
 }

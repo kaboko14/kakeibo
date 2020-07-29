@@ -33,6 +33,9 @@ export default {
       const newItem = Object.assign({}, item)
       newItem.id = this.itemId++
       this.items.push(newItem)
+      this.sortItems()
+    },
+    sortItems () {
       this.items.sort((a, b) => {
         if (a.date > b.date) return -1
         if (a.date < b.date) return 1

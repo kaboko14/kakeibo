@@ -1,10 +1,10 @@
 <template>
   <div class="item-preview-wrapper">
     <p class="item-preview__date">
-      {{ itemDate.replace(/-/g, "/") }}
+      {{ newItem.date }}
     </p>
     <p class="item-preview__text">
-      {{ itemCategory }} ￥{{ itemPrice.toLocaleString() }}
+      {{ newItem.category }} ￥{{ newItem.price.toLocaleString() }}
     </p>
   </div>
 </template>
@@ -12,16 +12,8 @@
 export default {
   name: 'ItemPreview',
   props: {
-    itemDate: {
-      type: String,
-      required: true
-    },
-    itemCategory: {
-      type: String,
-      required: true
-    },
-    itemPrice: {
-      type: Number,
+    newItem: {
+      type: Object,
       required: true
     }
   }
