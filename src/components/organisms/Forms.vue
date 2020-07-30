@@ -1,21 +1,21 @@
 <template>
   <div>
     <Form
-      :value="momentFormat()"
+      :value="momentFormat(newItem.date)"
       :form-property="dateFormProperty"
       class="forms__date-form"
-      @input="onChange($event,'inputDateForm')"
+      @input="onChange($event,'date')"
     />
     <Form
       :value="newItem.category"
       :form-property="textFormProperty"
       class="forms__category-form"
-      @input="onChange($event,'inputCategoryForm')"
+      @input="onChange($event,'category')"
     />
     <Form
       :value="newItem.price"
       :form-property="priceFormProperty"
-      @input="onChange($event,'inputPriceForm')"
+      @input="onChange($event,'price')"
     />
   </div>
 </template>
@@ -55,12 +55,13 @@ export default {
   computed: {
   },
   methods: {
-    onChange ($event, eventName) {
-      this.$emit(eventName, $event)
+    onChange ($event, key) {
+      const item = { ...this.newItem }
+      item[key] = $event
+      this.$emit('inputForm', item)
     },
-    momentFormat () {
-      const itemDate = this.newItem.date
-      const m = moment(itemDate, 'YYYY/MM/DD')
+    momentFormat (date) {
+      const m = moment(date, 'YYYY/MM/DD')
       return m.format('YYYY-MM-DD')
     }
   }

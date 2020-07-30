@@ -2,7 +2,8 @@
   <div class="add-item__container">
     <CategoryButtons
       class="add-item__category-buttons"
-      @clickCategoryButton="[ChangeData($event.name,'category'),ChangeData($event.price,'price')]"
+      :new-item="newItem"
+      @clickCategoryButton="onChange"
     />
     <div class="add-item__preview-container">
       <ItemPreview
@@ -21,13 +22,12 @@
       class="add-item__forms"
       :new-item="newItem"
       :class="{formview : formView}"
-      @inputDateForm="ChangeData($event,'date')"
-      @inputCategoryForm="ChangeData($event,'category')"
-      @inputPriceForm="ChangeData($event,'price')"
+      @inputForm="onChange"
     />
     <IncrementButtons
       class="add-item__increment-buttons"
-      @clickIncrementButton="incrementPrice"
+      :new-item="newItem"
+      @clickIncrementButton="onChange"
     />
     <AddItemButtons
       @clickAddItemButton="addNewItem"
@@ -57,32 +57,30 @@ export default {
   },
   data () {
     return {
-      date: this.moment(),
-      category: 'その他',
-      price: 0,
+      item: {
+        date: this.moment(),
+        category: 'その他',
+        price: 0
+      },
       formView: false
     }
   },
   computed: {
     newItem () {
       return {
-        date: this.momentFormat(this.date),
-        category: !this.category
+        date: this.momentFormat(this.item.date),
+        category: !this.item.category
           ? ''
-          : this.category,
-        price: !this.price
+          : this.item.category,
+        price: !this.item.price
           ? 0
-          : this.price
+          : this.item.price * 1
       }
     }
   },
   methods: {
-    ChangeData ($event, property) {
-      this[property] = $event
-    },
-    incrementPrice (number) {
-      this.price *= 1
-      this.price += number
+    onChange (item) {
+      this.item = item
     },
     openForm () {
       this.formView = !this.formView
@@ -93,9 +91,9 @@ export default {
       this.itemInit()
     },
     itemInit () {
-      this.date = this.moment()
-      this.category = 'その他'
-      this.price = 0
+      this.item.date = this.moment()
+      this.item.category = 'その他'
+      this.item.price = 0
     },
     moment () {
       return moment()
