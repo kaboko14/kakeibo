@@ -1,64 +1,76 @@
 <template>
-  <div class="home home-container">
-    <AddItem @my-click="addItem" />
-    <div class="container-rigth">
-      <Remainder :remainder="getRemainder()" />
-      <ItemTable @my-click="deleateItem" :items="items" />
-    </div>
+  <div class="home__container">
+    <AddItem
+      class="home__add-item"
+      @clickAddItemButton="addItem"
+    />
+    <ItemTable
+      :items="items"
+      class="home__item-table"
+      @click="deleteItem($event)"
+    />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import AddItem from "@/components/AddItem.vue";
-import ItemTable from "@/components/ItemTable.vue";
-import Remainder from "@/components/Remainder.vue";
+import AddItem from '@/components/templates/AddItem.vue'
+import ItemTable from '@/components/organisms/ItemTable.vue'
 
 export default {
-  name: "Home",
+  name: 'Home',
   components: {
     AddItem,
-    ItemTable,
-    Remainder
+    ItemTable
   },
-  data() {
+  data () {
     return {
       items: [],
-
-      //仮の残高
-      remainder: 10000
-    };
+      itemId: 0
+    }
   },
   methods: {
-    addItem(object) {
-      let item = { ...object };
-      this.items.push(item);
+    addItem (item) {
+      const newItem = Object.assign({}, item)
+      newItem.id = this.itemId++
+      this.items.push(newItem)
+      this.sortItems()
+    },
+    sortItems () {
       this.items.sort((a, b) => {
-        return a.date < b.date ? 1 : -1;
-      });
+        if (a.date > b.date) return -1
+        if (a.date < b.date) return 1
+        if (a.id > b.id) return -1
+        if (a.id < b.id) return 1
+      })
     },
-    deleateItem(index) {
-      this.items.splice(index, 1);
-    },
-    getRemainder() {
-      let expense = this.items.reduce((result, item) => {
-        return result + item.price;
-      }, 0);
-      return this.remainder - expense;
+    deleteItem (id) {
+      this.items = this.items.filter((item) => id !== item.id)
     }
+    // getRemainder() {
+    //   let expense = this.items.reduce((result, item) => {
+    //     return result + item.price;
+    //   }, 0);
+    //   return this.remainder - expense;
+    // },
   }
-};
+}
 </script>
-<style scoped>
-  .home-container {
+<style scoped lang="scss">
+.home {
+  &__container {
+    display: flex;
     max-width: 1100px;
     margin: 0 auto;
-    display: flex;
+    padding: 10px;
     justify-content: space-between;
   }
-  .container-rigth {
-    width: 100%;
+  &__add-item {
+    width: 30%;
+    min-width: 320px;
+    padding: 10px;
   }
-
-
+  &__item-table {
+    width: 65%;
+  }
+}
 </style>
