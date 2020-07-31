@@ -56,9 +56,10 @@ export default {
   },
   methods: {
     onChange ($event, key) {
-      const item = { ...this.newItem }
-      item[key] = $event
-      this.$emit('inputForm', item)
+      this.$emit('inputForm', {
+        ...this.newItem,
+        [key]: $event
+      })
     },
     momentFormat (date) {
       const m = moment(date, 'YYYY/MM/DD')

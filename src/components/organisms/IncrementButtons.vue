@@ -48,13 +48,12 @@ export default {
     }
   },
   methods: {
-    // sendIncrementNumber (number) {
-    //   this.$emit('clickIncrementButton', number)
-    // },
     incrementPrice (number) {
       const item = { ...this.newItem }
-      item.price = (item.price + number) * 1
-      this.$emit('clickIncrementButton', item)
+      this.$emit('clickIncrementButton', {
+        ...item,
+        price: item.price + number
+      })
     }
 
   }
