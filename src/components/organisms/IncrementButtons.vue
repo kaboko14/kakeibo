@@ -4,7 +4,7 @@
       v-for="(button, index) in buttonPropertys"
       :key="index"
       :button-class="button.className"
-      @click="sendIncrementNumber(button.num)"
+      @click="incrementPrice(button.incrementNumber)"
     >
       {{ button.label }}
     </Button>
@@ -18,6 +18,12 @@ export default {
   components: {
     Button
   },
+  props: {
+    newItem: {
+      type: Object,
+      required: true
+    }
+  },
   data () {
     return {
       incrementNumbers: [1000, 100, 10, -1000, -100, -10]
@@ -30,21 +36,26 @@ export default {
         return number > 0
           ? {
             label: `+￥${number.toLocaleString()}`,
-            num: number,
+            incrementNumber: number,
             className: 'button-plus'
           }
           : {
             label: `-￥${(-1 * number).toLocaleString()}`,
-            num: number,
+            incrementNumber: number,
             className: 'button-minus'
           }
       })
     }
   },
   methods: {
-    sendIncrementNumber (number) {
-      this.$emit('clickIncrementButton', number)
+    incrementPrice (number) {
+      const item = { ...this.newItem }
+      this.$emit('clickIncrementButton', {
+        ...item,
+        price: item.price + number
+      })
     }
+
   }
 }
 </script>

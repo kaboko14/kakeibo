@@ -28,6 +28,12 @@ export default {
   components: {
     Button
   },
+  props: {
+    newItem: {
+      type: Object,
+      required: true
+    }
+  },
   computed: {
     categoryItems () {
       return Object.assign([], categorys)
@@ -44,7 +50,11 @@ export default {
   },
   methods: {
     onChange (item) {
-      this.$emit('clickCategoryButton', item)
+      this.$emit('clickCategoryButton', {
+        ...this.newItem,
+        category: item.name,
+        price: item.price
+      })
     }
   }
 }
