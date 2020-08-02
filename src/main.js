@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import Storage from 'vue-ls'
 import firebase from 'firebase'
 
 Vue.config.productionTip = false
@@ -19,6 +20,14 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig)
 firebase.analytics()
+
+const options = {
+  namespace: 'kakeibo__',
+  name: 'ls',
+  storage: 'local'
+}
+
+Vue.use(Storage, options)
 
 new Vue({
   router,

@@ -28,12 +28,17 @@ export default {
       itemId: 0
     }
   },
+  mounted () {
+    this.items = this.$ls.get('items') || []
+  },
   methods: {
     addItem (item) {
       const newItem = Object.assign({}, item)
+      // itemのIDをlsからよびだした一番大きいものからふりなおす
       newItem.id = this.itemId++
       this.items.push(newItem)
       this.sortItems()
+      this.setItems()
     },
     sortItems () {
       this.items.sort((a, b) => {
@@ -45,6 +50,10 @@ export default {
     },
     deleteItem (id) {
       this.items = this.items.filter((item) => id !== item.id)
+      this.setItems()
+    },
+    setItems () {
+      this.$ls.set('items', this.items)
     }
     // getRemainder() {
     //   let expense = this.items.reduce((result, item) => {
