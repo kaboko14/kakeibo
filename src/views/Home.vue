@@ -30,11 +30,12 @@ export default {
   },
   mounted () {
     this.items = this.$ls.get('items') || []
+    // itemIDをlsから呼び出したitems内の一番大きいid+1とする
+    this.itemId = this.items.reduce((maxId, item) => Math.max(maxId, item.id), 0) + 1
   },
   methods: {
     addItem (item) {
       const newItem = Object.assign({}, item)
-      // itemのIDをlsからよびだした一番大きいものからふりなおす
       newItem.id = this.itemId++
       this.items.push(newItem)
       this.sortItems()
