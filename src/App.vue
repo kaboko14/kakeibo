@@ -6,6 +6,9 @@
       </router-link> |
       <router-link to="/about">
         About
+      </router-link> |
+      <router-link to="/add-category">
+        辞書登録
       </router-link>
     </div>
     <router-view />

@@ -1,8 +1,8 @@
 <template>
   <div class="buttons--3col">
     <Button
-      v-for="(button, index) in buttonPropertys"
-      :key="index"
+      v-for="(button, index) in buttonProperties"
+      :key="button.id"
       :button-class="button.className"
       @click="onChange(categoryItems[index])"
     >
@@ -15,7 +15,7 @@
 import Button from '@/components/atoms/Button.vue'
 
 // 仮カテゴリ
-const categorys = [
+const categories = [
   { name: 'コンビニ', price: 150 },
   { name: 'スーパー', price: 2000 },
   { name: '外食', price: 1000 },
@@ -36,9 +36,9 @@ export default {
   },
   computed: {
     categoryItems () {
-      return Object.assign([], categorys)
+      return Object.assign([], categories)
     },
-    buttonPropertys () {
+    buttonProperties () {
       return this.categoryItems.map(item => {
         return {
           labelName: item.name,

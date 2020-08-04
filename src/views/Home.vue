@@ -72,7 +72,6 @@ export default {
     max-width: 1100px;
     margin: 0 auto;
     padding: 10px;
-    justify-content: space-between;
   }
   &__add-item {
     width: 30%;

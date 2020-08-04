@@ -77,5 +77,11 @@ export default {
     height: 26px;
     background-color: #777;
   }
+  &-add-category {
+    height: 58px;
+    background: #d97d7d;
+    font-weight: bold;
+    font-size: 18px;
+  }
 }
 </style>
