@@ -3,7 +3,7 @@
     <AddCategoryForms
       class="add-category__add-category-forms"
       :new-category-item="newCategoryItem"
-      @inputCategorySaveForm="onChange"
+      @inputAddCategoryForm="onChange"
     />
     <!-- 追加ボタンのスタイル・横幅は仮 -->
     <Button
@@ -19,7 +19,7 @@
 import AddCategoryForms from '@/components/organisms/AddCategoryForms.vue'
 import Button from '@/components/atoms/Button.vue'
 export default {
-  name: 'CategorySave',
+  name: 'AddCategory',
   components: {
     AddCategoryForms,
     Button
@@ -27,8 +27,8 @@ export default {
   data () {
     return {
       categoryItem: {
-        name: 'hoge',
-        price: 100
+        name: '',
+        price: 0
       }
     }
   },

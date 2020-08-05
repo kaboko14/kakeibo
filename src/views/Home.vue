@@ -7,7 +7,7 @@
     <ItemTable
       :items="items"
       class="home__item-table"
-      @click="deleteItem($event)"
+      @clickDeleteItemButton="deleteItem"
     />
   </div>
 </template>

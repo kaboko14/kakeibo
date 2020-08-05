@@ -27,7 +27,6 @@ export default {
   },
   data () {
     return {
-      word: 'Hello',
       textFormProperty: {
         inputType: 'text',
         labelText: '摘要',
@@ -42,7 +41,7 @@ export default {
   },
   methods: {
     onChange ($event, key) {
-      this.$emit('inputCategorySaveForm', {
+      this.$emit('inputAddCategoryForm', {
         ...this.newCategoryItem,
         [key]: $event
       })
