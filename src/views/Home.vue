@@ -9,7 +9,6 @@
       class="home__item-table"
       @clickDeleteItemButton="deleteItem"
     />
-    {{ items }}
   </div>
 </template>
 

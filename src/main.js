@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import Storage from 'vue-ls'
 import store from './store'
 import firebase from 'firebase'
 
@@ -21,14 +20,6 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig)
 firebase.analytics()
-
-const options = {
-  namespace: 'kakeibo__',
-  name: 'ls',
-  storage: 'local'
-}
-
-Vue.use(Storage, options)
 
 new Vue({
   router,
