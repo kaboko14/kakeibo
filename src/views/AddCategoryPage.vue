@@ -4,7 +4,9 @@
       class="add-category-page__add-category"
       @clickAddCategoryItemButton="addCategoryItem"
     />
-    <CategoryItems />
+    <CategoryItems
+      @clickDeleteCategoryItemButton="deleteCategoryItem"
+    />
   </div>
 </template>
 <script>
@@ -18,31 +20,27 @@ export default {
   },
   data () {
     return {
-      categories: [
-        { id: 0, name: 'コンビニ', price: 150 },
-        { id: 1, name: 'スーパー', price: 2000 },
-        { id: 2, name: '外食', price: 1000 },
-        { id: 3, name: '自販機', price: 130 },
-        { id: 4, name: '消耗品', price: 200 }
-      ],
-      categoryId: 0
+      categoryItems: []
+    }
+  },
+  computed: {
+    categoryId () {
+      return this.$store.state.categoryItems.reduce((maxId, categoryItem) => Math.max(maxId, categoryItem.id), 0) + 1
     }
   },
   mounted () {
-    this.categoryId = this.categories.reduce((maxId, categoryItem) => Math.max(maxId, categoryItem.id), 0) + 1
+    this.categoryItems = [...this.$store.state.categoryItems]
   },
   methods: {
     addCategoryItem (categoryItem) {
       const newCategoryItem = { ...categoryItem }
-      newCategoryItem.id = this.categoryId++
-      this.categories.push(newCategoryItem)
-      this.sortCategoryItems()
+      newCategoryItem.id = this.categoryId
+      this.categoryItems.push(newCategoryItem)
+      this.$store.commit('updateCategoryItems', [...this.categoryItems])
     },
-    sortCategoryItems () {
-      this.categories.sort((a, b) => {
-        if (a.id > b.id) return -1
-        if (a.id < b.id) return 1
-      })
+    deleteCategoryItem (id) {
+      this.categoryItems = this.categoryItems.filter(categoryItem => id !== categoryItem.id)
+      this.$store.commit('updateCategoryItems', [...this.categoryItems])
     }
   }
 }

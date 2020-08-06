@@ -4,7 +4,7 @@
       v-for="(item, index) in items"
       :key="index"
       :item="item"
-      @click="sendDeleteItemId($event)"
+      @clickDeleteItemButton="sendDeleteItemId"
     />
   </table>
 </template>
@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     sendDeleteItemId (id) {
-      this.$emit('click', id)
+      this.$emit('clickDeleteItemButton', id)
     }
   }
 }
