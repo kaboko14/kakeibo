@@ -29,6 +29,9 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    updateItems (state, items) {
+      state.items = items
+    },
     updateCategoryItems (state, categoryItems) {
       state.categoryItems = categoryItems
     }
