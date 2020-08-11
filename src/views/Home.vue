@@ -24,22 +24,24 @@ export default {
   },
   data () {
     return {
-      items: [],
-      itemId: 0
+      items: []
+    }
+  },
+  computed: {
+    itemId () {
+      return this.$store.state.items.reduce((maxId, item) => Math.max(maxId, item.id), 0) + 1
     }
   },
   mounted () {
-    this.items = this.$ls.get('items') || []
-    // itemIDをlsから呼び出したitems内の一番大きいid+1とする
-    this.itemId = this.items.reduce((maxId, item) => Math.max(maxId, item.id), 0) + 1
+    this.items = [...this.$store.state.items]
   },
   methods: {
     addItem (item) {
       const newItem = Object.assign({}, item)
-      newItem.id = this.itemId++
+      newItem.id = this.itemId
       this.items.push(newItem)
       this.sortItems()
-      this.setItems()
+      this.$store.commit('updateItems', [...this.items])
     },
     sortItems () {
       this.items.sort((a, b) => {
@@ -51,11 +53,11 @@ export default {
     },
     deleteItem (id) {
       this.items = this.items.filter((item) => id !== item.id)
-      this.setItems()
-    },
-    setItems () {
-      this.$ls.set('items', this.items)
+      this.$store.commit('updateItems', [...this.items])
     }
+    // setItems () {
+    //   this.$ls.set('items', this.items)
+    // }
     // getRemainder() {
     //   let expense = this.items.reduce((result, item) => {
     //     return result + item.price;

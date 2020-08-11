@@ -15,10 +15,15 @@ export default {
   components: {
     GridTable
   },
-  props: {
-    items: {
-      type: Array,
-      required: true
+  // props: {
+  //   items: {
+  //     type: Array,
+  //     required: true
+  //   }
+  // },
+  computed: {
+    items () {
+      return this.$store.state.items
     }
   },
   methods: {
