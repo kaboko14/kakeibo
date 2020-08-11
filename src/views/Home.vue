@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import AddItem from '@/components/templates/AddItem.vue'
+import AddItem from '@/components/organisms/AddItem.vue'
 import ItemTable from '@/components/organisms/ItemTable.vue'
 
 export default {

@@ -11,7 +11,7 @@
 </template>
 <script>
 import AddCategory from '@/components/templates/AddCategory.vue'
-import CategoryItems from '@/components/organisms/CategoryItems.vue'
+import CategoryItems from '@/components/molecules/CategoryItems.vue'
 export default {
   name: 'AddCategoryPage',
   components: {

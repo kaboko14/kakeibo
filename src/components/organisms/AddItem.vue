@@ -35,12 +35,12 @@
   </div>
 </template>
 <script>
-import CategoryButtons from '@/components/organisms/CategoryButtons.vue'
+import CategoryButtons from '@/components/molecules/CategoryButtons.vue'
 import ItemPreview from '@/components/atoms/ItemPreview.vue'
 import Button from '@/components/atoms/Button.vue'
 import Forms from '@/components/organisms/Forms.vue'
-import IncrementButtons from '@/components/organisms/IncrementButtons.vue'
-import AddItemButtons from '@/components/organisms/AddItemButtons.vue'
+import IncrementButtons from '@/components/molecules/IncrementButtons.vue'
+import AddItemButtons from '@/components/molecules/AddItemButtons.vue'
 import moment from 'moment'
 
 export default {
