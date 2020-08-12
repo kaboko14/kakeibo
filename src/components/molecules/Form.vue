@@ -9,7 +9,7 @@
         :input-type="formProperty.inputType"
         :placeholder="formProperty.placeholder"
         :min="formProperty.min"
-        :value="value"
+        :value="value.toLocaleString()"
         @input="onChange"
       />
       <FormClearButton
@@ -48,7 +48,9 @@ export default {
   },
   methods: {
     onChange (value) {
-      this.formValue = value
+      this.formValue = this.formProperty.inputType === 'tel'
+        ? value.replace(/[^0-9]/g, '')
+        : value
       this.$emit('input', this.formValue)
     }
   }

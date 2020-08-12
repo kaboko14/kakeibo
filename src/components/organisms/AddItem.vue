@@ -12,8 +12,6 @@
       :new-item="newItem"
       @inputForm="onChange"
     />
-    {{ typeof newItem.price }}
-    {{ newItem }}
     <IncrementButtons
       class="add-item__increment-buttons"
       :new-item="newItem"

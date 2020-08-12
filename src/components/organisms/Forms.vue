@@ -51,7 +51,7 @@ export default {
         placeholder: this.textFormPlaceholder
       },
       priceFormProperty: {
-        inputType: 'number',
+        inputType: 'tel',
         labelText: '金額',
         placeholder: '入力してください'
       }
