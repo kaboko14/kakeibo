@@ -10,7 +10,7 @@
   </div>
 </template>
 <script>
-import AddCategory from '@/components/templates/AddCategory.vue'
+import AddCategory from '@/components/organisms/AddCategory.vue'
 import CategoryItems from '@/components/molecules/CategoryItems.vue'
 export default {
   name: 'AddCategoryPage',

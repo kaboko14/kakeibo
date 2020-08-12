@@ -1,6 +1,10 @@
 <template>
   <div class="home__container">
-    <AddItem
+    <AddExpenseItem
+      class="home__add-item"
+      @clickAddItemButton="addItem"
+    />
+    <AddIncomeItem
       class="home__add-item"
       @clickAddItemButton="addItem"
     />
@@ -13,13 +17,15 @@
 </template>
 
 <script>
-import AddItem from '@/components/organisms/AddItem.vue'
+import AddExpenseItem from '@/components/pages/AddExpenseItem.vue'
+import AddIncomeItem from '@/components/pages/AddIncomeItem.vue'
 import ItemTable from '@/components/organisms/ItemTable.vue'
 
 export default {
   name: 'Home',
   components: {
-    AddItem,
+    AddExpenseItem,
+    AddIncomeItem,
     ItemTable
   },
   data () {

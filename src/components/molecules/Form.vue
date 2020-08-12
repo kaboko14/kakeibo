@@ -7,14 +7,15 @@
     <div class="form__wrapper">
       <Input
         :input-type="formProperty.inputType"
-        :value="value"
         :placeholder="formProperty.placeholder"
+        :min="formProperty.min"
+        :value="value"
         @input="onChange"
       />
       <FormClearButton
         v-show="formProperty.inputType !== 'date'"
         class="form__clear-button"
-        @click="onChange(null)"
+        @click="onChange('')"
       />
     </div>
   </div>

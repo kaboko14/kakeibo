@@ -1,10 +1,10 @@
 <template>
   <div class="buttons--2col">
     <Button
-      v-for="(button, index) in buttonPropertys"
+      v-for="(button, index) in buttonProperties"
       :key="index"
       :button-class="button.className"
-      @click="onChange(purposes[index])"
+      @click="onChange(button.purpose)"
     >
       {{ button.label }}
     </Button>
@@ -18,18 +18,19 @@ export default {
   components: {
     Button
   },
-  data () {
-    return {
-      purposes: ['need', 'want']
+  props: {
+    buttonProperties: {
+      type: Array,
+      required: true
     }
   },
   computed: {
-    buttonPropertys () {
-      const purposes = this.purposes
-      return purposes.map(purpose => {
-        return { label: purpose.toUpperCase(), className: `button-${purpose}` }
-      })
-    }
+    // buttonProperties () {
+    //   const purposes = this.purposes
+    //   return purposes.map(purpose => {
+    //     return { label: purpose.toUpperCase(), className: `button-${purpose}` }
+    //   })
+    // }
   },
   methods: {
     onChange (value) {

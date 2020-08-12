@@ -1,7 +1,7 @@
 <template>
   <div class="buttons--3col">
     <Button
-      v-for="(button, index) in buttonPropertys"
+      v-for="(button, index) in buttonProperties"
       :key="index"
       :button-class="button.className"
       @click="incrementPrice(button.incrementNumber)"
@@ -22,16 +22,15 @@ export default {
     newItem: {
       type: Object,
       required: true
-    }
-  },
-  data () {
-    return {
-      incrementNumbers: [1000, 100, 10, -1000, -100, -10]
+    },
+    buttonNumbers: {
+      type: Array,
+      required: true
     }
   },
   computed: {
-    buttonPropertys () {
-      const numbers = this.incrementNumbers
+    buttonProperties () {
+      const numbers = this.buttonNumbers
       return numbers.map(number => {
         return number > 0
           ? {

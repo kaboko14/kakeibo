@@ -32,6 +32,11 @@ export default {
     newItem: {
       type: Object,
       required: true
+    },
+    textFormPlaceholder: {
+      type: String,
+      repuired: false,
+      default: '入力してください'
     }
   },
   data () {
@@ -43,12 +48,12 @@ export default {
       textFormProperty: {
         inputType: 'text',
         labelText: '摘要',
-        placeholder: '入力してください'
+        placeholder: this.textFormPlaceholder
       },
       priceFormProperty: {
         inputType: 'number',
         labelText: '金額',
-        placeholder: 0
+        placeholder: '入力してください'
       }
     }
   },

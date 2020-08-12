@@ -23,20 +23,27 @@ export default {
     newItem: {
       type: Object,
       required: true
+    },
+    buttonProperties: {
+      type: Array,
+      required: true
     }
   },
   computed: {
-    buttonProperties () {
-      return this.$store.getters.categoryButtonProperties
-    }
   },
   methods: {
     onChange (item) {
-      this.$emit('clickCategoryButton', {
-        ...this.newItem,
-        category: item.name,
-        price: item.price
-      })
+      const newItem = item.price
+        ? {
+          ...this.newItem,
+          category: item.name,
+          price: item.price
+        }
+        : {
+          ...this.newItem,
+          category: item.name
+        }
+      this.$emit('clickCategoryButton', newItem)
     }
   }
 }

@@ -3,41 +3,35 @@
     <CategoryButtons
       class="add-item__category-buttons"
       :new-item="newItem"
+      :button-properties="addItemProperties.categoryButtonProperties"
       @clickCategoryButton="onChange"
     />
-    <div class="add-item__preview-container">
-      <ItemPreview
-        class="add-item__item-preview"
-        :new-item="newItem"
-      />
-      <Button
-        button-class="button-edit"
-        class="add-item__form-open-button"
-        @click="openForm()"
-      >
-        フォーム入力
-      </Button>
-    </div>
     <Forms
       class="add-item__forms"
+      :text-form-placeholder="addItemProperties.initialCategory"
       :new-item="newItem"
-      :class="{formview : formView}"
       @inputForm="onChange"
     />
+    {{ typeof newItem.price }}
+    {{ newItem }}
     <IncrementButtons
       class="add-item__increment-buttons"
       :new-item="newItem"
+      :button-numbers="addItemProperties.incrementButtonNumbers"
       @clickIncrementButton="onChange"
     />
+    <p v-show="!newItem.price">
+      ※金額を入力してください
+    </p>
     <AddItemButtons
+      v-show="newItem.price"
+      :button-properties="addItemProperties.addItemButtonProperties"
       @clickAddItemButton="addNewItem"
     />
   </div>
 </template>
 <script>
 import CategoryButtons from '@/components/molecules/CategoryButtons.vue'
-import ItemPreview from '@/components/atoms/ItemPreview.vue'
-import Button from '@/components/atoms/Button.vue'
 import Forms from '@/components/organisms/Forms.vue'
 import IncrementButtons from '@/components/molecules/IncrementButtons.vue'
 import AddItemButtons from '@/components/molecules/AddItemButtons.vue'
@@ -47,20 +41,22 @@ export default {
   name: 'AddItem',
   components: {
     CategoryButtons,
-    ItemPreview,
-    Button,
     Forms,
     IncrementButtons,
     AddItemButtons
   },
   props: {
+    addItemProperties: {
+      type: Object,
+      required: true
+    }
   },
   data () {
     return {
       item: {
         date: this.moment(),
-        category: 'その他',
-        price: 0
+        category: '',
+        price: ''
       },
       formView: false
     }
@@ -73,7 +69,7 @@ export default {
           ? ''
           : this.item.category,
         price: !this.item.price
-          ? 0
+          ? ''
           : this.item.price * 1
       }
     }
@@ -87,13 +83,16 @@ export default {
     },
     addNewItem (value) {
       this.newItem.purpose = value
+      if (!this.newItem.category) {
+        this.newItem.category = this.addItemProperties.initialCategory
+      }
       this.$emit('clickAddItemButton', this.newItem)
       this.itemInit()
     },
     itemInit () {
       this.item.date = this.moment()
-      this.item.category = 'その他'
-      this.item.price = 0
+      this.item.category = ''
+      this.item.price = ''
     },
     moment () {
       return moment()
@@ -113,33 +112,9 @@ export default {
   &__category-buttons {
     margin-bottom: 20px;
   }
-  &__preview-container {
-    display: flex;
-    margin-bottom: 20px;
-    align-items: flex-end;
-  }
-
-  &__item-preview {
-    flex: 3;
-  }
-
-  &__form-open-button {
-    margin-left: 10px;
-    // margin-bottom: 0px;
-    flex: 1;
-  }
-
   &__forms {
-    max-height: 0px;
-    opacity: 0;
-    overflow: hidden;
-    transition: all 0.3s ease;
-
-    &.formview {
-      max-height: 400px;
-      margin-bottom: 20px;
-      opacity: 1;
-    }
+    opacity: 1;
+    margin-bottom: 20px;
   }
 
   &__increment-buttons {

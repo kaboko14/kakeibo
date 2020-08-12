@@ -67,10 +67,10 @@ export default {
     font-size: 18px;
   }
 
-  &-edit {
-    height: 30px;
+  &-income {
+    height: 58px;
     background-color: #d9c07d;
-    font-size: 10px;
+    font-size: 18px;
   }
   &-delete-item {
     width: 26px;
