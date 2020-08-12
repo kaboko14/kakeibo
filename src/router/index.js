@@ -26,6 +26,28 @@ const routes = [
     ]
   },
   {
+    path: '/history',
+    name: 'History',
+    component: Home,
+    children: [
+      {
+        path: '/',
+        name: 'ExpenseHistory',
+        component: AddExpense
+      },
+      {
+        path: '/income',
+        name: 'IncomeHistory',
+        component: AddIncome
+      },
+      {
+        path: '/all',
+        name: 'AllHistory',
+        component: AddIncome
+      }
+    ]
+  },
+  {
     path: '/add-category',
     name: 'AddCategory',
     component: AddCategory
