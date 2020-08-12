@@ -1,33 +1,22 @@
 <template>
   <div class="home__container">
-    <AddExpenseItem
+    <div class="home__navi">
+      <router-link to="/">
+        出金
+      </router-link>|
+      <router-link to="/income">
+        入金
+      </router-link>
+    </div>
+    <router-view
       class="home__add-item"
-      @clickAddItemButton="addItem"
-    />
-    <AddIncomeItem
-      class="home__add-item"
-      @clickAddItemButton="addItem"
-    />
-    <ItemTable
-      :items="items"
-      class="home__item-table"
-      @clickDeleteItemButton="deleteItem"
     />
   </div>
 </template>
 
 <script>
-import AddExpenseItem from '@/components/pages/AddExpenseItem.vue'
-import AddIncomeItem from '@/components/pages/AddIncomeItem.vue'
-import ItemTable from '@/components/organisms/ItemTable.vue'
-
 export default {
   name: 'Home',
-  components: {
-    AddExpenseItem,
-    AddIncomeItem,
-    ItemTable
-  },
   data () {
     return {
       items: []
@@ -76,18 +65,17 @@ export default {
 <style scoped lang="scss">
 .home {
   &__container {
-    display: flex;
     max-width: 1100px;
     margin: 0 auto;
+  }
+  &__navi {
+    text-align: center;
     padding: 10px;
   }
   &__add-item {
-    width: 30%;
-    min-width: 320px;
-    padding: 10px;
-  }
-  &__item-table {
-    width: 65%;
+    width: 320px;
+    margin: 0 auto;
+    padding: 5px;
   }
 }
 </style>

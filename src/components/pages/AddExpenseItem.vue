@@ -84,20 +84,5 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-.home {
-  &__container {
-    display: flex;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 10px;
-  }
-  &__add-item {
-    width: 30%;
-    min-width: 320px;
-    padding: 10px;
-  }
-  &__item-table {
-    width: 65%;
-  }
-}
+
 </style>
