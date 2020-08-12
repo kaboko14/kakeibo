@@ -52,6 +52,9 @@ export default new Vuex.Store({
     updateItems (state, items) {
       state.items = items
     },
+    deleteItem (state, id) {
+      state.items = state.items.filter(item => item.id !== id)
+    },
     updateCategoryItems (state, categoryItems) {
       state.categoryItems = categoryItems
     }

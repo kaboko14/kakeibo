@@ -32,7 +32,7 @@ export default {
       return [...this.$store.state.items]
     },
     itemId () {
-      return this.$store.state.items.reduce((maxId, item) => Math.max(maxId, item.id), 0) + 1
+      return this.items.reduce((maxId, item) => Math.max(maxId, item.id), 0) + 1
     },
     addItemProperties () {
       return {

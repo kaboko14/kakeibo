@@ -9,6 +9,9 @@
       </router-link> |
       <router-link to="/add-category">
         辞書登録
+      </router-link> |
+      <router-link to="/history">
+        履歴
       </router-link>
     </div>
     <router-view />

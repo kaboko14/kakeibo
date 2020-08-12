@@ -1,8 +1,8 @@
 <template>
   <table class="item-table__container">
     <GridTable
-      v-for="(item, index) in items"
-      :key="index"
+      v-for="item in items"
+      :key="item.id"
       :item="item"
       @clickDeleteItemButton="sendDeleteItemId"
     />
@@ -15,19 +15,15 @@ export default {
   components: {
     GridTable
   },
-  // props: {
-  //   items: {
-  //     type: Array,
-  //     required: true
-  //   }
-  // },
-  computed: {
-    items () {
-      return this.$store.state.items
+  props: {
+    items: {
+      type: Array,
+      required: true
     }
   },
   methods: {
     sendDeleteItemId (id) {
+      console.log(id)
       this.$emit('clickDeleteItemButton', id)
     }
   }

@@ -4,13 +4,16 @@ import Home from '../views/Home.vue'
 import AddExpense from '../components/pages/AddExpenseItem.vue'
 import AddIncome from '../components/pages/AddIncomeItem.vue'
 import AddCategory from '../views/AddCategoryPage.vue'
+import History from '../views/History.vue'
+import ExpenseHistory from '../components/pages/ExpenseHistory.vue'
+import IncomeHistory from '../components/pages/IncomeHistory.vue'
+import AllHistory from '../components/pages/AllHistory.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
     component: Home,
     children: [
       {
@@ -27,23 +30,22 @@ const routes = [
   },
   {
     path: '/history',
-    name: 'History',
-    component: Home,
+    component: History,
     children: [
       {
         path: '/',
-        name: 'ExpenseHistory',
-        component: AddExpense
-      },
-      {
-        path: '/income',
-        name: 'IncomeHistory',
-        component: AddIncome
-      },
-      {
-        path: '/all',
         name: 'AllHistory',
-        component: AddIncome
+        component: AllHistory
+      },
+      {
+        path: 'expense',
+        name: 'ExpenseHistory',
+        component: ExpenseHistory
+      },
+      {
+        path: 'income',
+        name: 'IncomeHistory',
+        component: IncomeHistory
       }
     ]
   },

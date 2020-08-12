@@ -2,12 +2,23 @@
   <tr class="grid-table__wrapper">
     <td class="grid-table__date">
       {{ item.date }}
-    </td>
-    <td
-      class="grid-table__purpose"
-      :class="item.purpose"
-    >
-      {{ item.purpose }}
+      <div
+        class="grid-table__purpose"
+        :class="item.purpose"
+      >
+        <template v-if="item.purpose==='need'">
+          NEED
+        </template>
+        <template v-else-if="item.purpose==='want'">
+          WANT
+        </template>
+        <template v-else-if="item.purpose==='income'">
+          入金
+        </template>
+        <template v-else-if="item.purpose==='balance'">
+          残高調整
+        </template>
+      </div>
     </td>
     <td class="grid-table__category">
       {{ item.category }}
@@ -43,12 +54,15 @@ export default {
   },
   methods: {
     sendDeleteItemId (id) {
-      this.$emit('clickDeleteItemButton', id)
+      this.$store.commit('deleteItem', id)
     }
   }
 }
 </script>
 <style scoped lang="scss">
+td {
+  vertical-align: bottom;
+}
 .grid-table {
   &__wrapper {
     & > td {
@@ -71,6 +85,9 @@ export default {
     }
     &.want {
       color: #d97d7d;
+    }
+    &.income {
+      color: #d9c07d;
     }
   }
 
