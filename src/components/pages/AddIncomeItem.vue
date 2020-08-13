@@ -2,7 +2,7 @@
   <AddItem
     :add-item-properties="addItemProperties"
     class="home__add-item"
-    @clickAddItemButton="addItem"
+    @clickEnterButtons="addItem"
   />
 </template>
 
@@ -17,11 +17,11 @@ export default {
   data () {
     return {
       initialCategory: '入金',
-      incrementButton: [10000, 5000, 1000, -10000, -5000, -1000],
-      addItemButton: [
+      incrementButtons: [10000, 5000, 1000, -10000, -5000, -1000],
+      addItemButtons: [
         {
           label: '入金',
-          purpose: 'income',
+          value: 'income',
           className: 'button-income'
         }
       ]
@@ -32,20 +32,20 @@ export default {
       return [...this.$store.state.items]
     },
     itemId () {
-      return this.items.reduce((maxId, item) => Math.max(maxId, item.id), 0) + 1
+      return (
+        this.items.reduce((maxId, item) => Math.max(maxId, item.id), 0) + 1
+      )
     },
     addItemProperties () {
       return {
         initialCategory: this.initialCategory,
-        categoryButtonProperties: this.$store.getters.incomeCategoryButtonProperties,
-        incrementButtonNumbers: this.incrementButton,
-        addItemButtonProperties: this.addItemButton
+        categoryButtonProperties: this.$store.getters
+          .incomeCategoryButtonProperties,
+        incrementButtonNumbers: this.incrementButtons,
+        addItemButtonProperties: this.addItemButtons
       }
     }
   },
-  // mounted () {
-  //   this.items = [...this.$store.state.items]
-  // },
   methods: {
     addItem (item) {
       const newItem = Object.assign({}, item)
@@ -66,9 +66,6 @@ export default {
       this.items = this.items.filter((item) => id !== item.id)
       this.$store.commit('updateItems', [...this.items])
     }
-    // setItems () {
-    //   this.$ls.set('items', this.items)
-    // }
     // getRemainder() {
     //   let expense = this.items.reduce((result, item) => {
     //     return result + item.price;
@@ -78,5 +75,4 @@ export default {
   }
 }
 </script>
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>

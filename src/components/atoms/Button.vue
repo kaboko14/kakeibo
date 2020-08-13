@@ -1,7 +1,7 @@
 <template>
   <button
     :class="className"
-    @click="$emit('click')"
+    @click.stop="$emit('click')"
   >
     <p class="button__label">
       <slot />
@@ -39,12 +39,12 @@ export default {
   }
 
   &-category {
-    height: 60px;
+    min-height: 60px;
     background: #7dd983;
   }
 
   &-plus {
-    height: 40px;
+    min-height: 40px;
     background: #d97d90;
   }
 
@@ -53,17 +53,17 @@ export default {
     background: #7d99d9;
   }
 
-  &-need {
-    height: 58px;
+  &-need,
+  &-add {
+    height: 50px;
     background: #7dd3d9;
-    font-weight: bold;
     font-size: 18px;
   }
 
-  &-want {
-    height: 58px;
+  &-want,
+  &-change {
+    height: 50px;
     background: #d97d7d;
-    font-weight: bold;
     font-size: 18px;
   }
 
@@ -74,6 +74,10 @@ export default {
   }
   &-delete-item {
     width: 26px;
+    height: 26px;
+    background-color: #777;
+  }
+  &-delete-category {
     height: 26px;
     background-color: #777;
   }

@@ -1,25 +1,21 @@
 <template>
-  <div>
-    <div
+  <div class="buttons--3col">
+    <Button
       v-for="button in buttonProperties"
       :key="button.id"
-      class="category-items__container"
+      :button-class="button.className"
+      @click="onChange(button)"
     >
+      {{ button.labelName }}<br>
+      {{ button.labelPrice }}<br>
+      🖊
       <Button
-        :button-class="button.className"
-        style="width:200px"
+        :button-class="'button-delete-category'"
+        @click="sendDeleteCategoryId(button.id)"
       >
-        {{ button.labelName }}<br>
-        {{ button.labelPrice }}
+        削除
       </Button>
-      <Button
-        :button-class="'button-delete-item'"
-        class="category-items__delete-button"
-        @click="sendDeleteCategoryItemId(button.id)"
-      >
-        ×
-      </Button>
-    </div>
+    </Button>
   </div>
 </template>
 <script>
@@ -30,6 +26,12 @@ export default {
   components: {
     Button
   },
+  props: {
+    buttonProperties: {
+      type: Array,
+      required: true
+    }
+  },
   data () {
     return {
     }
@@ -37,27 +39,36 @@ export default {
   computed: {
     categoryItems () {
       return Object.assign([], this.categories)
-    },
-    buttonProperties () {
-      return this.$store.getters.categoryButtonProperties
     }
   },
   methods: {
-    sendDeleteCategoryItemId (id) {
-      this.$emit('clickDeleteCategoryItemButton', id)
+    onChange (categoryItem) {
+      const newCategoryItem = categoryItem.price
+        ? {
+          ...this.newCategoryItem,
+          id: categoryItem.id,
+          name: categoryItem.name,
+          price: categoryItem.price
+        }
+        : {
+          ...this.newCategoryItem,
+          id: categoryItem.id,
+          name: categoryItem.name
+        }
+      this.$emit('clickCategoryButton', newCategoryItem)
+    },
+    sendDeleteCategoryId (id) {
+      this.$emit('clickDeleteCategoryButton', id)
     }
   }
 }
 </script>
 <style lang="scss" scoped>
-.category-items {
-  &__container {
-    display: flex;
-    margin-bottom: 10px;
-    align-items: flex-end;
-  }
-  &__delete-button {
-    margin-left: 6px;
-  }
+.buttons--3col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  justify-items: center;
+  align-items: center;
 }
 </style>

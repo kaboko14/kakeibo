@@ -2,7 +2,7 @@
   <AddItem
     :add-item-properties="addItemProperties"
     class="home__add-item"
-    @clickAddItemButton="addItem"
+    @clickEnterButtons="addItem"
   />
 </template>
 
@@ -17,16 +17,16 @@ export default {
   data () {
     return {
       initialCategory: '出金',
-      incrementButton: [1000, 500, 100, -1000, -500, -100],
-      addItemButton: [
+      incrementButtons: [1000, 500, 100, -1000, -500, -100],
+      addItemButtons: [
         {
           label: 'NEED',
-          purpose: 'need',
+          value: 'need',
           className: 'button-need'
         },
         {
           label: 'WANT',
-          purpose: 'want',
+          value: 'want',
           className: 'button-want'
         }
       ]
@@ -37,20 +37,20 @@ export default {
       return [...this.$store.state.items]
     },
     itemId () {
-      return this.items.reduce((maxId, item) => Math.max(maxId, item.id), 0) + 1
+      return (
+        this.items.reduce((maxId, item) => Math.max(maxId, item.id), 0) + 1
+      )
     },
     addItemProperties () {
       return {
         initialCategory: this.initialCategory,
-        categoryButtonProperties: this.$store.getters.expenseCategoryButtonProperties,
-        incrementButtonNumbers: this.incrementButton,
-        addItemButtonProperties: this.addItemButton
+        categoryButtonProperties: this.$store.getters
+          .expenseCategoryButtonProperties,
+        incrementButtonNumbers: this.incrementButtons,
+        addItemButtonProperties: this.addItemButtons
       }
     }
   },
-  // mounted () {
-  //   this.items = [...this.$store.state.items]
-  // },
   methods: {
     addItem (item) {
       const newItem = Object.assign({}, item)
@@ -71,18 +71,7 @@ export default {
       this.items = this.items.filter((item) => id !== item.id)
       this.$store.commit('updateItems', [...this.items])
     }
-    // setItems () {
-    //   this.$ls.set('items', this.items)
-    // }
-    // getRemainder() {
-    //   let expense = this.items.reduce((result, item) => {
-    //     return result + item.price;
-    //   }, 0);
-    //   return this.remainder - expense;
-    // },
   }
 }
 </script>
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

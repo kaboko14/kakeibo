@@ -3,11 +3,13 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import AddExpense from '../components/pages/AddExpenseItem.vue'
 import AddIncome from '../components/pages/AddIncomeItem.vue'
-import AddCategory from '../views/AddCategoryPage.vue'
 import History from '../views/History.vue'
 import ExpenseHistory from '../components/pages/ExpenseHistory.vue'
 import IncomeHistory from '../components/pages/IncomeHistory.vue'
 import AllHistory from '../components/pages/AllHistory.vue'
+import Library from '../views/Library.vue'
+import ExpenseCategoryLibrary from '../components/pages/ExpenseCategoryLibrary.vue'
+import IncomeCategoryLibrary from '../components/pages/IncomeCategoryLibrary.vue'
 
 Vue.use(VueRouter)
 
@@ -50,18 +52,20 @@ const routes = [
     ]
   },
   {
-    path: '/add-category',
-    name: 'AddCategory',
-    component: AddCategory
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/library',
+    component: Library,
+    children: [
+      {
+        path: '/',
+        name: 'ExpenseCategoryLibrary',
+        component: ExpenseCategoryLibrary
+      },
+      {
+        path: 'income',
+        name: 'IncomeCategoryLibrary',
+        component: IncomeCategoryLibrary
+      }
+    ]
   }
 ]
 

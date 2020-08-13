@@ -1,10 +1,11 @@
 <template>
-  <div class="buttons--2col">
+  <div class="enter-buttons__container">
     <Button
       v-for="(button, index) in buttonProperties"
       :key="index"
+      class="enter-buttons__button"
       :button-class="button.className"
-      @click="onChange(button.purpose)"
+      @click="onChange(button.value)"
     >
       {{ button.label }}
     </Button>
@@ -14,7 +15,7 @@
 import Button from '@/components/atoms/Button.vue'
 
 export default {
-  name: 'AddItemButtons',
+  name: 'EnterButtons',
   components: {
     Button
   },
@@ -34,15 +35,23 @@ export default {
   },
   methods: {
     onChange (value) {
-      this.$emit('clickAddItemButton', value)
+      this.$emit('clickEnterButtons', value)
     }
   }
 }
 </script>
 <style scoped lang="scss">
-.buttons--2col {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+.enter-buttons {
+  &__container {
+    display: flex;
+    justify-content: center;
+  }
+  &__button {
+    max-width: 50%;
+    margin-left: 10px;
+    &:first-child {
+      margin-left: 0px;
+    }
+  }
 }
 </style>

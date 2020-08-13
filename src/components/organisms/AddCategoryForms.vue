@@ -9,19 +9,37 @@
     <Form
       :value="newCategoryItem.price"
       :form-property="priceFormProperty"
+      class="add-category-forms__category-form"
       @input="onChange($event,'price')"
+    />
+    <EnterButtons
+      :button-properties="buttonProperties"
+      @clickEnterButtons="sendValue"
     />
   </div>
 </template>
 <script>
 import Form from '@/components/molecules/Form.vue'
+import EnterButtons from '@/components/molecules/EnterButtons.vue'
 export default {
   components: {
-    Form
+    Form,
+    EnterButtons
   },
   props: {
     newCategoryItem: {
       type: Object,
+      required: false,
+      default () {
+        return {
+          id: null,
+          category: '',
+          price: null
+        }
+      }
+    },
+    buttonProperties: {
+      type: Array,
       required: true
     }
   },
@@ -33,9 +51,9 @@ export default {
         placeholder: '入力してください'
       },
       priceFormProperty: {
-        inputType: 'number',
+        inputType: 'tel',
         labelText: '金額',
-        placeholder: 0
+        placeholder: '入力してください'
       }
     }
   },
@@ -45,6 +63,9 @@ export default {
         ...this.newCategoryItem,
         [key]: $event
       })
+    },
+    sendValue (value) {
+      this.$emit('clickEnterButton', value)
     }
   }
 }

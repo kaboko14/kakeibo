@@ -9,7 +9,7 @@
         :input-type="formProperty.inputType"
         :placeholder="formProperty.placeholder"
         :min="formProperty.min"
-        :value="value.toLocaleString()"
+        :value="value? value.toLocaleString() : value"
         @input="onChange"
       />
       <FormClearButton
@@ -38,7 +38,8 @@ export default {
     },
     value: {
       type: [String, Number],
-      required: true
+      required: false,
+      default: null
     }
   },
   data () {

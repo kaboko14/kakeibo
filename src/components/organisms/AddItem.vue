@@ -21,10 +21,10 @@
     <p v-show="!newItem.price">
       ※金額を入力してください
     </p>
-    <AddItemButtons
+    <EnterButtons
       v-show="newItem.price"
       :button-properties="addItemProperties.addItemButtonProperties"
-      @clickAddItemButton="addNewItem"
+      @clickEnterButtons="addNewItem"
     />
   </div>
 </template>
@@ -32,7 +32,7 @@
 import CategoryButtons from '@/components/molecules/CategoryButtons.vue'
 import Forms from '@/components/organisms/Forms.vue'
 import IncrementButtons from '@/components/molecules/IncrementButtons.vue'
-import AddItemButtons from '@/components/molecules/AddItemButtons.vue'
+import EnterButtons from '@/components/molecules/EnterButtons.vue'
 import moment from 'moment'
 
 export default {
@@ -41,7 +41,7 @@ export default {
     CategoryButtons,
     Forms,
     IncrementButtons,
-    AddItemButtons
+    EnterButtons
   },
   props: {
     addItemProperties: {
@@ -63,12 +63,8 @@ export default {
     newItem () {
       return {
         date: this.momentFormat(this.item.date),
-        category: !this.item.category
-          ? ''
-          : this.item.category,
-        price: !this.item.price
-          ? ''
-          : this.item.price * 1
+        category: !this.item.category ? '' : this.item.category,
+        price: !this.item.price ? '' : this.item.price * 1
       }
     }
   },
@@ -84,7 +80,7 @@ export default {
       if (!this.newItem.category) {
         this.newItem.category = this.addItemProperties.initialCategory
       }
-      this.$emit('clickAddItemButton', this.newItem)
+      this.$emit('clickEnterButtons', this.newItem)
       this.itemInit()
     },
     itemInit () {

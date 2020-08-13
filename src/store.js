@@ -55,8 +55,11 @@ export default new Vuex.Store({
     deleteItem (state, id) {
       state.items = state.items.filter(item => item.id !== id)
     },
-    updateCategoryItems (state, categoryItems) {
-      state.categoryItems = categoryItems
+    updateExpenseCategoryItems (state, categoryItems) {
+      state.expenseCategoryItems = categoryItems
+    },
+    updateIncomeCategoryItems (state, categoryItems) {
+      state.incomeCategoryItems = categoryItems
     }
   },
   plugins: [createPersistedState({ key: 'myKakeibo' })]
