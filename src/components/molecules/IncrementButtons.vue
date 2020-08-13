@@ -4,7 +4,7 @@
       v-for="(button, index) in buttonProperties"
       :key="index"
       :button-class="button.className"
-      @click="incrementPrice(button.incrementNumbers)"
+      @click="incrementPrice(button.incrementNumber)"
     >
       {{ button.label }}
     </Button>

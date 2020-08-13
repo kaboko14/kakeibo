@@ -64,7 +64,9 @@ export default {
       return {
         date: this.momentFormat(this.item.date),
         category: !this.item.category ? '' : this.item.category,
-        price: !this.item.price ? '' : this.item.price * 1
+        price: !this.item.price || this.item.price <= 0
+          ? ''
+          : this.item.price * 1
       }
     }
   },
