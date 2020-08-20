@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import firebase from 'firebase'
+require('@/styles/global.scss')
 
 Vue.config.productionTip = false
 
