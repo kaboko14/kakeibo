@@ -26,6 +26,7 @@ export default {
 }
 </script>
 <style scoped lang="scss">
+@import "@/styles/global";
 .button {
   width: 100%;
   padding: 4px;
@@ -35,7 +36,7 @@ export default {
   cursor: pointer;
 
   &__label {
-    color: #fff;
+    color: $base-color;
   }
 
   &-category {
