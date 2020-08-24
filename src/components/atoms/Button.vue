@@ -26,7 +26,6 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-// $base-color: #ffffff;
 @import "@/styles/global";
 .button {
   width: 100%;
