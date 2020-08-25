@@ -22,7 +22,9 @@ export default {
   },
   login () {
     const provider = new firebase.auth.GoogleAuthProvider()
-    firebase.auth().signInWithPopup(provider)
+    firebase.auth().signInWithPopup(provider).then(result => {
+      this.userRegistration(result)
+    })
   },
   logout () {
     firebase.auth().signOut()
@@ -33,6 +35,13 @@ export default {
       const currentUser = user
       console.log(user)
       store.commit('onAuthStateChange', currentUser)
+    })
+  },
+  userRegistration (currentUser) {
+    firebase.firestore().collection('users').doc(currentUser.user.uid).set({
+      uid: currentUser.user.uid,
+      displayName: currentUser.user.displayName,
+      photoURL: currentUser.user.photoURL
     })
   }
 }
