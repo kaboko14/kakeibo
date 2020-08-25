@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Login from '../views/Login.vue'
 import Home from '../views/Home.vue'
 import AddExpense from '../components/pages/AddExpenseItem.vue'
 import AddIncome from '../components/pages/AddIncomeItem.vue'
@@ -14,6 +15,10 @@ import IncomeCategoryLibrary from '../components/pages/IncomeCategoryLibrary.vue
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path: '/login',
+    component: Login
+  },
   {
     path: '/',
     component: Home,

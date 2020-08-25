@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import auth from './modules/auth'
 import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
@@ -24,13 +25,9 @@ export default new Vuex.Store({
         return {
           id: item.id,
           name: item.name,
-          price: item.price
-            ? item.price
-            : null,
+          price: item.price ? item.price : null,
           labelName: item.name,
-          labelPrice: item.price
-            ? `￥${item.price.toLocaleString()}`
-            : null,
+          labelPrice: item.price ? `￥${item.price.toLocaleString()}` : null,
           className: 'button-category'
         }
       })
@@ -53,7 +50,7 @@ export default new Vuex.Store({
       state.items = items
     },
     deleteItem (state, id) {
-      state.items = state.items.filter(item => item.id !== id)
+      state.items = state.items.filter((item) => item.id !== id)
     },
     updateExpenseCategoryItems (state, categoryItems) {
       state.expenseCategoryItems = categoryItems
@@ -62,5 +59,9 @@ export default new Vuex.Store({
       state.incomeCategoryItems = categoryItems
     }
   },
-  plugins: [createPersistedState({ key: 'myKakeibo' })]
+  plugins: [createPersistedState({ key: 'myKakeibo' })],
+  modules: {
+    auth
+  }
+
 })
