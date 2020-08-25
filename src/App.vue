@@ -1,19 +1,30 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">
-        入力
-      </router-link> |
-      <router-link to="/history">
-        履歴
-      </router-link> |
-      <router-link to="/library">
-        品目登録
-      </router-link>
-    </div>
+    <NavigationBar>
+      <div id="nav">
+        <router-link to="/">
+          入力
+        </router-link> |
+        <router-link to="/history">
+          履歴
+        </router-link> |
+        <router-link to="/library">
+          品目登録
+        </router-link>
+      </div>
+    </NavigationBar>
     <router-view />
   </div>
 </template>
+<script>
+import NavigationBar from '@/components/organisms/NavigationBar.vue'
+export default {
+  components: {
+    NavigationBar
+  }
+
+}
+</script>
 
 <style>
 @import './styles/HTML5_Doctor_CSS Reset.css';

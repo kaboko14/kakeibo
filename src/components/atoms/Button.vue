@@ -26,7 +26,7 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-@import "@/styles/global";
+// @import "@/styles/global";
 .button {
   width: 100%;
   padding: 4px;
