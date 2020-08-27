@@ -1,9 +1,6 @@
 <template>
   <div class="navigation-icon__container">
-    <img
-      :src="require(`@/assets/${iconImage}`)"
-      class="navigation-icon__image"
-    >
+    <slot />
     <p
       class="navigation-icon__label"
     >
@@ -15,33 +12,29 @@
 export default {
   name: 'NavigationIcon',
   props: {
-    iconImage: {
-      type: String,
-      required: true
-    },
     iconLabel: {
       type: String,
       required: true
     }
-  },
-  methods: {
-    loadImage (imagePath) {
-      return require(imagePath)
-    }
   }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
   .navigation-icon {
     &__container {
+      width: 80px;
+      height: 40px;
       color: inherit;
-    }
-    &__image {
-      width: 24px;
-      height: 24px;
-      fill: $main-color
+      text-align: center;
+      & svg {
+        width: 24px;
+        width: 24px;
+        color: inherit;
+        stroke: inherit;
+      }
     }
     &__label {
+      font-size: 12px;
       color: inherit;
     }
   }

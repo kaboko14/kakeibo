@@ -6,6 +6,7 @@ import createPersistedState from 'vuex-persistedstate'
 Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
+    balance: 3000,
     items: [],
     expenseCategoryItems: [
       { id: 0, name: 'コンビニ', price: 150 },
@@ -17,9 +18,13 @@ export default new Vuex.Store({
     incomeCategoryItems: [
       { id: 0, name: 'ATM', price: 0 },
       { id: 1, name: '給料', price: 2000 }
-    ]
+    ],
+    activeViewName: ''
   },
   getters: {
+    balance (state) {
+      return state.balance
+    },
     expenseCategoryButtonProperties (state) {
       return state.expenseCategoryItems.map((item) => {
         return {
@@ -43,6 +48,9 @@ export default new Vuex.Store({
           className: 'button-category'
         }
       })
+    },
+    activeViewName (state) {
+      return state.activeViewName
     }
   },
   mutations: {
@@ -57,11 +65,13 @@ export default new Vuex.Store({
     },
     updateIncomeCategoryItems (state, categoryItems) {
       state.incomeCategoryItems = categoryItems
+    },
+    changeActiveViewName (state, viewName) {
+      state.activeViewName = viewName
     }
   },
   plugins: [createPersistedState({ key: 'myKakeibo' })],
   modules: {
     auth
   }
-
 })

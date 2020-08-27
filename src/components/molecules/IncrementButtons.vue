@@ -62,7 +62,7 @@ export default {
 <style lang="scss" scoped>
 .buttons--3col {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(30%,1fr));
   gap: 10px;
   justify-items: center;
   align-items: center;

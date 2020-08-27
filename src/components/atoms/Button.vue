@@ -28,15 +28,19 @@ export default {
 <style scoped lang="scss">
 // @import "@/styles/global";
 .button {
-  width: 100%;
+  display: block;
+  width:150px;
+  max-width: 100%;
   padding: 4px;
-  overflow: hidden;
   border: none;
   border-radius: 3px;
   cursor: pointer;
 
   &__label {
-    color: $base-color;
+    color: #ffffff;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   &-category {
@@ -87,6 +91,9 @@ export default {
     background: #d97d7d;
     font-weight: bold;
     font-size: 18px;
+  }
+  &-sub-color {
+    background-color: $sub-color;
   }
 }
 </style>

@@ -10,8 +10,8 @@ export default {
 </script>
 <style lang="scss" scoped>
   .bar {
-    width: 100%;
-    height: 48px;
+    width: 100vw;
     background-color: $main-color;
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
   }
 </style>

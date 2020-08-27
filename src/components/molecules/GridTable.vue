@@ -1,8 +1,10 @@
 <template>
   <tr class="grid-table__wrapper">
-    <td class="grid-table__date">
-      {{ item.date }}
-      <div
+    <td>
+      <p class="grid-table__date">
+        {{ momentFromatJa(item.date) }}
+      </p>
+      <span
         class="grid-table__purpose"
         :class="item.purpose"
       >
@@ -18,13 +20,13 @@
         <template v-else-if="item.purpose==='balance'">
           残高調整
         </template>
-      </div>
-    </td>
-    <td class="grid-table__category">
-      {{ item.category }}
+      </span>
+      <span class="grid-table__category">
+        {{ item.category }}
+      </span>
     </td>
     <td class="grid-table__price">
-      {{ item.price.toLocaleString() }}
+      ￥{{ item.price.toLocaleString() }}
     </td>
     <td class="grid-table__delete-button">
       <Button
@@ -38,6 +40,7 @@
 </template>
 <script>
 import Button from '@/components/atoms/Button.vue'
+import moment from 'moment'
 export default {
   name: 'GridTable',
   components: {
@@ -55,6 +58,13 @@ export default {
   methods: {
     sendDeleteItemId (id) {
       this.$store.commit('deleteItem', id)
+    },
+    momentFromatJa (date) {
+      moment.updateLocale('ja', {
+        weekdaysShort: ['日', '月', '火', '水', '木', '金', '土']
+      })
+      const m = moment(date, 'YYYY-MM-DD')
+      return m.format('M/D(ddd)')
     }
   }
 }
@@ -65,21 +75,20 @@ td {
 }
 .grid-table {
   &__wrapper {
+    text-align: start;
     & > td {
       border-bottom: 1px solid #707070;
-      padding: 5px 10px;
+      padding: 2px 10px;
     }
   }
-
   &__date {
-    width: 110px;
+    margin: 6px 0px 4px;
+    font-size: 12px;
   }
-
   &__purpose {
-    width: 70px;
-    font-size: 18px;
+    margin-right: 6px;
+    font-size: 14px;
     font-weight: bolder;
-    text-align: center;
     &.need {
       color: #7dd3d9;
     }
@@ -90,7 +99,10 @@ td {
       color: #d9c07d;
     }
   }
-
+  &__category {
+    display: inline-block;
+    font-size: 12px;
+  }
   &__price {
     text-align: end;
   }

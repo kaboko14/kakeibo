@@ -1,5 +1,5 @@
 <template>
-  <div class="buttons--3col">
+  <div class="category-buttons__container">
     <Button
       v-for="button in buttonProperties"
       :key="button.id"
@@ -50,11 +50,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.buttons--3col {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  justify-items: center;
-  align-items: center;
+.category-buttons {
+  &__container {
+    width:100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(30%,1fr));
+    gap: 10px;
+    justify-items: center;
+    align-items: center;
+  }
 }
 </style>

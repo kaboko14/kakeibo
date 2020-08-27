@@ -95,7 +95,7 @@ export default {
     },
     momentFormat (date) {
       const m = moment(date, 'YYYY-MM-DD')
-      return m.format('YYYY/MM/DD')
+      return m.format('YYYY-MM-DD')
     }
   }
 }

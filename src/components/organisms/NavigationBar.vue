@@ -2,52 +2,61 @@
   <Bar>
     <div class="navigation-bar__container">
       <router-link
-        to="/"
+        to="/home"
+        class="navigation-bar__link"
         active-class="navigation-bar__link--active"
-        exact=""
       >
         <NavigationIcon
-          :icon-image="homeIconImage"
-          :icon-label="'ホーム・入力'"
-        />
+          :icon-label="homeLabel"
+        >
+          <HomeIcon />
+        </NavigationIcon>
       </router-link>
       <router-link
         to="/history"
+        class="navigation-bar__link"
         active-class="navigation-bar__link--active"
-        exact=""
       >
         <NavigationIcon
-          :icon-image="historyIconImage"
-          :icon-label="'履歴'"
-        />
+          :icon-label="historyLabel"
+        >
+          <HistoryIcon />
+        </NavigationIcon>
       </router-link>
       <router-link
         to="/library"
+        class="navigation-bar__link"
         active-class="navigation-bar__link--active"
-        exact=""
       >
         <NavigationIcon
-          :icon-image="categoryImage"
-          :icon-label="'品目登録'"
-        />
+          :icon-label="libraryLabel"
+        >
+          <BookIcon />
+        </NavigationIcon>
       </router-link>
     </div>
   </Bar>
 </template>
 <script>
 import Bar from '@/components/atoms/Bar.vue'
+import HomeIcon from '@/components/icons/HomeIcon.vue'
+import HistoryIcon from '@/components/icons/HistoryIcon.vue'
+import BookIcon from '@/components/icons/BookIcon.vue'
 import NavigationIcon from '@/components/molecules/NavigationIcon.vue'
 export default {
   name: 'NavigationBar',
   components: {
     Bar,
+    HomeIcon,
+    BookIcon,
+    HistoryIcon,
     NavigationIcon
   },
   data () {
     return {
-      homeIconImage: 'home-icon.svg',
-      historyIconImage: 'history-icon.svg',
-      categoryImage: 'category-icon.svg'
+      homeLabel: 'ホーム・入力',
+      historyLabel: '履歴',
+      libraryLabel: '品目登録'
     }
   }
 }
@@ -56,12 +65,18 @@ export default {
   .navigation-bar {
     &__container {
       display: flex;
+      margin: 0 auto;
+      padding: 10px 0px;
+      width: 100%;
+      max-width: 1100px;
       justify-content: space-around;
     }
     &__link {
+      color: $inactive-color;
+      stroke: $inactive-color;
       &--active {
-        color: $base-color;
-        fill: $base-color;
+        color: #ffffff;
+        stroke: #ffffff;
       }
     }
   }

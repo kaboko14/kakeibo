@@ -1,5 +1,9 @@
 <template>
   <div>
+    <br>
+    <br>
+    <br>
+    <br>
     <button @click="doLogin">
       signin
     </button>
@@ -33,7 +37,7 @@ export default {
   }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
   .a {
     width: 30px;
     height: 30px;
