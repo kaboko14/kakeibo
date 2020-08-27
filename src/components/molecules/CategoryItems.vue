@@ -1,20 +1,19 @@
 <template>
-  <div class="buttons--3col">
+  <div class="category-items__container">
     <Button
       v-for="button in buttonProperties"
       :key="button.id"
       :button-class="button.className"
+      class="category-items__item"
       @click="onChange(button)"
     >
       {{ button.labelName }}<br>
       {{ button.labelPrice }}<br>
-      🖊
-      <Button
-        :button-class="'button-delete-category'"
-        @click="sendDeleteCategoryId(button.id)"
+      <img
+        src="../../assets/edit.svg"
+        alt="[編集する]"
+        class="category-items__edit-icon"
       >
-        削除
-      </Button>
     </Button>
   </div>
 </template>
@@ -64,11 +63,25 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.buttons--3col {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  justify-items: center;
-  align-items: center;
+.category-items {
+  &__container {
+    width:100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(30%,1fr));
+    gap: 10px;
+    justify-items: center;
+    align-items: center;
+  }
+  &__item {
+    position: relative;
+    padding: 20px 0px;
+  }
+  &__edit-icon {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 20px;
+    height: 20px;
+  }
 }
 </style>

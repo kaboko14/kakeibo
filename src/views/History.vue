@@ -1,41 +1,63 @@
 <template>
-  <div class="home__container">
-    <div class="home__navi">
-      <router-link to="/history/">
-        全て
-      </router-link>|
-      <router-link to="/history/expense">
-        出金
-      </router-link>|
-      <router-link to="/history/income">
-        入金
-      </router-link>
-    </div>
+  <div class="history__container">
+    <RouterLinkTags
+      class="history__router-link-tags"
+      :router-links="routerLinks"
+    />
     <router-view
-      class="home__add-item"
+      class="history__router-view"
     />
   </div>
 </template>
 
 <script>
+import RouterLinkTags from '@/components/molecules/RouterLinkTags.vue'
+
 export default {
-  name: 'History'
+  name: 'History',
+  components: {
+    RouterLinkTags
+  },
+  data () {
+    return {
+      routerLinks: [
+        {
+          tagLabel: '全て',
+          linkTo: '/history'
+        },
+        {
+          tagLabel: '出金',
+          linkTo: '/history/expense'
+        },
+        {
+          tagLabel: '入金',
+          linkTo: '/history/income'
+        }
+      ]
+    }
+  },
+  created () {
+    this.$store.commit('changeActiveViewName', '履歴')
+  }
 }
 </script>
 <style scoped lang="scss">
-.home {
+.history {
   &__container {
-    max-width: 1100px;
-    margin: 0 auto;
+    width: 100vw;
+    height: 100vh;
+    padding: 60px 0px 80px;
+    background-color: $base-color;
   }
-  &__navi {
-    text-align: center;
-    padding: 10px;
-  }
-  &__add-item {
-    width: 80%;
+  &__router-view {
+    max-width: 500px;
     margin: 0 auto;
     padding: 5px;
+  }
+  &__router-link-tags {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
   }
 }
 </style>

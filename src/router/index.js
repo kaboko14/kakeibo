@@ -20,7 +20,7 @@ const routes = [
     component: Login
   },
   {
-    path: '/',
+    path: '/home',
     component: Home,
     children: [
       {
@@ -29,7 +29,7 @@ const routes = [
         component: AddExpense
       },
       {
-        path: '/income',
+        path: '/home/income',
         name: 'AddIncome',
         component: AddIncome
       }

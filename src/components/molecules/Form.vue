@@ -59,10 +59,17 @@ export default {
 </script>
 <style scoped lang="scss">
 .form {
+  &__container {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__label {
+    text-align: start;
+  }
   &__wrapper {
+    flex-grow:1;
     display: inline-block;
     position: relative;
-    width: 80%;
     border-radius: 4px;
     overflow: hidden;
     vertical-align: top;

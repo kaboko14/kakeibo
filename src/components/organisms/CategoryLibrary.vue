@@ -1,55 +1,18 @@
 <template>
   <div class="category-library__container">
-    <Button
-      class="category-library__add-button"
-      :button-class="'button-add'"
-      @click="addCategory"
-    >
-      新規登録
-    </Button>
     <CategoryItems
       :button-properties="categoryButtonProperties"
       @clickCategoryButton="changeCategory"
       @clickDeleteCategoryButton="sendDeleteCategoryId"
     />
-    <Modal
-      v-if="addCategoryModalView"
-      @clickModalCloseButton="closeAddCategoryModal"
-    >
-      <AddCategoryForms
-        class="add-category__add-category-forms"
-        :new-category-item="newCategoryItem"
-        :button-properties="addCategoryModalButtons"
-        @inputAddCategoryForm="onChange"
-        @clickEnterButton="onChangeCateboryItems"
-      />
-    </Modal>
-    <Modal
-      v-if="changeCategoryModalView"
-      @clickModalCloseButton="closeChangeCategoryModal"
-    >
-      <AddCategoryForms
-        class="add-category__add-category-forms"
-        :new-category-item="newCategoryItem"
-        :button-properties="changeCategoryModalButtons"
-        @inputAddCategoryForm="onChange"
-        @clickEnterButton="onChangeCateboryItems"
-      />
-    </Modal>
   </div>
 </template>
 <script>
-import Button from '@/components/atoms/Button.vue'
-import Modal from '@/components/atoms/Modal.vue'
 import CategoryItems from '@/components/molecules/CategoryItems.vue'
-import AddCategoryForms from '@/components/organisms/AddCategoryForms.vue'
 export default {
   name: 'CategoryLibrary',
   components: {
-    Button,
-    Modal,
-    CategoryItems,
-    AddCategoryForms
+    CategoryItems
   },
   props: {
     categoryButtonProperties: {
