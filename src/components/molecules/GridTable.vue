@@ -1,8 +1,10 @@
 <template>
   <tr class="grid-table__wrapper">
     <td>
-      <p class="grid-table__date">
-        {{ momentFromatJa(item.date) }}
+      <p
+        class="grid-table__date"
+      >
+        {{ momentFromatJa(itemDate) }}
       </p>
       <span
         class="grid-table__purpose"
@@ -41,6 +43,9 @@
 <script>
 import Button from '@/components/atoms/Button.vue'
 import moment from 'moment'
+moment.updateLocale('ja', {
+  weekdaysShort: ['日', '月', '火', '水', '木', '金', '土']
+})
 export default {
   name: 'GridTable',
   components: {
@@ -55,14 +60,16 @@ export default {
   data () {
     return {}
   },
+  computed: {
+    itemDate () {
+      return { ...this.item }.date
+    }
+  },
   methods: {
     sendDeleteItemId (id) {
       this.$store.commit('deleteItem', id)
     },
     momentFromatJa (date) {
-      moment.updateLocale('ja', {
-        weekdaysShort: ['日', '月', '火', '水', '木', '金', '土']
-      })
       const m = moment(date, 'YYYY-MM-DD')
       return m.format('M/D(ddd)')
     }
