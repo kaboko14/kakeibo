@@ -8,6 +8,7 @@
 
 <script>
 import AddItem from '@/components/organisms/AddItem.vue'
+import { sortByDate } from '@/utils'
 
 export default {
   name: 'AddIncomeItem',
@@ -51,16 +52,8 @@ export default {
       const newItem = Object.assign({}, item)
       newItem.id = this.itemId
       this.items.push(newItem)
-      this.sortItems()
+      sortByDate(this.items)
       this.$store.commit('updateItems', [...this.items])
-    },
-    sortItems () {
-      this.items.sort((a, b) => {
-        if (a.date > b.date) return -1
-        if (a.date < b.date) return 1
-        if (a.id > b.id) return -1
-        if (a.id < b.id) return 1
-      })
     },
     deleteItem (id) {
       this.items = this.items.filter((item) => id !== item.id)

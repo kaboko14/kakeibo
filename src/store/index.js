@@ -1,13 +1,15 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import auth from './modules/auth'
+import items from './modules/items'
+import expenses from './modules/expenses'
+import incomes from './modules/incomes'
 import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     balance: 3000,
-    items: [],
     expenseCategoryItems: [
       { id: 0, name: 'コンビニ', price: 150 },
       { id: 1, name: 'スーパー', price: 2000 },
@@ -54,12 +56,6 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    updateItems (state, items) {
-      state.items = items
-    },
-    deleteItem (state, id) {
-      state.items = state.items.filter((item) => item.id !== id)
-    },
     updateExpenseCategoryItems (state, categoryItems) {
       state.expenseCategoryItems = categoryItems
     },
@@ -72,6 +68,9 @@ export default new Vuex.Store({
   },
   plugins: [createPersistedState({ key: 'myKakeibo' })],
   modules: {
-    auth
+    auth,
+    items,
+    expenses,
+    incomes
   }
 })
