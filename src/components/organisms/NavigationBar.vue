@@ -72,11 +72,11 @@ export default {
       justify-content: space-around;
     }
     &__link {
-      color: $inactive-color;
-      stroke: $inactive-color;
+      color: $nav-color-inactive;
+      stroke: $nav-color-inactive;
       &--active {
-        color: #ffffff;
-        stroke: #ffffff;
+        color: $nav-color-active;
+        stroke: $nav-color-active;
       }
     }
   }

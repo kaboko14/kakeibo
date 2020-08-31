@@ -25,7 +25,7 @@ export default {
 * {
   box-sizing: border-box;
   font-family: "Yu-Gothic",sans-serif;
-  color: $font-color;
+  color: $font-color-bk;
 }
 a {
   text-decoration: none;

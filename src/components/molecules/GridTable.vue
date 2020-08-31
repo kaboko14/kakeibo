@@ -30,12 +30,14 @@
     <td class="grid-table__price">
       ￥{{ item.price.toLocaleString() }}
     </td>
-    <td class="grid-table__delete-button">
+    <td class="grid-table__remove-button">
       <Button
-        :button-class="'button-delete-item'"
+        :button-class="'button--color-gray-dark'"
         @click="sendDeleteItemId(item.id)"
       >
-        ×
+        <p>
+          ×
+        </p>
       </Button>
     </td>
   </tr>
@@ -85,11 +87,11 @@ td {
     text-align: start;
     & > td {
       border-bottom: 1px solid #707070;
-      padding: 2px 10px;
+      padding: 6px 4px 2px;
     }
   }
   &__date {
-    margin: 6px 0px 4px;
+    margin-bottom: 4px;
     font-size: 12px;
   }
   &__purpose {
@@ -113,8 +115,16 @@ td {
   &__price {
     text-align: end;
   }
-  &__delete-button {
-    width: 30px;
+  &__remove-button {
+    width: 36px;
+    & > button {
+      margin-left: auto;
+      padding: 0;
+      line-height: 26px;
+      border-radius: 50%;
+      width: 26px;
+      height: 26px;
+    }
   }
 }
 </style>

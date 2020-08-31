@@ -27,7 +27,9 @@
         :button-class="'button-sub-color'"
         class="library__add-item-button"
       >
-        新規登録
+        <p>
+          新規登録
+        </p>
       </Button>
     </Card>
   </div>

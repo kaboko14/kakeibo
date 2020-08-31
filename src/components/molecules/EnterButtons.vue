@@ -7,7 +7,9 @@
       :button-class="button.className"
       @click="onChange(button.value)"
     >
-      {{ button.label }}
+      <p>
+        {{ button.label }}
+      </p>
     </Button>
   </div>
 </template>

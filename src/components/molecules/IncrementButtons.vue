@@ -1,12 +1,18 @@
 <template>
-  <div class="buttons--3col">
+  <div class="increment-buttons__container">
     <Button
       v-for="(button, index) in buttonProperties"
       :key="index"
-      :button-class="button.className"
+      :button-class="'button--color-gray-light '"
+      class="increment-buttons__button"
       @click="incrementPrice(button.incrementNumber)"
     >
-      {{ button.label }}
+      <span class="increment-buttons__icon">
+        {{ button.icon }}
+      </span>
+      <p>
+        {{ button.label }}
+      </p>
     </Button>
   </div>
 </template>
@@ -34,14 +40,14 @@ export default {
       return numbers.map(number => {
         return number > 0
           ? {
-            label: `+￥${number.toLocaleString()}`,
-            incrementNumber: number,
-            className: 'button-plus'
+            label: `￥${number.toLocaleString()}`,
+            icon: '+',
+            incrementNumber: number
           }
           : {
-            label: `-￥${(-1 * number).toLocaleString()}`,
-            incrementNumber: number,
-            className: 'button-minus'
+            label: `￥${(-1 * number).toLocaleString()}`,
+            icon: '-',
+            incrementNumber: number
           }
       })
     }
@@ -60,11 +66,32 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.buttons--3col {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(30%,1fr));
-  gap: 10px;
-  justify-items: center;
-  align-items: center;
+.increment-buttons {
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+    gap: 10px;
+    justify-items: center;
+    align-items: center;
+  }
+  &__button {
+    position: relative;
+    padding-left: 18px;
+  }
+  &__icon {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    background-color: rgba(0,0,0,0.1);
+    width: 18px;
+    height: 100%;
+    vertical-align: bottom;
+  }
 }
+
 </style>

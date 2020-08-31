@@ -33,6 +33,7 @@ export default {
 .item-table {
   &__container {
     width: 100%;
+    table-layout: fixed;
   }
 }
 

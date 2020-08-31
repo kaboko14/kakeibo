@@ -7,8 +7,10 @@
       class="category-items__item"
       @click="onChange(button)"
     >
-      {{ button.labelName }}<br>
-      {{ button.labelPrice }}<br>
+      <p>
+        {{ button.labelName }}<br>
+        {{ button.labelPrice }}<br>
+      </p>
       <img
         src="../../assets/edit.svg"
         alt="[編集する]"

@@ -8,10 +8,12 @@
     <!-- 追加ボタンのスタイル・横幅は仮 -->
     <Button
       style="width:200px"
-      :button-class="'button-add-category'"
+      :button-class="'button--color-sub'"
       @click="addNewCategoryItem"
     >
-      追加する
+      <p>
+        追加する
+      </p>
     </Button>
   </div>
 </template>

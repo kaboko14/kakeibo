@@ -3,11 +3,13 @@
     <Button
       v-for="button in buttonProperties"
       :key="button.id"
-      :button-class="button.className"
+      :button-class="'button--color-main'"
       @click="onChange(button)"
     >
-      {{ button.labelName }}<br>
-      {{ button.labelPrice }}
+      <p>
+        {{ button.labelName }}<br>
+        {{ button.labelPrice }}
+      </p>
     </Button>
   </div>
 </template>

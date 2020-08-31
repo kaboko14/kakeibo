@@ -10,9 +10,11 @@
       </p><br>
       <Button
         class="balance__button"
-        :button-class="'button-sub-color'"
+        :button-class="'button--color-sub'"
       >
-        残高を合わせる
+        <p>
+          残高を合わせる
+        </p>
       </Button>
     </div>
   </Card>
@@ -45,7 +47,7 @@ export default {
       height: 24px;
       margin-bottom: 10px;
       display: inline-block;
-      fill: $font-color;
+      fill: $font-color-bk;
     }
     &__balance {
       display: inline-block;
