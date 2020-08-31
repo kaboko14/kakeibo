@@ -3,7 +3,7 @@
     <Button
       v-for="button in buttonProperties"
       :key="button.id"
-      :button-class="button.className"
+      :button-class="'button--color-main'"
       class="category-items__item"
       @click="onChange(button)"
     >
@@ -76,7 +76,7 @@ export default {
   }
   &__item {
     position: relative;
-    padding: 20px 0px;
+    padding: 10px 0px 20px;
   }
   &__edit-icon {
     position: absolute;

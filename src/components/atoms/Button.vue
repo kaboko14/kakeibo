@@ -26,7 +26,7 @@ export default {
 <style scoped lang="scss">
 // @import "@/styles/global";
 .button {
-  display: block;
+  display: inline-block;
   width:150px;
   max-width: 100%;
   height: 100%;

@@ -55,8 +55,5 @@ export default {
       margin-bottom: 10px;
       vertical-align: bottom;
     }
-    &__button {
-      margin: 0 auto;
-    }
   }
 </style>

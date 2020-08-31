@@ -21,27 +21,32 @@
     <p v-show="!newItem.price">
       ※金額を入力してください
     </p>
-    <EnterButtons
+    <Button
       v-show="newItem.price"
-      :button-properties="addItemProperties.addItemButtonProperties"
-      @clickEnterButtons="addNewItem"
-    />
+      class="add-item__add-item-button"
+      :button-class="'button--color-sub'"
+      @click="addNewItem"
+    >
+      <p>
+        {{ addItemProperties.addItemButtonLabel }}
+      </p>
+    </Button>
   </div>
 </template>
 <script>
+import Button from '@/components/atoms/Button.vue'
 import CategoryButtons from '@/components/molecules/CategoryButtons.vue'
 import Forms from '@/components/organisms/Forms.vue'
 import IncrementButtons from '@/components/molecules/IncrementButtons.vue'
-import EnterButtons from '@/components/molecules/EnterButtons.vue'
 import moment from 'moment'
 
 export default {
   name: 'AddItem',
   components: {
+    Button,
     CategoryButtons,
     Forms,
-    IncrementButtons,
-    EnterButtons
+    IncrementButtons
   },
   props: {
     addItemProperties: {
@@ -52,7 +57,7 @@ export default {
   data () {
     return {
       item: {
-        date: this.moment(),
+        date: '',
         category: '',
         price: ''
       },
@@ -62,7 +67,7 @@ export default {
   computed: {
     newItem () {
       return {
-        date: this.momentFormat(this.item.date),
+        date: this.momentFormat(this.moment()),
         category: !this.item.category ? '' : this.item.category,
         price: !this.item.price || this.item.price <= 0
           ? ''
@@ -77,12 +82,12 @@ export default {
     openForm () {
       this.formView = !this.formView
     },
-    addNewItem (value) {
-      this.newItem.purpose = value
+    addNewItem () {
+      this.newItem.type = this.addItemProperties.itemType
       if (!this.newItem.category) {
         this.newItem.category = this.addItemProperties.initialCategory
       }
-      this.$emit('clickEnterButtons', this.newItem)
+      this.$emit('clickAddItemButton', this.newItem)
       this.itemInit()
     },
     itemInit () {
@@ -112,9 +117,12 @@ export default {
     opacity: 1;
     margin-bottom: 20px;
   }
-
   &__increment-buttons {
     margin-bottom: 20px;
+  }
+  &__add-item-button {
+    font-weight: bold;
+    padding: 10px;
   }
 }
 </style>
