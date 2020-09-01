@@ -2,7 +2,7 @@
   <AddItem
     :add-item-properties="addItemProperties"
     class="home__add-item"
-    @add-item-button-click="add"
+    @add-item-button-click="addItem"
   />
 </template>
 
@@ -36,7 +36,12 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('items', ['add'])
+    ...mapMutations('items', ['add']),
+    ...mapMutations('balance', ['calculate']),
+    addItem(item) {
+      this.add(item);
+      this.calculate(item.price * -1);
+    }
   }
 };
 </script>

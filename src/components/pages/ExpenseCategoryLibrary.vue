@@ -73,7 +73,7 @@ export default {
     },
     openChangeCategoryModal (categoryItem) {
       this.onChange(categoryItem);
-      this.modalView = !this.modalView;
+      this.modalView = true;
     },
     closeModal () {
       this.modalView = false;

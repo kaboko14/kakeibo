@@ -12,12 +12,12 @@ const getters = {
   expenseItems (state) {
     const list = Object.values(state.list);
     sortItems(list);
-    return list.filter((item) => item.type === 'expense');
+    return list.filter((item) => item.price < 0);
   },
   incomeItems (state) {
     const list = Object.values(state.list);
     sortItems(list);
-    return list.filter((item) => item.type === 'income');
+    return list.filter((item) => item.price > 0);
   }
 };
 const mutations = {

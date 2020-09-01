@@ -3,13 +3,13 @@ import Vuex from 'vuex';
 import items from './modules/items';
 import expenses from './modules/expenses';
 import incomes from './modules/incomes';
+import balance from './modules/balance';
 import auth from './modules/auth';
 import createPersistedState from 'vuex-persistedstate';
 
 Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
-    balance: 3000,
     activeViewName: ''
   },
   getters: {
@@ -30,6 +30,7 @@ export default new Vuex.Store({
     auth,
     items,
     expenses,
-    incomes
+    incomes,
+    balance
   }
 });
