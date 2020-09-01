@@ -30,7 +30,7 @@
     <td class="grid-table__remove-button">
       <Button
         :button-class="'button--color-gray-dark'"
-        @click="sendDeleteItemId(item.id)"
+        @click="sendRemoveItem(item)"
       >
         <p>
           ×
@@ -65,8 +65,8 @@ export default {
     }
   },
   methods: {
-    sendDeleteItemId (id) {
-      this.$store.commit('deleteItem', id)
+    sendRemoveItem (item) {
+      this.$emit('clickRemoveButton', item)
     },
     momentFromatJa (date) {
       const m = moment(date, 'YYYY-MM-DD')

@@ -65,6 +65,10 @@ export default {
         ...this.newItem,
         [key]: $event
       })
+      console.log({
+        ...this.newItem,
+        [key]: $event
+      })
     },
     momentFormat (date) {
       const m = moment(date, 'YYYY/MM/DD')

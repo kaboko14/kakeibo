@@ -33,9 +33,9 @@ const mutations = {
       [newItem.id]: newItem
     }
   },
-  remove (state, id) {
+  remove (state, item) {
     const list = { ...state.list }
-    delete list[id]
+    delete list[item.id]
     state.list = list
   }
 }

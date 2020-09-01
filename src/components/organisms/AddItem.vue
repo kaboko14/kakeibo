@@ -57,7 +57,7 @@ export default {
   data () {
     return {
       item: {
-        date: '',
+        date: this.moment(),
         category: '',
         price: ''
       },
@@ -67,7 +67,7 @@ export default {
   computed: {
     newItem () {
       return {
-        date: this.momentFormat(this.moment()),
+        date: this.item.date,
         category: !this.item.category ? '' : this.item.category,
         price: !this.item.price || this.item.price <= 0
           ? ''

@@ -4,12 +4,13 @@
       v-for="item in items"
       :key="item.id"
       :item="item"
-      @clickDeleteItemButton="sendDeleteItemId"
+      @clickRemoveButton="remove($event)"
     />
   </table>
 </template>
 <script>
 import GridTable from '@/components/molecules/GridTable.vue'
+import { mapMutations } from 'vuex'
 export default {
   name: 'ItemTable',
   components: {
@@ -22,10 +23,7 @@ export default {
     }
   },
   methods: {
-    sendDeleteItemId (id) {
-      console.log(id)
-      this.$emit('clickDeleteItemButton', id)
-    }
+    ...mapMutations('items', ['remove'])
   }
 }
 </script>
