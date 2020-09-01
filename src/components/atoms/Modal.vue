@@ -39,7 +39,7 @@ export default {
   &__window {
     position: relative;
     padding: 36px 10px 10px ;
-    background-color: #fff;
+    background-color: $base-color;
     border-radius: 4px;
     overflow: hidden;
   }

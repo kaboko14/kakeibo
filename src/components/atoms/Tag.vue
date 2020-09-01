@@ -20,7 +20,7 @@ export default {
   width: 70px;
   padding: 0 10px;
   border-radius: 20px;
-  color: #ffffff;
+  color: $font-color-wh;
   font-size: 14px;
   line-height: 30px;
   text-align: center;

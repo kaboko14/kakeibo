@@ -3,7 +3,7 @@
     <Button
       v-for="(button, index) in buttonProperties"
       :key="index"
-      :button-class="'button--color-gray-light '"
+      :button-color="'color-gray-light '"
       class="increment-buttons__button"
       @click="incrementPrice(button.incrementNumber)"
     >

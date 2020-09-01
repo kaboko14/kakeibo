@@ -10,7 +10,7 @@
 export default {
   name: 'Button',
   props: {
-    buttonClass: {
+    buttonColor: {
       type: String,
       required: false,
       default: ''
@@ -18,13 +18,12 @@ export default {
   },
   computed: {
     className () {
-      return `button ${this.buttonClass}`
+      return `button button--${this.buttonColor}`
     }
   }
 }
 </script>
 <style scoped lang="scss">
-// @import "@/styles/global";
 .button {
   display: inline-block;
   width:150px;
@@ -58,11 +57,9 @@ $button-color: (
   "button--color-gray-dark": $button-color-gray-dark,
   "button--color-disable": $button-color-disable,
 );
-
 @each $key, $color in $button-color {
   .#{$key} {
     @include button-decoration($color)
   }
 }
-
 </style>

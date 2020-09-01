@@ -8,7 +8,7 @@
     <!-- 追加ボタンのスタイル・横幅は仮 -->
     <Button
       style="width:200px"
-      :button-class="'button--color-sub'"
+      :button-color="'color-sub'"
       @click="addNewCategoryItem"
     >
       <p>

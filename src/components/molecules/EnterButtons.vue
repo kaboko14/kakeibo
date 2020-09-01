@@ -4,7 +4,7 @@
       v-for="(button, index) in buttonProperties"
       :key="index"
       class="enter-buttons__button"
-      :button-class="button.className"
+      :button-color="button.className"
       @click="onChange(button.value)"
     >
       <p>

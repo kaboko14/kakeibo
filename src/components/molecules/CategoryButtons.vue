@@ -3,7 +3,7 @@
     <Button
       v-for="button in buttonProperties"
       :key="button.id"
-      :button-class="'button--color-main'"
+      :button-color="'color-main'"
       @click="onChange(button)"
     >
       <p>
@@ -43,7 +43,7 @@ export default {
           ...this.newItem,
           category: item.name
         }
-      this.$emit('clickCategoryButton', newItem)
+      this.$emit('category-button-click', newItem)
     }
   }
 }
@@ -52,9 +52,9 @@ export default {
 <style lang="scss" scoped>
 .category-buttons {
   &__container {
-    width:100%;
+    width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(30%,1fr));
+    grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
     gap: 10px;
     justify-items: center;
     align-items: center;

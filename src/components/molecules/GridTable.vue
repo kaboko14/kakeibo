@@ -29,7 +29,7 @@
     </td>
     <td class="grid-table__remove-button">
       <Button
-        :button-class="'button--color-gray-dark'"
+        :button-color="'color-gray-dark'"
         @click="sendRemoveItem(item)"
       >
         <p>

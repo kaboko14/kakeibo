@@ -3,7 +3,7 @@
     <Button
       v-for="button in buttonProperties"
       :key="button.id"
-      :button-class="'button--color-main'"
+      :button-color="'color-main'"
       class="category-items__item"
       @click="onChange(button)"
     >
@@ -40,7 +40,7 @@ export default {
         name: categoryItem.name,
         price: categoryItem.price
       }
-      this.$emit('clickCategoryButton', selectedCategoryItem)
+      this.$emit('category-button-click', selectedCategoryItem)
     }
   }
 }
@@ -48,9 +48,9 @@ export default {
 <style lang="scss" scoped>
 .category-items {
   &__container {
-    width:100%;
+    width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(30%,1fr));
+    grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
     gap: 10px;
     justify-items: center;
     align-items: center;

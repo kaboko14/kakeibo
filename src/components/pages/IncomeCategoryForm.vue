@@ -6,7 +6,7 @@
       @inputAddCategoryForm="onChange"
     >
       <Button
-        :button-class="'button--color-sub'"
+        :button-color="'color-sub'"
         @click="addCategoryItem"
       >
         <p>

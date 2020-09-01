@@ -25,10 +25,9 @@ export default {
   background-color: $base-color;
   border-radius: 4px;
   overflow: hidden;
-  box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
+  box-shadow: $box-shadow;
   &__title {
     margin-bottom: 16px;
   }
 }
-
 </style>

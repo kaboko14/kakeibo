@@ -2,7 +2,7 @@
   <div class="category-library__container">
     <CategoryItems
       :button-properties="categoryButtonProperties"
-      @clickCategoryButton="onChange"
+      @category-button-click="onChange"
     />
   </div>
 </template>
@@ -26,12 +26,11 @@ export default {
         name: '',
         price: null
       },
-      addCategoryButton:
-        {
-          label: '新規登録',
-          value: 'add',
-          className: 'button-add'
-        },
+      addCategoryButton: {
+        label: '新規登録',
+        value: 'add',
+        className: 'button-add'
+      },
       changeCategoryButton: {
         label: '更新',
         value: 'change',
@@ -46,9 +45,7 @@ export default {
       return {
         id: this.categoryItem.id,
         name: this.categoryItem.name,
-        price: !this.categoryItem.price
-          ? null
-          : this.categoryItem.price * 1
+        price: !this.categoryItem.price ? null : this.categoryItem.price * 1
       }
     },
     addCategoryModalButtons () {
@@ -60,7 +57,7 @@ export default {
   },
   methods: {
     onChange (categoryItem) {
-      this.$emit('clickCategoryButton', categoryItem)
+      this.$emit('category-button-click', categoryItem)
     },
     changeCategory (categoryItem) {
       this.onChange(categoryItem)
@@ -119,5 +116,4 @@ export default {
     margin-bottom: 20px;
   }
 }
-
 </style>

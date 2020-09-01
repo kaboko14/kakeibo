@@ -4,7 +4,7 @@
       class="add-item__category-buttons"
       :new-item="newItem"
       :button-properties="addItemProperties.categoryButtonProperties"
-      @clickCategoryButton="onChange"
+      @category-button-click="onChange"
     />
     <Forms
       class="add-item__forms"
@@ -24,7 +24,7 @@
     <Button
       v-show="newItem.price"
       class="add-item__add-item-button"
-      :button-class="'button--color-sub'"
+      :button-color="'color-sub'"
       @click="addNewItem"
     >
       <p>
@@ -69,9 +69,8 @@ export default {
       return {
         date: this.item.date,
         category: !this.item.category ? '' : this.item.category,
-        price: !this.item.price || this.item.price <= 0
-          ? ''
-          : this.item.price * 1
+        price:
+          !this.item.price || this.item.price <= 0 ? '' : this.item.price * 1
       }
     }
   },

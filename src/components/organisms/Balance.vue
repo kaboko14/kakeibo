@@ -10,7 +10,7 @@
       </p><br>
       <Button
         class="balance__button"
-        :button-class="'button--color-sub'"
+        :button-color="'color-sub'"
       >
         <p>
           残高を合わせる

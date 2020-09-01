@@ -3,7 +3,7 @@
     <CategoryItems
       class="category-library"
       :button-properties="buttonProperties"
-      @clickCategoryButton="openChangeCategoryModal"
+      @category-button-click="openChangeCategoryModal"
     />
     <Modal
       v-show="modalView"
@@ -15,7 +15,7 @@
       >
         <div class="expense-category-library__modal-buttons-container">
           <Button
-            :button-class="'button--color-sub'"
+            :button-color="'color-sub'"
             class="library__add-item-button"
             @click="changeCategoryItem"
           >
@@ -24,7 +24,7 @@
             </p>
           </Button>
           <Button
-            :button-class="'button--color-accent'"
+            :button-color="'color-accent'"
             class="library__add-item-button"
             @click="removeCategoryItem"
           >
@@ -53,7 +53,7 @@ export default {
   },
   data () {
     return {
-      categoryItem: { },
+      categoryItem: {},
       modalView: false
     }
   },
@@ -92,13 +92,12 @@ export default {
 <style lang="scss" scoped>
 .expense-category-library {
   &__modal-buttons-container {
-    width:100%;
+    width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(40%,1fr));
+    grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
     gap: 10px;
     justify-items: center;
     align-items: center;
   }
 }
-
 </style>
