@@ -4,7 +4,7 @@
       v-for="item in items"
       :key="item.id"
       :item="item"
-      @remove-button-click="remove($event)"
+      @remove-button-click="removeItem"
     />
   </table>
 </template>
@@ -23,7 +23,12 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('items', ['remove'])
+    ...mapMutations('items', ['remove']),
+    ...mapMutations('balance', ['calculate']),
+    removeItem (item) {
+      this.remove(item);
+      this.calculate(item.price * -1);
+    }
   }
 };
 </script>

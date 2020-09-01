@@ -99,6 +99,7 @@ export default {
       this.add(balanceItem);
       this.calculate(balanceItem.price);
       this.closeModal();
+      this.inputBalance = '';
     },
     moment () {
       return moment();
