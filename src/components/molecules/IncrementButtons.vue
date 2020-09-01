@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import Button from '@/components/atoms/Button.vue'
+import Button from '@/components/atoms/Button.vue';
 export default {
   name: 'IncrementButtons',
   components: {
@@ -36,7 +36,7 @@ export default {
   },
   computed: {
     buttonProperties () {
-      const numbers = this.buttonNumbers
+      const numbers = this.buttonNumbers;
       return numbers.map(number => {
         return number > 0
           ? {
@@ -48,21 +48,21 @@ export default {
             label: `￥${(-1 * number).toLocaleString()}`,
             icon: '-',
             incrementNumber: number
-          }
-      })
+          };
+      });
     }
   },
   methods: {
     incrementPrice (number) {
-      const item = { ...this.newItem }
+      const item = { ...this.newItem };
       this.$emit('clickIncrementButton', {
         ...item,
         price: item.price + number
-      })
+      });
     }
 
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

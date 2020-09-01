@@ -1,20 +1,20 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Login from '../views/Login.vue'
-import Home from '../views/Home.vue'
-import AddExpense from '../components/pages/AddExpenseItem.vue'
-import AddIncome from '../components/pages/AddIncomeItem.vue'
-import History from '../views/History.vue'
-import ExpenseHistory from '../components/pages/ExpenseHistory.vue'
-import IncomeHistory from '../components/pages/IncomeHistory.vue'
-import AllHistory from '../components/pages/AllHistory.vue'
-import Library from '../views/Library.vue'
-import ExpenseCategoryLibrary from '../components/pages/ExpenseCategoryLibrary.vue'
-import IncomeCategoryLibrary from '../components/pages/IncomeCategoryLibrary.vue'
-import ExpenseCategoryForm from '../components/pages/ExpenseCategoryForm.vue'
-import IncomeCategoryForm from '../components/pages/IncomeCategoryForm.vue'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Login from '../views/Login.vue';
+import Home from '../views/Home.vue';
+import AddExpense from '../components/pages/AddExpenseItem.vue';
+import AddIncome from '../components/pages/AddIncomeItem.vue';
+import History from '../views/History.vue';
+import ExpenseHistory from '../components/pages/ExpenseHistory.vue';
+import IncomeHistory from '../components/pages/IncomeHistory.vue';
+import AllHistory from '../components/pages/AllHistory.vue';
+import Library from '../views/Library.vue';
+import ExpenseCategoryLibrary from '../components/pages/ExpenseCategoryLibrary.vue';
+import IncomeCategoryLibrary from '../components/pages/IncomeCategoryLibrary.vue';
+import ExpenseCategoryForm from '../components/pages/ExpenseCategoryForm.vue';
+import IncomeCategoryForm from '../components/pages/IncomeCategoryForm.vue';
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
@@ -80,12 +80,12 @@ const routes = [
       }
     ]
   }
-]
+];
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
-})
+});
 
-export default router
+export default router;

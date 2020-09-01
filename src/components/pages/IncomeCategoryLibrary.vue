@@ -38,11 +38,11 @@
   </div>
 </template>
 <script>
-import Button from '@/components/atoms/Button.vue'
-import Modal from '@/components/atoms/Modal.vue'
-import CategoryItems from '@/components/molecules/CategoryItems.vue'
-import AddCategoryForms from '@/components/organisms/AddCategoryForms.vue'
-import { mapGetters, mapMutations } from 'vuex'
+import Button from '@/components/atoms/Button.vue';
+import Modal from '@/components/atoms/Modal.vue';
+import CategoryItems from '@/components/molecules/CategoryItems.vue';
+import AddCategoryForms from '@/components/organisms/AddCategoryForms.vue';
+import { mapGetters, mapMutations } from 'vuex';
 export default {
   name: 'IncomeCategoryLibrary',
   components: {
@@ -55,7 +55,7 @@ export default {
     return {
       categoryItem: {},
       modalView: false
-    }
+    };
   },
   computed: {
     ...mapGetters('incomes', ['buttonProperties']),
@@ -63,31 +63,31 @@ export default {
       return {
         ...this.categoryItem,
         price: this.categoryItem.price * 1
-      }
+      };
     }
   },
   methods: {
     ...mapMutations('incomes', ['change', 'remove']),
     onChange (categoryItem) {
-      this.categoryItem = categoryItem
+      this.categoryItem = categoryItem;
     },
     openChangeCategoryModal (categoryItem) {
-      this.onChange(categoryItem)
-      this.modalView = !this.modalView
+      this.onChange(categoryItem);
+      this.modalView = !this.modalView;
     },
     closeModal () {
-      this.modalView = false
+      this.modalView = false;
     },
     changeCategoryItem () {
-      this.change(this.selectedCategoryItem)
-      this.closeModal()
+      this.change(this.selectedCategoryItem);
+      this.closeModal();
     },
     removeCategoryItem () {
-      this.remove(this.selectedCategoryItem)
-      this.closeModal()
+      this.remove(this.selectedCategoryItem);
+      this.closeModal();
     }
   }
-}
+};
 </script>
 <style lang="scss" scoped>
 .income-category-library {

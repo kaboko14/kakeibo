@@ -1,12 +1,12 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import items from './modules/items'
-import expenses from './modules/expenses'
-import incomes from './modules/incomes'
-import auth from './modules/auth'
-import createPersistedState from 'vuex-persistedstate'
+import Vue from 'vue';
+import Vuex from 'vuex';
+import items from './modules/items';
+import expenses from './modules/expenses';
+import incomes from './modules/incomes';
+import auth from './modules/auth';
+import createPersistedState from 'vuex-persistedstate';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     balance: 3000,
@@ -14,15 +14,15 @@ export default new Vuex.Store({
   },
   getters: {
     balance (state) {
-      return state.balance
+      return state.balance;
     },
     activeViewName (state) {
-      return state.activeViewName
+      return state.activeViewName;
     }
   },
   mutations: {
     changeActiveViewName (state, viewName) {
-      state.activeViewName = viewName
+      state.activeViewName = viewName;
     }
   },
   plugins: [createPersistedState({ key: 'myKakeibo' })],
@@ -32,4 +32,4 @@ export default new Vuex.Store({
     expenses,
     incomes
   }
-})
+});

@@ -40,11 +40,11 @@
   </tr>
 </template>
 <script>
-import Button from '@/components/atoms/Button.vue'
-import moment from 'moment'
+import Button from '@/components/atoms/Button.vue';
+import moment from 'moment';
 moment.updateLocale('ja', {
   weekdaysShort: ['日', '月', '火', '水', '木', '金', '土']
-})
+});
 export default {
   name: 'GridTable',
   components: {
@@ -57,23 +57,23 @@ export default {
     }
   },
   data () {
-    return {}
+    return {};
   },
   computed: {
     itemDate () {
-      return { ...this.item }.date
+      return { ...this.item }.date;
     }
   },
   methods: {
     sendRemoveItem (item) {
-      this.$emit('clickRemoveButton', item)
+      this.$emit('clickRemoveButton', item);
     },
     momentFromatJa (date) {
-      const m = moment(date, 'YYYY-MM-DD')
-      return m.format('M/D(ddd)')
+      const m = moment(date, 'YYYY-MM-DD');
+      return m.format('M/D(ddd)');
     }
   }
-}
+};
 </script>
 <style scoped lang="scss">
 td {

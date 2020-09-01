@@ -20,8 +20,8 @@
   </div>
 </template>
 <script>
-import Form from '@/components/molecules/Form.vue'
-import moment from 'moment'
+import Form from '@/components/molecules/Form.vue';
+import moment from 'moment';
 
 export default {
   name: 'Forms',
@@ -55,7 +55,7 @@ export default {
         labelText: '金額',
         placeholder: '入力してください'
       }
-    }
+    };
   },
   computed: {
   },
@@ -64,18 +64,18 @@ export default {
       this.$emit('inputForm', {
         ...this.newItem,
         [key]: $event
-      })
+      });
       console.log({
         ...this.newItem,
         [key]: $event
-      })
+      });
     },
     momentFormat (date) {
-      const m = moment(date, 'YYYY/MM/DD')
-      return m.format('YYYY-MM-DD')
+      const m = moment(date, 'YYYY/MM/DD');
+      return m.format('YYYY-MM-DD');
     }
   }
-}
+};
 </script>
 <style scoped lang="scss">
 .forms {

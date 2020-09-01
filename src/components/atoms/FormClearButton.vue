@@ -9,7 +9,7 @@
 <script>
 export default {
   name: 'FormClearButton'
-}
+};
 </script>
 <style scoped lang="scss">
 .clear-button {

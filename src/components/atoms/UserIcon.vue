@@ -28,14 +28,14 @@ export default {
       const style = {
         width: this.imageWidth,
         height: this.imageHeight
-      }
+      };
       if (this.userPhotoUrl) {
-        style.backgroundImage = `url(${this.userPhotoUrl})`
+        style.backgroundImage = `url(${this.userPhotoUrl})`;
       }
-      return style
+      return style;
     }
   }
-}
+};
 </script>
 <style scoped lang="scss">
 div {

@@ -16,7 +16,7 @@
   </div>
 </template>
 <script>
-import Form from '@/components/molecules/Form.vue'
+import Form from '@/components/molecules/Form.vue';
 export default {
   components: {
     Form
@@ -30,7 +30,7 @@ export default {
           id: null,
           name: '',
           price: null
-        }
+        };
       }
     }
   },
@@ -46,17 +46,17 @@ export default {
         labelText: '金額',
         placeholder: '入力してください'
       }
-    }
+    };
   },
   methods: {
     onChange ($event, key) {
       this.$emit('inputAddCategoryForm', {
         ...this.categoryItem,
         [key]: $event
-      })
+      });
     }
   }
-}
+};
 </script>
 <style lang="scss" scoped>
   .add-category-forms {

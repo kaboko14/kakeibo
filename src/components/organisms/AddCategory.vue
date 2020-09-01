@@ -18,8 +18,8 @@
   </div>
 </template>
 <script>
-import AddCategoryForms from '@/components/organisms/AddCategoryForms.vue'
-import Button from '@/components/atoms/Button.vue'
+import AddCategoryForms from '@/components/organisms/AddCategoryForms.vue';
+import Button from '@/components/atoms/Button.vue';
 export default {
   name: 'AddCategory',
   components: {
@@ -32,30 +32,30 @@ export default {
         name: '',
         price: 0
       }
-    }
+    };
   },
   computed: {
     newCategoryItem () {
       return {
         name: this.categoryItem.name,
         price: this.categoryItem.price * 1
-      }
+      };
     }
   },
   methods: {
     onChange (categoryItem) {
-      this.categoryItem = categoryItem
+      this.categoryItem = categoryItem;
     },
     addNewCategoryItem () {
-      this.$emit('clickAddCategoryItemButton', this.newCategoryItem)
-      this.categoryItemInit()
+      this.$emit('clickAddCategoryItemButton', this.newCategoryItem);
+      this.categoryItemInit();
     },
     categoryItemInit () {
-      this.categoryItem.name = ''
-      this.categoryItem.price = 0
+      this.categoryItem.name = '';
+      this.categoryItem.price = 0;
     }
   }
-}
+};
 </script>
 <style lang="scss" scoped>
 .add-category {

@@ -9,8 +9,8 @@
   </table>
 </template>
 <script>
-import GridTable from '@/components/molecules/GridTable.vue'
-import { mapMutations } from 'vuex'
+import GridTable from '@/components/molecules/GridTable.vue';
+import { mapMutations } from 'vuex';
 export default {
   name: 'ItemTable',
   components: {
@@ -25,7 +25,7 @@ export default {
   methods: {
     ...mapMutations('items', ['remove'])
   }
-}
+};
 </script>
 <style scoped lang="scss">
 .item-table {

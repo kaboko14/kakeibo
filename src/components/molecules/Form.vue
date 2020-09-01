@@ -21,9 +21,9 @@
   </div>
 </template>
 <script>
-import FormLabel from '@/components/atoms/FormLabel.vue'
-import Input from '@/components/atoms/Input.vue'
-import FormClearButton from '@/components/atoms/FormClearButton.vue'
+import FormLabel from '@/components/atoms/FormLabel.vue';
+import Input from '@/components/atoms/Input.vue';
+import FormClearButton from '@/components/atoms/FormClearButton.vue';
 export default {
   name: 'Form',
   components: {
@@ -45,17 +45,17 @@ export default {
   data () {
     return {
       formValue: this.value
-    }
+    };
   },
   methods: {
     onChange (value) {
       this.formValue = this.formProperty.inputType === 'tel'
         ? value.replace(/[^0-9]/g, '')
-        : value
-      this.$emit('input', this.formValue)
+        : value;
+      this.$emit('input', this.formValue);
     }
   }
-}
+};
 </script>
 <style scoped lang="scss">
 .form {

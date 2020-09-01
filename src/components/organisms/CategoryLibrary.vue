@@ -7,7 +7,7 @@
   </div>
 </template>
 <script>
-import CategoryItems from '@/components/molecules/CategoryItems.vue'
+import CategoryItems from '@/components/molecules/CategoryItems.vue';
 export default {
   name: 'CategoryLibrary',
   components: {
@@ -38,7 +38,7 @@ export default {
       },
       addCategoryModalView: false,
       changeCategoryModalView: false
-    }
+    };
   },
   computed: {
     newCategoryItem () {
@@ -46,60 +46,60 @@ export default {
         id: this.categoryItem.id,
         name: this.categoryItem.name,
         price: !this.categoryItem.price ? null : this.categoryItem.price * 1
-      }
+      };
     },
     addCategoryModalButtons () {
-      return [this.addCategoryButton]
+      return [this.addCategoryButton];
     },
     changeCategoryModalButtons () {
-      return [this.changeCategoryButton, this.addCategoryButton]
+      return [this.changeCategoryButton, this.addCategoryButton];
     }
   },
   methods: {
     onChange (categoryItem) {
-      this.$emit('category-button-click', categoryItem)
+      this.$emit('category-button-click', categoryItem);
     },
     changeCategory (categoryItem) {
-      this.onChange(categoryItem)
-      this.openChangeCategoryModal()
+      this.onChange(categoryItem);
+      this.openChangeCategoryModal();
     },
     addCategory () {
-      this.categoryItemInit()
-      this.openAddCategoryModal()
+      this.categoryItemInit();
+      this.openAddCategoryModal();
     },
     onChangeCateboryItems (value) {
       if (value === 'add') {
-        this.$emit('clickAddCategoryButton', this.newCategoryItem)
+        this.$emit('clickAddCategoryButton', this.newCategoryItem);
       }
       if (value === 'change') {
-        this.$emit('clickChangeCategoryButton', this.newCategoryItem)
+        this.$emit('clickChangeCategoryButton', this.newCategoryItem);
       }
-      this.closeAddCategoryModal()
-      this.closeChangeCategoryModal()
-      this.categoryItemInit()
+      this.closeAddCategoryModal();
+      this.closeChangeCategoryModal();
+      this.categoryItemInit();
     },
     sendDeleteCategoryId (id) {
-      this.$emit('clickDeleteCategoryButton', id)
+      this.$emit('clickDeleteCategoryButton', id);
     },
     categoryItemInit () {
-      this.categoryItem.id = null
-      this.categoryItem.name = ''
-      this.categoryItem.price = null
+      this.categoryItem.id = null;
+      this.categoryItem.name = '';
+      this.categoryItem.price = null;
     },
     openAddCategoryModal () {
-      this.addCategoryModalView = true
+      this.addCategoryModalView = true;
     },
     openChangeCategoryModal () {
-      this.changeCategoryModalView = true
+      this.changeCategoryModalView = true;
     },
     closeAddCategoryModal () {
-      this.addCategoryModalView = false
+      this.addCategoryModalView = false;
     },
     closeChangeCategoryModal () {
-      this.changeCategoryModalView = false
+      this.changeCategoryModalView = false;
     }
   }
-}
+};
 </script>
 <style lang="scss" scoped>
 .category-library {

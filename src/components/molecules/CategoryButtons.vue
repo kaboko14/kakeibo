@@ -14,7 +14,7 @@
   </div>
 </template>
 <script>
-import Button from '@/components/atoms/Button.vue'
+import Button from '@/components/atoms/Button.vue';
 
 export default {
   name: 'CategoryButtons',
@@ -42,11 +42,11 @@ export default {
         : {
           ...this.newItem,
           category: item.name
-        }
-      this.$emit('category-button-click', newItem)
+        };
+      this.$emit('category-button-click', newItem);
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

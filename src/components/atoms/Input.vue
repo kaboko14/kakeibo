@@ -28,10 +28,10 @@ export default {
   },
   methods: {
     onChange (event) {
-      this.$emit('input', event.target.value)
+      this.$emit('input', event.target.value);
     }
   }
-}
+};
 </script>
 <style scoped lang="scss">
 .input {

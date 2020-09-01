@@ -14,7 +14,7 @@
   </div>
 </template>
 <script>
-import Button from '@/components/atoms/Button.vue'
+import Button from '@/components/atoms/Button.vue';
 
 export default {
   name: 'EnterButtons',
@@ -37,10 +37,10 @@ export default {
   },
   methods: {
     onChange (value) {
-      this.$emit('clickEnterButtons', value)
+      this.$emit('clickEnterButtons', value);
     }
   }
-}
+};
 </script>
 <style scoped lang="scss">
 .enter-buttons {

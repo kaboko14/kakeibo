@@ -38,5 +38,5 @@
 <script>
 export default {
   name: 'WalletIcon'
-}
+};
 </script>

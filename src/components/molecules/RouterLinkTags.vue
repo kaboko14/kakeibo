@@ -17,7 +17,7 @@
   </div>
 </template>
 <script>
-import Tag from '@/components/atoms/Tag.vue'
+import Tag from '@/components/atoms/Tag.vue';
 export default {
   nama: 'RouterLinkTags',
   components: {
@@ -29,7 +29,7 @@ export default {
       required: true
     }
   }
-}
+};
 </script>
 <style lang="scss" scoped>
 .router-link-tags {

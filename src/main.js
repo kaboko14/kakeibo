@@ -1,15 +1,15 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
-import Firebase from './firebase'
+import Vue from 'vue';
+import App from './App.vue';
+import router from './router';
+import store from './store';
+import Firebase from './firebase';
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
-Firebase.init()
+Firebase.init();
 
 new Vue({
   router,
   store,
   render: h => h(App)
-}).$mount('#app')
+}).$mount('#app');

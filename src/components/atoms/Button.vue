@@ -18,10 +18,10 @@ export default {
   },
   computed: {
     className () {
-      return `button button--${this.buttonColor}`
+      return `button button--${this.buttonColor}`;
     }
   }
-}
+};
 </script>
 <style scoped lang="scss">
 .button {

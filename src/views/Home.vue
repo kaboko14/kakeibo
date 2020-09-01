@@ -16,9 +16,9 @@
 </template>
 
 <script>
-import Card from '@/components/atoms/Card.vue'
-import RouterLinkTags from '@/components/molecules/RouterLinkTags.vue'
-import Balance from '@/components/organisms/Balance.vue'
+import Card from '@/components/atoms/Card.vue';
+import RouterLinkTags from '@/components/molecules/RouterLinkTags.vue';
+import Balance from '@/components/organisms/Balance.vue';
 export default {
   name: 'Home',
   components: {
@@ -38,12 +38,12 @@ export default {
           linkTo: '/home/income'
         }
       ]
-    }
+    };
   },
   created () {
-    this.$store.commit('changeActiveViewName', 'ホーム・入力')
+    this.$store.commit('changeActiveViewName', 'ホーム・入力');
   }
-}
+};
 </script>
 <style scoped lang="scss">
 .home {

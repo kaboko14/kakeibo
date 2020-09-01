@@ -15,27 +15,27 @@
   </div>
 </template>
 <script>
-import Firebase from './../firebase'
+import Firebase from './../firebase';
 
 export default {
   name: 'Login',
   computed: {
     user () {
-      return this.$store.getters.user
+      return this.$store.getters.user;
     }
   },
   created () {
-    Firebase.onAuth()
+    Firebase.onAuth();
   },
   methods: {
     doLogin () {
-      Firebase.login()
+      Firebase.login();
     },
     doLogout () {
-      Firebase.logout()
+      Firebase.logout();
     }
   }
-}
+};
 </script>
 <style lang="scss" scoped>
   .a {

@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import AddItem from '@/components/organisms/AddItem.vue'
-import { mapGetters, mapMutations } from 'vuex'
+import AddItem from '@/components/organisms/AddItem.vue';
+import { mapGetters, mapMutations } from 'vuex';
 export default {
   name: 'AddExpenseItem',
   components: {
@@ -21,7 +21,7 @@ export default {
       addItemButtonLabel: '入金を登録する',
       itemType: 'income'
 
-    }
+    };
   },
   computed: {
     ...mapGetters('incomes', ['buttonProperties']),
@@ -32,11 +32,11 @@ export default {
         incrementButtonNumbers: this.incrementButtons,
         addItemButtonLabel: this.addItemButtonLabel,
         itemType: this.itemType
-      }
+      };
     }
   },
   methods: {
     ...mapMutations('items', ['add'])
   }
-}
+};
 </script>

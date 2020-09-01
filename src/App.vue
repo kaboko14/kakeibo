@@ -10,14 +10,14 @@
   </div>
 </template>
 <script>
-import MobileHeader from '@/components/organisms/MobileHeader.vue'
-import NavigationBar from '@/components/organisms/NavigationBar.vue'
+import MobileHeader from '@/components/organisms/MobileHeader.vue';
+import NavigationBar from '@/components/organisms/NavigationBar.vue';
 export default {
   components: {
     MobileHeader,
     NavigationBar
   }
-}
+};
 </script>
 
 <style lang="scss">

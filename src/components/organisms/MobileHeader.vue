@@ -12,8 +12,8 @@
   </Bar>
 </template>
 <script>
-import Bar from '@/components/atoms/Bar.vue'
-import UserIcon from '@/components/atoms/UserIcon.vue'
+import Bar from '@/components/atoms/Bar.vue';
+import UserIcon from '@/components/atoms/UserIcon.vue';
 export default {
   name: 'MobileHeader',
   components: {
@@ -22,15 +22,15 @@ export default {
   },
   computed: {
     activeViewName () {
-      return this.$store.getters.activeViewName
+      return this.$store.getters.activeViewName;
     },
     userPhotoUrl () {
       return this.$store.getters.user
         ? this.$store.getters.user.photoURL
-        : null
+        : null;
     }
   }
-}
+};
 </script>
 <style scoped lang="scss">
 .mobile-header {

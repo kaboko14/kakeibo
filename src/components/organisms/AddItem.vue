@@ -34,11 +34,11 @@
   </div>
 </template>
 <script>
-import Button from '@/components/atoms/Button.vue'
-import CategoryButtons from '@/components/molecules/CategoryButtons.vue'
-import Forms from '@/components/organisms/Forms.vue'
-import IncrementButtons from '@/components/molecules/IncrementButtons.vue'
-import moment from 'moment'
+import Button from '@/components/atoms/Button.vue';
+import CategoryButtons from '@/components/molecules/CategoryButtons.vue';
+import Forms from '@/components/organisms/Forms.vue';
+import IncrementButtons from '@/components/molecules/IncrementButtons.vue';
+import moment from 'moment';
 
 export default {
   name: 'AddItem',
@@ -62,7 +62,7 @@ export default {
         price: ''
       },
       formView: false
-    }
+    };
   },
   computed: {
     newItem () {
@@ -71,38 +71,38 @@ export default {
         category: !this.item.category ? '' : this.item.category,
         price:
           !this.item.price || this.item.price <= 0 ? '' : this.item.price * 1
-      }
+      };
     }
   },
   methods: {
     onChange (item) {
-      this.item = item
+      this.item = item;
     },
     openForm () {
-      this.formView = !this.formView
+      this.formView = !this.formView;
     },
     addNewItem () {
-      this.newItem.type = this.addItemProperties.itemType
+      this.newItem.type = this.addItemProperties.itemType;
       if (!this.newItem.category) {
-        this.newItem.category = this.addItemProperties.initialCategory
+        this.newItem.category = this.addItemProperties.initialCategory;
       }
-      this.$emit('clickAddItemButton', this.newItem)
-      this.itemInit()
+      this.$emit('clickAddItemButton', this.newItem);
+      this.itemInit();
     },
     itemInit () {
-      this.item.date = this.moment()
-      this.item.category = ''
-      this.item.price = ''
+      this.item.date = this.moment();
+      this.item.category = '';
+      this.item.price = '';
     },
     moment () {
-      return moment()
+      return moment();
     },
     momentFormat (date) {
-      const m = moment(date, 'YYYY-MM-DD')
-      return m.format('YYYY-MM-DD')
+      const m = moment(date, 'YYYY-MM-DD');
+      return m.format('YYYY-MM-DD');
     }
   }
-}
+};
 </script>
 <style scoped lang="scss">
 .add-item {

@@ -25,8 +25,8 @@
 </template>
 
 <script>
-import Card from '@/components/atoms/Card.vue'
-import RouterLinkTags from '@/components/molecules/RouterLinkTags.vue'
+import Card from '@/components/atoms/Card.vue';
+import RouterLinkTags from '@/components/molecules/RouterLinkTags.vue';
 export default {
   name: 'Home',
   components: {
@@ -46,12 +46,12 @@ export default {
           linkTo: '/library/income'
         }
       ]
-    }
+    };
   },
   created () {
-    this.$store.commit('changeActiveViewName', '品目登録')
+    this.$store.commit('changeActiveViewName', '品目登録');
   }
-}
+};
 </script>
 <style scoped lang="scss">
 .library {

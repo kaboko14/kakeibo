@@ -16,10 +16,10 @@ export default {
   name: 'Modal',
   methods: {
     modalClose () {
-      this.$emit('clickModalCloseButton')
+      this.$emit('clickModalCloseButton');
     }
   }
-}
+};
 </script>
 <style lang="scss" scoped>
 .modal {

@@ -17,9 +17,9 @@
   </div>
 </template>
 <script>
-import Button from '@/components/atoms/Button.vue'
-import AddCategoryForms from '@/components/organisms/AddCategoryForms.vue'
-import { mapMutations } from 'vuex'
+import Button from '@/components/atoms/Button.vue';
+import AddCategoryForms from '@/components/organisms/AddCategoryForms.vue';
+import { mapMutations } from 'vuex';
 export default {
   name: 'IncomeCategoryForm',
   components: {
@@ -33,7 +33,7 @@ export default {
         name: '',
         price: 0
       }
-    }
+    };
   },
   computed: {
     categoryItem () {
@@ -42,24 +42,24 @@ export default {
         price: this.item.price * 1 === 0
           ? null
           : this.item.price * 1
-      }
+      };
     }
   },
   methods: {
     ...mapMutations('incomes', ['add']),
     onChange (categoryItem) {
-      this.item = categoryItem
+      this.item = categoryItem;
     },
     addCategoryItem () {
-      this.add(this.categoryItem)
+      this.add(this.categoryItem);
       this.item = {
         id: '',
         name: '',
         price: 0
-      }
-      console.log(this.item)
+      };
+      console.log(this.item);
     }
   }
 
-}
+};
 </script>

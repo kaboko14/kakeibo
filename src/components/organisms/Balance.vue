@@ -20,9 +20,9 @@
   </Card>
 </template>
 <script>
-import Card from '@/components/atoms/Card.vue'
-import WalletIcon from '@/components/icons/WalletIcon.vue'
-import Button from '@/components/atoms/Button.vue'
+import Card from '@/components/atoms/Card.vue';
+import WalletIcon from '@/components/icons/WalletIcon.vue';
+import Button from '@/components/atoms/Button.vue';
 export default {
   name: 'Balance',
   components: {
@@ -32,10 +32,10 @@ export default {
   },
   computed: {
     balance () {
-      return this.$store.getters.balance.toLocaleString()
+      return this.$store.getters.balance.toLocaleString();
     }
   }
-}
+};
 </script>
 <style lang="scss" scoped>
   .balance {
