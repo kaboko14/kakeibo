@@ -46,13 +46,12 @@ export default {
   &__container {
     width: 100vw;
     height: 100vh;
-    padding: 60px 0px 80px;
+    padding: 60px 10px 80px;
     background-color: $base-color;
   }
   &__router-view {
     max-width: 500px;
     margin: 0 auto;
-    padding: 5px;
   }
   &__router-link-tags {
     display: flex;

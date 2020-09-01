@@ -1,26 +1,42 @@
-import { sortItems, getItemId } from '@/utils'
+import { sortItems, getObjectId } from '@/utils'
 
 const initialState = {
-  list: []
+  list: {}
 }
 const getters = {
-  itemId (state) {
-    return getItemId(state.list)
+  items (state) {
+    const list = Object.values(state.list)
+    sortItems(list)
+    return list
+  },
+  expenseItems (state) {
+    const list = Object.values(state.list)
+    sortItems(list)
+    return list.filter((item) => item.type === 'expense')
+  },
+  incomeItems (state) {
+    const list = Object.values(state.list)
+    sortItems(list)
+    return list.filter((item) => item.type === 'income')
   }
 }
 const mutations = {
   add (state, item) {
     const newItem = { ...item }
-    newItem.id = getItemId(state.list)
+    newItem.id = getObjectId(state.list)
     // 出費の場合は金額をマイナスにして登録
     if (newItem.type === 'expense') {
       newItem.price = newItem.price * -1
     }
-    state.list.push(newItem)
-    sortItems(state.list)
+    state.list = {
+      ...state.list,
+      [newItem.id]: newItem
+    }
   },
-  delete (state, id) {
-    state.list = state.list.filter(item => id !== item.id)
+  remove (state, id) {
+    const list = { ...state.list }
+    delete list[id]
+    state.list = list
   }
 }
 export default {

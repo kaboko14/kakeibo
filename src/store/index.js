@@ -21,18 +21,6 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    // updateItems (state, items) {
-    //   state.items = items
-    // },
-    // deleteItem (state, id) {
-    //   state.items = state.items.filter((item) => item.id !== id)
-    // },
-    updateExpenseCategoryItems (state, categoryItems) {
-      state.expenseCategoryItems = categoryItems
-    },
-    updateIncomeCategoryItems (state, categoryItems) {
-      state.incomeCategoryItems = categoryItems
-    },
     changeActiveViewName (state, viewName) {
       state.activeViewName = viewName
     }

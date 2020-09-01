@@ -7,19 +7,14 @@
 </template>
 <script>
 import ItemTable from '@/components/organisms/ItemTable.vue'
+import { mapGetters } from 'vuex'
 export default {
   name: 'ExpenseHistory',
   components: {
     ItemTable
   },
   computed: {
-    items () {
-      return [...this.$store.state.items]
-    },
-    expenseItems () {
-      return this.items.filter(item => item.purpose === 'want' || item.purpose === 'need')
-    }
+    ...mapGetters('items', ['expenseItems'])
   }
-
 }
 </script>

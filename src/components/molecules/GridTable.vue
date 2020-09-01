@@ -7,19 +7,16 @@
         {{ momentFromatJa(itemDate) }}
       </p>
       <span
-        class="grid-table__purpose"
-        :class="item.purpose"
+        class="grid-table__type"
+        :class="item.type"
       >
-        <template v-if="item.purpose==='need'">
-          NEED
+        <template v-if="item.type==='expense'">
+          出金
         </template>
-        <template v-else-if="item.purpose==='want'">
-          WANT
-        </template>
-        <template v-else-if="item.purpose==='income'">
+        <template v-else-if="item.type==='income'">
           入金
         </template>
-        <template v-else-if="item.purpose==='balance'">
+        <template v-else-if="item.type==='balance'">
           残高調整
         </template>
       </span>
@@ -94,18 +91,18 @@ td {
     margin-bottom: 4px;
     font-size: 12px;
   }
-  &__purpose {
+  &__type {
     margin-right: 6px;
     font-size: 14px;
     font-weight: bolder;
-    &.need {
-      color: #7dd3d9;
-    }
-    &.want {
-      color: #d97d7d;
+    &.expense {
+      color: $accent-color;
     }
     &.income {
-      color: #d9c07d;
+      color: $sub-color;
+    }
+    &.balance {
+      color: $gray-3;
     }
   }
   &__category {
@@ -117,13 +114,13 @@ td {
   }
   &__remove-button {
     width: 36px;
+    text-align: end;
     & > button {
       margin-left: auto;
       padding: 0;
-      line-height: 26px;
-      border-radius: 50%;
-      width: 26px;
-      height: 26px;
+      line-height: 20px;
+      width: 20px;
+      height: 20px;
     }
   }
 }
