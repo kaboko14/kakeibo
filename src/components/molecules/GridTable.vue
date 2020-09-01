@@ -66,7 +66,7 @@ export default {
   },
   methods: {
     sendRemoveItem (item) {
-      this.$emit('clickRemoveButton', item);
+      this.$emit('remove-button-click', item);
     },
     momentFromatJa (date) {
       const m = moment(date, 'YYYY-MM-DD');

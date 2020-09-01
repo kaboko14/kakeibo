@@ -7,11 +7,11 @@
     />
     <Modal
       v-show="modalView"
-      @clickModalCloseButton="closeModal"
+      @close-button-click="closeModal"
     >
       <AddCategoryForms
         :category-item="selectedCategoryItem"
-        @inputAddCategoryForm="onChange"
+        @add-category-form-input="onChange"
       >
         <div class="income-category-library__modal-buttons-container">
           <Button

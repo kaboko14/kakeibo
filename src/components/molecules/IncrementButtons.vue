@@ -55,7 +55,7 @@ export default {
   methods: {
     incrementPrice (number) {
       const item = { ...this.newItem };
-      this.$emit('clickIncrementButton', {
+      this.$emit('increment-button-click', {
         ...item,
         price: item.price + number
       });

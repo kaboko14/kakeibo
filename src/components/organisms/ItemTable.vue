@@ -4,7 +4,7 @@
       v-for="item in items"
       :key="item.id"
       :item="item"
-      @clickRemoveButton="remove($event)"
+      @remove-button-click="remove($event)"
     />
   </table>
 </template>

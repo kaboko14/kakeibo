@@ -16,7 +16,7 @@ export default {
   name: 'Modal',
   methods: {
     modalClose () {
-      this.$emit('clickModalCloseButton');
+      this.$emit('close-button-click');
     }
   }
 };

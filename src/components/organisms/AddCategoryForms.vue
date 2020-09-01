@@ -50,7 +50,7 @@ export default {
   },
   methods: {
     onChange ($event, key) {
-      this.$emit('inputAddCategoryForm', {
+      this.$emit('add-category-form-input', {
         ...this.categoryItem,
         [key]: $event
       });

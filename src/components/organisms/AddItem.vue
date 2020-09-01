@@ -10,13 +10,13 @@
       class="add-item__forms"
       :text-form-placeholder="addItemProperties.initialCategory"
       :new-item="newItem"
-      @inputForm="onChange"
+      @form-input="onChange"
     />
     <IncrementButtons
       class="add-item__increment-buttons"
       :new-item="newItem"
       :button-numbers="addItemProperties.incrementButtonNumbers"
-      @clickIncrementButton="onChange"
+      @increment-button-click="onChange"
     />
     <p v-show="!newItem.price">
       ※金額を入力してください
@@ -86,7 +86,7 @@ export default {
       if (!this.newItem.category) {
         this.newItem.category = this.addItemProperties.initialCategory;
       }
-      this.$emit('clickAddItemButton', this.newItem);
+      this.$emit('add-item-button-click', this.newItem);
       this.itemInit();
     },
     itemInit () {

@@ -2,7 +2,7 @@
   <AddItem
     :add-item-properties="addItemProperties"
     class="home__add-item"
-    @clickAddItemButton="add"
+    @add-item-button-click="add"
   />
 </template>
 

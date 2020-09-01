@@ -3,7 +3,7 @@
     <p>出金品目</p>
     <AddCategoryForms
       :category-item="categoryItem"
-      @inputAddCategoryForm="onChange"
+      @add-category-form-input="onChange"
     >
       <Button
         :button-color="'color-sub'"

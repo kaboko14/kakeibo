@@ -61,7 +61,7 @@ export default {
   },
   methods: {
     onChange ($event, key) {
-      this.$emit('inputForm', {
+      this.$emit('form-input', {
         ...this.newItem,
         [key]: $event
       });
