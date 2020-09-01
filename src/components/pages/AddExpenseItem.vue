@@ -8,7 +8,7 @@
 
 <script>
 import AddItem from '@/components/organisms/AddItem.vue'
-import { mapMutations } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'AddExpenseItem',
   components: {
@@ -24,11 +24,11 @@ export default {
     }
   },
   computed: {
+    ...mapGetters('expenses', ['buttonProperties']),
     addItemProperties () {
       return {
         initialCategory: this.initialCategory,
-        categoryButtonProperties: this.$store.getters
-          .expenseCategoryButtonProperties,
+        categoryButtonProperties: this.buttonProperties,
         incrementButtonNumbers: this.incrementButtons,
         addItemButtonLabel: this.addItemButtonLabel,
         itemType: this.itemType

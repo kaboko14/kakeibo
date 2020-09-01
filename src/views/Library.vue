@@ -16,40 +16,26 @@
       :card-title="'新規登録'"
       class="library__add-category"
     >
-      <AddCategoryForms
-        class="library__add-category-forms"
-        :new-category-item="newCategoryItem"
-        :button-properties="addCategoryModalButtons"
-        @inputAddCategoryForm="onChange"
-        @clickEnterButton="onChangeCateboryItems"
+      <router-view
+        name="addCategoryForm"
+        class="library__router-view"
       />
-      <Button
-        :button-class="'button-sub-color'"
-        class="library__add-item-button"
-      >
-        <p>
-          新規登録
-        </p>
-      </Button>
     </Card>
   </div>
 </template>
 
 <script>
 import Card from '@/components/atoms/Card.vue'
-import Button from '@/components/atoms/Button.vue'
 import RouterLinkTags from '@/components/molecules/RouterLinkTags.vue'
-import AddCategoryForms from '@/components/organisms/AddCategoryForms.vue'
 export default {
   name: 'Home',
   components: {
     Card,
-    Button,
-    RouterLinkTags,
-    AddCategoryForms
+    RouterLinkTags
   },
   data () {
     return {
+      activeView: '',
       routerLinks: [
         {
           tagLabel: '出金',
@@ -93,6 +79,14 @@ export default {
   }
   &__add-item-button {
     margin: 0 auto;
+  }
+  &__modal__button-container {
+    width:100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(40%,1fr));
+    gap: 10px;
+    justify-items: center;
+    align-items: center;
 
   }
 }

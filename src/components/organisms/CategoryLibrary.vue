@@ -2,8 +2,7 @@
   <div class="category-library__container">
     <CategoryItems
       :button-properties="categoryButtonProperties"
-      @clickCategoryButton="changeCategory"
-      @clickDeleteCategoryButton="sendDeleteCategoryId"
+      @clickCategoryButton="onChange"
     />
   </div>
 </template>
@@ -61,7 +60,7 @@ export default {
   },
   methods: {
     onChange (categoryItem) {
-      this.categoryItem = categoryItem
+      this.$emit('clickCategoryButton', categoryItem)
     },
     changeCategory (categoryItem) {
       this.onChange(categoryItem)

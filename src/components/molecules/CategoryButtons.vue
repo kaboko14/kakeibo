@@ -27,11 +27,9 @@ export default {
       required: true
     },
     buttonProperties: {
-      type: Array,
+      type: Object,
       required: true
     }
-  },
-  computed: {
   },
   methods: {
     onChange (item) {

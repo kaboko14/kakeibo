@@ -11,3 +11,8 @@ export const getItemId = items => {
   console.log(items)
   return items.reduce((maxId, item) => Math.max(maxId, item.id), 0) + 1
 }
+
+export const getObjectId = items => {
+  const ids = Object.keys(items)
+  return ids.reduce((maxId, id) => Math.max(maxId, id), 0) + 1
+}

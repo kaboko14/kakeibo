@@ -11,6 +11,8 @@ import AllHistory from '../components/pages/AllHistory.vue'
 import Library from '../views/Library.vue'
 import ExpenseCategoryLibrary from '../components/pages/ExpenseCategoryLibrary.vue'
 import IncomeCategoryLibrary from '../components/pages/IncomeCategoryLibrary.vue'
+import ExpenseCategoryForm from '../components/pages/ExpenseCategoryForm.vue'
+import IncomeCategoryForm from '../components/pages/IncomeCategoryForm.vue'
 
 Vue.use(VueRouter)
 
@@ -63,12 +65,18 @@ const routes = [
       {
         path: '/',
         name: 'ExpenseCategoryLibrary',
-        component: ExpenseCategoryLibrary
+        components: {
+          default: ExpenseCategoryLibrary,
+          addCategoryForm: ExpenseCategoryForm
+        }
       },
       {
         path: 'income',
         name: 'IncomeCategoryLibrary',
-        component: IncomeCategoryLibrary
+        components: {
+          default: IncomeCategoryLibrary,
+          addCategoryForm: IncomeCategoryForm
+        }
       }
     ]
   }

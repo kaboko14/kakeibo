@@ -1,64 +1,104 @@
 <template>
   <div>
-    <CategoryLibrary
+    <CategoryItems
       class="category-library"
-      :category-button-properties="categoryButtonProperties"
-      @clickAddCategoryButton="addCategoryItem"
-      @clickChangeCategoryButton="changeCategoryItem"
-      @clickDeleteCategoryButton="deleteCategoryItem"
+      :button-properties="buttonProperties"
+      @clickCategoryButton="openChangeCategoryModal"
     />
+    <Modal
+      v-show="modalView"
+      @clickModalCloseButton="closeModal"
+    >
+      <AddCategoryForms
+        :category-item="selectedCategoryItem"
+        @inputAddCategoryForm="onChange"
+      >
+        <div class="income-category-library__modal-buttons-container">
+          <Button
+            :button-class="'button--color-sub'"
+            class="library__add-item-button"
+            @click="changeCategoryItem"
+          >
+            <p>
+              内容を更新
+            </p>
+          </Button>
+          <Button
+            :button-class="'button--color-accent'"
+            class="library__add-item-button"
+            @click="removeCategoryItem"
+          >
+            <p>
+              品目を削除
+            </p>
+          </Button>
+        </div>
+      </AddCategoryForms>
+    </Modal>
   </div>
 </template>
 <script>
-import CategoryLibrary from '@/components/organisms/CategoryLibrary.vue'
+import Button from '@/components/atoms/Button.vue'
+import Modal from '@/components/atoms/Modal.vue'
+import CategoryItems from '@/components/molecules/CategoryItems.vue'
+import AddCategoryForms from '@/components/organisms/AddCategoryForms.vue'
+import { mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'IncomeCategoryLibrary',
   components: {
-    CategoryLibrary
+    Button,
+    Modal,
+    AddCategoryForms,
+    CategoryItems
+  },
+  data () {
+    return {
+      categoryItem: { },
+      modalView: false
+    }
   },
   computed: {
-    categoryItems () {
-      return [...this.$store.state.incomeCategoryItems]
-    },
-    categoryButtonProperties () {
-      return this.$store.getters.incomeCategoryButtonProperties
-    },
-    categoryId () {
-      return (
-        this.categoryItems.reduce((maxId, categoryItem) => Math.max(maxId, categoryItem.id), 0) + 1
-      )
+    ...mapGetters('incomes', ['buttonProperties']),
+    selectedCategoryItem () {
+      return {
+        ...this.categoryItem,
+        price: this.categoryItem.price * 1
+      }
     }
   },
   methods: {
-    addCategoryItem (categoryItem) {
-      const newCategoryItem = { ...categoryItem }
-      newCategoryItem.id = this.categoryId
-      this.categoryItems.push(newCategoryItem)
-      this.$store.commit('updateIncomeCategoryItems', [...this.categoryItems])
+    ...mapMutations('incomes', ['change', 'remove']),
+    onChange (categoryItem) {
+      this.categoryItem = categoryItem
     },
-    changeCategoryItem (categoryItem) {
-      const newCategoryItem = { ...categoryItem }
-      const filteredCategoryItems = this.filterItems(this.categoryItems, newCategoryItem.id)
-      filteredCategoryItems.push(newCategoryItem)
-      this.sortItems(filteredCategoryItems)
-      this.$store.commit('updateIncomeCategoryItems', filteredCategoryItems)
+    openChangeCategoryModal (categoryItem) {
+      this.onChange(categoryItem)
+      this.modalView = !this.modalView
     },
-    deleteCategoryItem (id) {
-      const filteredCategoryItems = this.filterItems(this.categoryItems, id)
-      this.$store.commit('updateIncomeCategoryItems', filteredCategoryItems)
+    closeModal () {
+      this.modalView = false
     },
-    filterItems (items, id) {
-      return items.filter(item => item.id !== id)
+    changeCategoryItem () {
+      this.change(this.selectedCategoryItem)
+      this.closeModal()
     },
-    sortItems (items) {
-      items.sort((a, b) => {
-        if (a.id > b.id) return 1
-        if (a.id < b.id) return -1
-      })
+    removeCategoryItem () {
+      this.remove(this.selectedCategoryItem)
+      this.closeModal()
     }
   }
 }
 </script>
 <style lang="scss" scoped>
+.income-category-library {
+  &__modal-buttons-container {
+    width:100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(40%,1fr));
+    gap: 10px;
+    justify-items: center;
+    align-items: center;
+  }
+}
 
 </style>

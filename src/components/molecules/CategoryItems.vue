@@ -29,37 +29,18 @@ export default {
   },
   props: {
     buttonProperties: {
-      type: Array,
+      type: Object,
       required: true
-    }
-  },
-  data () {
-    return {
-    }
-  },
-  computed: {
-    categoryItems () {
-      return Object.assign([], this.categories)
     }
   },
   methods: {
     onChange (categoryItem) {
-      const newCategoryItem = categoryItem.price
-        ? {
-          ...this.newCategoryItem,
-          id: categoryItem.id,
-          name: categoryItem.name,
-          price: categoryItem.price
-        }
-        : {
-          ...this.newCategoryItem,
-          id: categoryItem.id,
-          name: categoryItem.name
-        }
-      this.$emit('clickCategoryButton', newCategoryItem)
-    },
-    sendDeleteCategoryId (id) {
-      this.$emit('clickDeleteCategoryButton', id)
+      const selectedCategoryItem = {
+        id: categoryItem.id,
+        name: categoryItem.name,
+        price: categoryItem.price
+      }
+      this.$emit('clickCategoryButton', selectedCategoryItem)
     }
   }
 }

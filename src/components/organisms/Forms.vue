@@ -47,7 +47,7 @@ export default {
       },
       textFormProperty: {
         inputType: 'text',
-        labelText: '摘要',
+        labelText: '品目',
         placeholder: this.textFormPlaceholder
       },
       priceFormProperty: {

@@ -53,6 +53,7 @@ export default {
 $button-color: (
   "button--color-main": $button-color-main,
   "button--color-sub": $button-color-sub,
+  "button--color-accent": $button-color-accent,
   "button--color-gray-light": $button-color-gray-light,
   "button--color-gray-dark": $button-color-gray-dark,
   "button--color-disable": $button-color-disable,
