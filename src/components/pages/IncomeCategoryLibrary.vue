@@ -5,50 +5,24 @@
       :button-properties="buttonProperties"
       @category-button-click="openChangeCategoryModal"
     />
-    <Modal
+    <ChangeCategoryModal
       v-show="modalView"
+      :selected-category-item="selectedCategoryItem"
       @close-button-click="closeModal"
-    >
-      <AddCategoryForms
-        :category-item="selectedCategoryItem"
-        @add-category-form-input="onChange"
-      >
-        <div class="income-category-library__modal-buttons-container">
-          <Button
-            :button-color="'color-sub'"
-            class="library__add-item-button"
-            @click="changeCategoryItem"
-          >
-            <p>
-              内容を更新
-            </p>
-          </Button>
-          <Button
-            :button-color="'color-accent'"
-            class="library__add-item-button"
-            @click="removeCategoryItem"
-          >
-            <p>
-              品目を削除
-            </p>
-          </Button>
-        </div>
-      </AddCategoryForms>
-    </Modal>
+      @change-button-click="changeCategoryItem"
+      @remove-button-click="removeCategoryItem"
+      @input-form="onChange"
+    />
   </div>
 </template>
 <script>
-import Button from '@/components/atoms/Button.vue';
-import Modal from '@/components/atoms/Modal.vue';
 import CategoryItems from '@/components/molecules/CategoryItems.vue';
-import AddCategoryForms from '@/components/organisms/AddCategoryForms.vue';
+import ChangeCategoryModal from '@/components/organisms/ChangeCategoryModal.vue';
 import { mapGetters, mapMutations } from 'vuex';
 export default {
   name: 'IncomeCategoryLibrary',
   components: {
-    Button,
-    Modal,
-    AddCategoryForms,
+    ChangeCategoryModal,
     CategoryItems
   },
   data () {
@@ -73,7 +47,7 @@ export default {
     },
     openChangeCategoryModal (categoryItem) {
       this.onChange(categoryItem);
-      this.modalView = !this.modalView;
+      this.modalView = true;
     },
     closeModal () {
       this.modalView = false;
@@ -89,15 +63,3 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
-.income-category-library {
-  &__modal-buttons-container {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
-    gap: 10px;
-    justify-items: center;
-    align-items: center;
-  }
-}
-</style>

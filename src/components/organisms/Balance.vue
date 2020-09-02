@@ -45,16 +45,14 @@
           \{{ difference.toLocaleString() }}
         </span>
       </p>
-      <div class="balance__modal__button-wrapper">
-        <Button
-          :button-color="'color-sub'"
-          @click="changeBalance"
-        >
-          <p>
-            残高変更
-          </p>
-        </Button>
-      </div>
+      <Button
+        :button-color="'color-sub'"
+        @click="changeBalance"
+      >
+        <p>
+          残高変更
+        </p>
+      </Button>
     </Modal>
   </Card>
 </template>
@@ -150,9 +148,6 @@ export default {
           font-size: 20px;
           line-height: 2;
         }
-      }
-      &__button-wrapper {
-        text-align: center;
       }
     }
   }

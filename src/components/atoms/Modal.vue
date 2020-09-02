@@ -10,7 +10,7 @@
       <div class="modal__wrapper">
         <div
           class="modal__close-button"
-          @click="modalClose"
+          @click="$emit('close-button-click')"
         >
           ×
         </div>
@@ -27,11 +27,6 @@ export default {
       type: String,
       required: false,
       default: null
-    }
-  },
-  methods: {
-    modalClose () {
-      this.$emit('close-button-click');
     }
   }
 };
