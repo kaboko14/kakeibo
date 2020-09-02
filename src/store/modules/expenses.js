@@ -30,7 +30,6 @@ const mutations = {
   add (state, item) {
     const newCategoryItem = { ...item };
     newCategoryItem.id = getObjectId(state.list);
-    console.log(newCategoryItem.id);
     state.list = {
       ...state.list,
       [newCategoryItem.id]: newCategoryItem

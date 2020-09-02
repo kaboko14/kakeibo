@@ -2,9 +2,9 @@
 $button-thickness: 2px;// ボタンの厚み
 
 @mixin button-decoration($color){
-  box-shadow: inset 0 2px 0 rgba(255,255,255,0.2);
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.3);
   background: $color;
-  border-bottom: solid $button-thickness darken($color,20%);
+  border-bottom: solid $button-thickness darken($color,15%);
 }
 @mixin button-decoration-active($button-thickness){
   margin-top: $button-thickness;

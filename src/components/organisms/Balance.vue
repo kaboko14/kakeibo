@@ -29,7 +29,7 @@
       />
       <p v-show="inputBalance">
         現在の残高との差額<br>
-        ￥{{ difference.toLocaleString() }}
+        \{{ difference.toLocaleString() }}
       </p>
       <Button
         class="balance__button"

@@ -57,7 +57,6 @@ export default {
         name: '',
         price: 0
       };
-      console.log(this.item);
     }
   }
 

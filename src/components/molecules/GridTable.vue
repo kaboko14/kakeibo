@@ -17,7 +17,7 @@
           入金
         </template>
         <template v-else-if="item.type==='balance'">
-          残高調整
+          調整
         </template>
       </span>
       <span class="grid-table__category">
@@ -25,7 +25,7 @@
       </span>
     </td>
     <td class="grid-table__price">
-      ￥{{ item.price.toLocaleString() }}
+      \{{ item.price.toLocaleString() }}
     </td>
     <td class="grid-table__remove-button">
       <Button
