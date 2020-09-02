@@ -1,6 +1,7 @@
 <template>
   <div class="form__container">
     <FormLabel
+      v-show="formProperty.labelText"
       :label-text="formProperty.labelText"
       class="form__label"
     />

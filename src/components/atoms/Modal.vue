@@ -1,19 +1,34 @@
 <template>
   <div class="modal__background">
     <div class="modal__window">
-      <div
-        class="modal__close-button"
-        @click="modalClose"
+      <p
+        v-show="modalTitle"
+        class="modal__title"
       >
-        ×
+        {{ modalTitle }}
+      </p>
+      <div class="modal__wrapper">
+        <div
+          class="modal__close-button"
+          @click="modalClose"
+        >
+          ×
+        </div>
+        <slot />
       </div>
-      <slot />
     </div>
   </div>
 </template>
 <script>
 export default {
   name: 'Modal',
+  props: {
+    modalTitle: {
+      type: String,
+      required: false,
+      default: null
+    }
+  },
   methods: {
     modalClose () {
       this.$emit('close-button-click');
@@ -38,7 +53,7 @@ export default {
   }
   &__window {
     position: relative;
-    padding: 36px 10px 10px ;
+    padding: 36px 10px 16px ;
     background-color: $base-color;
     border-radius: 4px;
     overflow: hidden;
@@ -52,6 +67,19 @@ export default {
     line-height: 30px;
     text-align: center;
     cursor: pointer;
+  }
+  &__title {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    position: absolute;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  &__wrapper {
+    text-align: center;
+    padding: 20px 0px 0px;
   }
 }
 

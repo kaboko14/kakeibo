@@ -27,6 +27,7 @@ export default {
   overflow: hidden;
   box-shadow: $box-shadow;
   &__title {
+    font-weight: bold;
     margin-bottom: 16px;
   }
 }

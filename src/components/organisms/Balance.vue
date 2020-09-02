@@ -20,26 +20,41 @@
     </div>
     <Modal
       v-show="modalView"
+      :modal-title="'残高を調整'"
       @close-button-click="closeModal"
     >
+      <p
+        class="balance__modal__text"
+      >
+        現在の残高を入力してください
+      </p>
       <Form
         :value="inputBalance"
         :form-property="formProperty"
+        class="balance__modal__form"
         @input="onChange"
       />
-      <p v-show="inputBalance">
-        現在の残高との差額<br>
-        \{{ difference.toLocaleString() }}
-      </p>
-      <Button
-        class="balance__button"
-        :button-color="'color-sub'"
-        @click="changeBalance"
+      <p
+        class="balance__modal__difference"
       >
-        <p>
-          残高変更
-        </p>
-      </Button>
+        差額：
+        <span
+          class="
+        balance__modal__difference-price"
+        >
+          \{{ difference.toLocaleString() }}
+        </span>
+      </p>
+      <div class="balance__modal__button-wrapper">
+        <Button
+          :button-color="'color-sub'"
+          @click="changeBalance"
+        >
+          <p>
+            残高変更
+          </p>
+        </Button>
+      </div>
     </Modal>
   </Card>
 </template>
@@ -64,8 +79,7 @@ export default {
     return {
       formProperty: {
         inputType: 'tel',
-        labelText: '残高',
-        placeholder: '入力してください'
+        placeholder: '0'
       },
       inputBalance: '',
       modalView: false
@@ -121,6 +135,25 @@ export default {
       font-size: 28px;
       margin-bottom: 10px;
       vertical-align: bottom;
+    }
+    &__modal {
+      &__text {
+        margin-bottom: 10px;
+      }
+      &__form {
+        margin-bottom: 10px;
+      }
+      &__difference {
+        font-size: 14px;
+        // text-align: center;
+        &-price {
+          font-size: 20px;
+          line-height: 2;
+        }
+      }
+      &__button-wrapper {
+        text-align: center;
+      }
     }
   }
 </style>
