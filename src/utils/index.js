@@ -30,7 +30,7 @@ export const getDate = () => {
 moment.updateLocale('ja', {
   weekdaysShort: ['日', '月', '火', '水', '木', '金', '土']
 });
-export const momentFormat = (date) => {
-  const m = moment(date, 'YYYY-MM-DD');
+export const formatDate = (date) => {
+  const m = moment(date);
   return m.format('M/D(ddd)');
 };

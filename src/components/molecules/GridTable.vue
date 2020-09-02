@@ -4,7 +4,7 @@
       <p
         class="grid-table__date"
       >
-        {{ momentFromatJa(itemDate) }}
+        {{ itemDate }}
       </p>
       <span
         class="grid-table__type"
@@ -41,10 +41,7 @@
 </template>
 <script>
 import Button from '@/components/atoms/Button.vue';
-import moment from 'moment';
-moment.updateLocale('ja', {
-  weekdaysShort: ['日', '月', '火', '水', '木', '金', '土']
-});
+import { formatDate } from '@/utils';
 export default {
   name: 'GridTable',
   components: {
@@ -56,21 +53,14 @@ export default {
       required: true
     }
   },
-  data () {
-    return {};
-  },
   computed: {
     itemDate () {
-      return { ...this.item }.date;
+      return formatDate(this.item.date);
     }
   },
   methods: {
     sendRemoveItem (item) {
       this.$emit('remove-button-click', item);
-    },
-    momentFromatJa (date) {
-      const m = moment(date, 'YYYY-MM-DD');
-      return m.format('M/D(ddd)');
     }
   }
 };
@@ -83,7 +73,7 @@ td {
   &__wrapper {
     text-align: start;
     & > td {
-      border-bottom: 1px solid #707070;
+      border-bottom: 1px solid $gray-2;
       padding: 6px 4px 2px;
     }
   }

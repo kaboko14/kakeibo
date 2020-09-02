@@ -1,7 +1,7 @@
 <template>
   <div>
     <Form
-      :value="momentFormat(newItem.date)"
+      :value="newItem.date"
       :form-property="dateFormProperty"
       class="forms__date-form"
       @input="onChange($event,'date')"
@@ -21,7 +21,6 @@
 </template>
 <script>
 import Form from '@/components/molecules/Form.vue';
-import moment from 'moment';
 
 export default {
   name: 'Forms',
@@ -57,18 +56,12 @@ export default {
       }
     };
   },
-  computed: {
-  },
   methods: {
     onChange ($event, key) {
       this.$emit('form-input', {
         ...this.newItem,
         [key]: $event
       });
-    },
-    momentFormat (date) {
-      const m = moment(date, 'YYYY/MM/DD');
-      return m.format('YYYY-MM-DD');
     }
   }
 };

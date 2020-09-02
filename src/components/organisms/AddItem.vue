@@ -38,7 +38,7 @@ import Button from '@/components/atoms/Button.vue';
 import CategoryButtons from '@/components/molecules/CategoryButtons.vue';
 import Forms from '@/components/organisms/Forms.vue';
 import IncrementButtons from '@/components/molecules/IncrementButtons.vue';
-import moment from 'moment';
+import { getDate } from '@/utils';
 
 export default {
   name: 'AddItem',
@@ -57,7 +57,7 @@ export default {
   data () {
     return {
       item: {
-        date: this.moment(),
+        date: getDate(),
         category: '',
         price: ''
       },
@@ -90,16 +90,9 @@ export default {
       this.itemInit();
     },
     itemInit () {
-      this.item.date = this.moment();
+      this.item.date = this.getDate();
       this.item.category = '';
       this.item.price = '';
-    },
-    moment () {
-      return moment();
-    },
-    momentFormat (date) {
-      const m = moment(date, 'YYYY-MM-DD');
-      return m.format('YYYY-MM-DD');
     }
   }
 };

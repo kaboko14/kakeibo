@@ -49,7 +49,7 @@ import Modal from '@/components/atoms/Modal.vue';
 import Button from '@/components/atoms/Button.vue';
 import Form from '@/components/molecules/Form.vue';
 import WalletIcon from '@/components/icons/WalletIcon.vue';
-import moment from 'moment';
+import { getDate } from '@/utils';
 import { mapGetters, mapMutations } from 'vuex';
 export default {
   name: 'Balance',
@@ -91,7 +91,7 @@ export default {
     },
     changeBalance () {
       const balanceItem = {
-        date: this.momentFormat(this.moment()),
+        date: getDate(),
         category: '',
         price: this.difference,
         type: 'balance'
@@ -100,13 +100,6 @@ export default {
       this.calculate(balanceItem.price);
       this.closeModal();
       this.inputBalance = '';
-    },
-    moment () {
-      return moment();
-    },
-    momentFormat (date) {
-      const m = moment(date, 'YYYY-MM-DD');
-      return m.format('YYYY-MM-DD');
     }
   }
 };
