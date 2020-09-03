@@ -90,7 +90,7 @@ export default {
       this.itemInit();
     },
     itemInit () {
-      this.item.date = this.getDate();
+      this.item.date = getDate();
       this.item.category = '';
       this.item.price = '';
     }

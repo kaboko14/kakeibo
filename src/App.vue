@@ -1,21 +1,65 @@
 <template>
   <div id="app">
     <MobileHeader
+      v-show="loginUser"
       class="app__mobile-header"
     />
     <NavigationBar
+      v-show="loginUser"
       class="app__navigation-bar"
     />
     <router-view />
+
+    <!-- 仮のログアウトボタン -->
+    <button
+      v-show="loginUser"
+      class="logout-button"
+      @click="logout"
+    >
+      logout
+    </button>
   </div>
 </template>
 <script>
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
 import MobileHeader from '@/components/organisms/MobileHeader.vue';
 import NavigationBar from '@/components/organisms/NavigationBar.vue';
+import { mapActions } from 'vuex';
+
 export default {
   components: {
     MobileHeader,
     NavigationBar
+  },
+  computed: {
+    loginUser() {
+      return this.$store.state.auth.loginUser;
+    }
+  },
+  created() {
+    // 前ページでログインユーザー情報を取得できるようにAppでユーザー取得処理を行う
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        // storeにuser情報があるとき（ログイン時）の処理
+        this.setLoginUser(user);
+        this.fetch();
+        if (this.$router.currentRoute.name === 'Login') {
+          this.$router.push('/home');
+        }
+      } else {
+      // userがnullの場合（ログアウト時）の処理
+        this.deleteLoginUser();
+        if (this.$router.currentRoute.name !== 'Login') {
+          this.$router.push('/login');
+        }
+      }
+    });
+  },
+  methods: {
+    ...mapActions('auth', ['setLoginUser', 'logout', 'deleteLoginUser']),
+    ...mapActions('items', ['fetch'])
   }
 };
 </script>
@@ -46,4 +90,11 @@ a {
     z-index: 30;
   }
 }
+// 仮のログアウトボタン
+.logout-button {
+  top: 8px;
+right: 40px;
+  z-index: 40;
+  position: fixed;
+    }
 </style>

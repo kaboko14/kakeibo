@@ -4,7 +4,7 @@
       {{ activeViewName }}
     </h2>
     <UserIcon
-      :user-photo-url="userPhotoUrl"
+      :user-photo-url="photoURL"
       :image-width="'30px'"
       :image-height="'30px'"
       class="mobile-header__user-icon"
@@ -14,6 +14,7 @@
 <script>
 import Bar from '@/components/atoms/Bar.vue';
 import UserIcon from '@/components/atoms/UserIcon.vue';
+import { mapGetters } from 'vuex';
 export default {
   name: 'MobileHeader',
   components: {
@@ -21,13 +22,9 @@ export default {
     UserIcon
   },
   computed: {
+    ...mapGetters('auth', ['photoURL']),
     activeViewName () {
       return this.$store.getters.activeViewName;
-    },
-    userPhotoUrl () {
-      return this.$store.getters.user
-        ? this.$store.getters.user.photoURL
-        : null;
     }
   }
 };

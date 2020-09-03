@@ -8,7 +8,7 @@
 
 <script>
 import AddItem from '@/components/organisms/AddItem.vue';
-import { mapGetters, mapMutations } from 'vuex';
+import { mapGetters, mapMutations, mapActions } from 'vuex';
 export default {
   name: 'AddExpenseItem',
   components: {
@@ -36,7 +36,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('items', ['add']),
+    ...mapActions('items', ['add']),
     ...mapMutations('balance', ['calculate']),
     addItem(item) {
       this.add(item);

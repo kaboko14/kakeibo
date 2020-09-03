@@ -63,7 +63,7 @@ import Button from '@/components/atoms/Button.vue';
 import Form from '@/components/molecules/Form.vue';
 import WalletIcon from '@/components/icons/WalletIcon.vue';
 import { getDate } from '@/utils';
-import { mapGetters, mapMutations } from 'vuex';
+import { mapGetters, mapMutations, mapActions } from 'vuex';
 export default {
   name: 'Balance',
   components: {
@@ -90,7 +90,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('items', ['add']),
+    ...mapActions('items', ['add']),
     ...mapMutations('balance', ['calculate']),
     openModal () {
       this.modalView = true;
