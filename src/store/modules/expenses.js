@@ -1,4 +1,6 @@
-import { getObjectId } from '@/utils';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
 
 const initialState = {
   list: {
@@ -10,6 +12,9 @@ const initialState = {
   }
 };
 const getters = {
+  uid(state, getters, rootState) {
+    return rootState.auth.loginUser.uid;
+  },
   buttonProperties (state) {
     const properties = {};
     for (const id in state.list) {
@@ -27,19 +32,14 @@ const getters = {
   }
 };
 const mutations = {
-  add (state, item) {
-    const newCategoryItem = { ...item };
-    newCategoryItem.id = getObjectId(state.list);
-    state.list = {
-      ...state.list,
-      [newCategoryItem.id]: newCategoryItem
+  set (state, { id, item }) {
+    const newItem = {
+      ...item,
+      id: id
     };
-  },
-  change (state, item) {
-    const newCategoryItem = { ...item };
     state.list = {
       ...state.list,
-      [newCategoryItem.id]: newCategoryItem
+      [id]: newItem
     };
   },
   remove (state, item) {
@@ -48,10 +48,36 @@ const mutations = {
     state.list = list;
   }
 };
+const actions = {
+  async add({ getters, commit }, item) {
+    try {
+      const newItem = {
+        ...item,
+        createdAt: new Date()
+      };
+      if (getters.uid) {
+        const doc = await firebase.firestore().collection(`users/${getters.uid}/expenses`).add(newItem);
+        commit('set', { id: doc.id, item: newItem });
+      }
+    } catch (error) {
+      console.error('出金品目追加失敗', error);
+    }
+  },
+  async fetchExpenses({ getters, commit }) {
+    try {
+      console.log('expense fetch');
+      const snapshot = await firebase.firestore().collection(`users/${getters.uid}/expenses`).get();
+      snapshot.forEach(doc => commit('set', { id: doc.id, item: doc.data() }));
+    } catch (error) {
+      console.error('出金品目取得失敗', error);
+    }
+  }
+};
 
 export default {
   namespaced: true,
   state: initialState,
   getters,
-  mutations
+  mutations,
+  actions
 };

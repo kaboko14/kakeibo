@@ -39,12 +39,15 @@ export default {
     }
   },
   created() {
-    // 前ページでログインユーザー情報を取得できるようにAppでユーザー取得処理を行う
+    // 全ページでログインユーザー情報を取得できるようにAppでユーザー取得処理を行う
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
+        console.log('create');
         // storeにuser情報があるとき（ログイン時）の処理
         this.setLoginUser(user);
-        this.fetch();
+        this.fetchItems();
+        this.fetchExpenses();
+        this.fetchIncomes();
         if (this.$router.currentRoute.name === 'Login') {
           this.$router.push('/home');
         }
@@ -59,7 +62,9 @@ export default {
   },
   methods: {
     ...mapActions('auth', ['setLoginUser', 'logout', 'deleteLoginUser']),
-    ...mapActions('items', ['fetch'])
+    ...mapActions('items', ['fetchItems']),
+    ...mapActions('expenses', ['fetchExpenses']),
+    ...mapActions('incomes', ['fetchIncomes'])
   }
 };
 </script>

@@ -19,7 +19,7 @@
 <script>
 import Button from '@/components/atoms/Button.vue';
 import AddCategoryForms from '@/components/organisms/AddCategoryForms.vue';
-import { mapMutations } from 'vuex';
+import { mapActions } from 'vuex';
 export default {
   name: 'ExpenseCategoryForm',
   components: {
@@ -29,9 +29,9 @@ export default {
   data () {
     return {
       item: {
-        id: '',
         name: '',
-        price: 0
+        price: 0,
+        createdAt: ''
       }
     };
   },
@@ -46,16 +46,16 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('expenses', ['add']),
+    ...mapActions('expenses', ['add']),
     onChange (categoryItem) {
       this.item = categoryItem;
     },
     addCategoryItem () {
       this.add(this.categoryItem);
       this.item = {
-        id: '',
         name: '',
-        price: 0
+        price: 0,
+        createdAt: ''
       };
     }
   }

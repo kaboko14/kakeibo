@@ -1,14 +1,13 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
-import { sortItems, getObjectId } from '@/utils';
+import { sortItems } from '@/utils';
 
 const initialState = {
   list: {}
 };
 const getters = {
   uid(state, getters, rootState) {
-    console.log(rootState.auth.loginUser.uid);
     return rootState.auth.loginUser.uid;
   },
   items (state) {
@@ -28,11 +27,14 @@ const getters = {
   }
 };
 const mutations = {
-  set (state, item) {
-    const newItem = { ...item };
+  set (state, { id, item }) {
+    const newItem = {
+      ...item,
+      id: id
+    };
     state.list = {
       ...state.list,
-      [newItem.id]: newItem
+      [id]: newItem
     };
   },
   remove (state, item) {
@@ -42,26 +44,31 @@ const mutations = {
   }
 };
 const actions = {
-  add({ state, getters, commit }, item) {
-    const newItem = { ...item };
-    newItem.id = getObjectId(state.list);
-    // 出費の場合は金額をマイナスにして登録
-    if (newItem.type === 'expense' && newItem.price > 0) {
-      newItem.price = newItem.price * -1;
-    }
-    if (getters.uid) {
-      firebase.firestore().collection(`users/${getters.uid}/items`)
-        .doc(`${newItem.id}`).set(newItem)
-        .then(() => { commit('set', newItem); })
-        .catch(error => { console.log(error); });
+  async add({ getters, commit }, item) {
+    try {
+      const newItem = {
+        ...item,
+        createdAt: new Date()
+      };
+      // 出費の場合は金額をマイナスにして登録
+      if (newItem.type === 'expense' && newItem.price > 0) {
+        newItem.price = newItem.price * -1;
+      }
+      if (getters.uid) {
+        const doc = await firebase.firestore().collection(`users/${getters.uid}/items`).add(newItem);
+        commit('set', { id: doc.id, item: newItem });
+      }
+    } catch (error) {
+      console.error('アイテム追加失敗', error);
     }
   },
-  fetch({ getters, commit }) {
-    firebase.firestore().collection(`users/${getters.uid}/items`)
-      .get()
-      .then(snapshot => {
-        snapshot.forEach(doc => commit('set', doc.data()));
-      });
+  async fetchItems({ getters, commit }) {
+    try {
+      const snapshot = await firebase.firestore().collection(`users/${getters.uid}/items`).get();
+      snapshot.forEach(doc => commit('set', { id: doc.id, item: doc.data() }));
+    } catch (error) {
+      console.error('アイテム取得失敗', error);
+    }
   }
 };
 export default {

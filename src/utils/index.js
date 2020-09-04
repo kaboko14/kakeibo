@@ -1,12 +1,12 @@
 import moment from 'moment';
 
-// 日付・IDでソート
+// 日付・作成日でソート
 export const sortItems = items => {
   items.sort((a, b) => {
     if (a.date > b.date) return -1;
     if (a.date < b.date) return 1;
-    if (a.id > b.id) return -1;
-    if (a.id < b.id) return 1;
+    if (a.createdAt > b.createdAt) return -1;
+    if (a.createdAt < b.createdAt) return 1;
   });
 };
 
@@ -33,4 +33,13 @@ moment.updateLocale('ja', {
 export const formatDate = (date) => {
   const m = moment(date);
   return m.format('M/D(ddd)');
+};
+
+// item(categoryItem)をlistにset
+export const setItem = (list, item) => {
+  const newItem = { ...item };
+  list = {
+    ...list,
+    [newItem.id]: newItem
+  };
 };

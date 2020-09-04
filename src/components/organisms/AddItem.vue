@@ -59,7 +59,9 @@ export default {
       item: {
         date: getDate(),
         category: '',
-        price: ''
+        price: '',
+        type: '',
+        createdAt: ''
       },
       formView: false
     };
