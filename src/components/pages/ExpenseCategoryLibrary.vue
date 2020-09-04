@@ -9,7 +9,7 @@
       v-show="modalView"
       :selected-category-item="selectedCategoryItem"
       @close-button-click="closeModal"
-      @change-button-click="changeCategoryItem"
+      @update-button-click="updateCategoryItem"
       @remove-button-click="removeCategoryItem"
       @input-form="onChange"
     />
@@ -41,7 +41,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('expenses', ['change', 'remove']),
+    ...mapMutations('expenses', ['update', 'remove']),
     onChange (categoryItem) {
       this.categoryItem = categoryItem;
     },
@@ -52,8 +52,8 @@ export default {
     closeModal () {
       this.modalView = false;
     },
-    changeCategoryItem () {
-      this.change(this.selectedCategoryItem);
+    updateCategoryItem () {
+      this.update(this.selectedCategoryItem);
       this.closeModal();
     },
     removeCategoryItem () {

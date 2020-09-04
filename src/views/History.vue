@@ -37,7 +37,7 @@ export default {
     };
   },
   created () {
-    this.$store.commit('changeActiveViewName', '履歴');
+    this.$store.commit('updateActiveViewName', '履歴');
   }
 };
 </script>

@@ -49,7 +49,7 @@ export default {
     };
   },
   created () {
-    this.$store.commit('changeActiveViewName', '品目登録');
+    this.$store.commit('updateActiveViewName', '品目登録');
   }
 };
 </script>

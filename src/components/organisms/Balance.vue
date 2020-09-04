@@ -47,7 +47,7 @@
       </p>
       <Button
         :button-color="'color-sub'"
-        @click="changeBalance"
+        @click="updateBalance"
       >
         <p>
           残高変更
@@ -101,7 +101,7 @@ export default {
     onChange (value) {
       this.inputBalance = value;
     },
-    changeBalance () {
+    updateBalance () {
       const balanceItem = {
         date: getDate(),
         category: '',

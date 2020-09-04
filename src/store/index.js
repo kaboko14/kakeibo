@@ -1,11 +1,11 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import items from './modules/items';
+import createPersistedState from 'vuex-persistedstate';
+import auth from './modules/auth';
+import balance from './modules/balance';
 import expenses from './modules/expenses';
 import incomes from './modules/incomes';
-import balance from './modules/balance';
-import auth from './modules/auth';
-import createPersistedState from 'vuex-persistedstate';
+import items from './modules/items';
 
 Vue.use(Vuex);
 export default new Vuex.Store({
@@ -21,7 +21,7 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    changeActiveViewName (state, viewName) {
+    updateActiveViewName (state, viewName) {
       state.activeViewName = viewName;
     }
   },

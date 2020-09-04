@@ -7,10 +7,10 @@
       :category-item="selectedCategoryItem"
       @add-category-form-input="onChange"
     >
-      <div class="change-gategory-modal__buttons-container">
+      <div class="update-category-modal__buttons-container">
         <Button
           :button-color="'color-sub'"
-          @click="changeCategoryItem"
+          @click="updateCategoryItem"
         >
           <p>
             内容を更新
@@ -54,8 +54,8 @@ export default {
     onChange (categoryItem) {
       this.$emit('input-form', categoryItem);
     },
-    changeCategoryItem () {
-      this.$emit('change-button-click', this.selectedCategoryItem);
+    updateCategoryItem () {
+      this.$emit('update-button-click', this.selectedCategoryItem);
     },
     removeCategoryItem () {
       this.$emit('remove-button-click', this.selectedCategoryItem);
@@ -64,7 +64,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.change-gategory-modal {
+.update-category-modal {
   &__buttons-container {
     width: 100%;
     display: grid;

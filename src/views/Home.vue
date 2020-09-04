@@ -41,7 +41,7 @@ export default {
     };
   },
   created () {
-    this.$store.commit('changeActiveViewName', 'ホーム・入力');
+    this.$store.commit('updateActiveViewName', 'ホーム・入力');
   }
 };
 </script>
