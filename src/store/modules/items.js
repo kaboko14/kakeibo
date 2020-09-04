@@ -27,7 +27,7 @@ const getters = {
   }
 };
 const mutations = {
-  set (state, { id, item }) {
+  add (state, { id, item }) {
     const newItem = {
       ...item,
       id: id
@@ -56,7 +56,7 @@ const actions = {
       }
       if (getters.uid) {
         const doc = await firebase.firestore().collection(`users/${getters.uid}/items`).add(newItem);
-        commit('set', { id: doc.id, item: newItem });
+        commit('add', { id: doc.id, item: newItem });
       }
     } catch (error) {
       console.error('アイテム追加失敗', error);
@@ -65,7 +65,7 @@ const actions = {
   async fetchItems({ getters, commit }) {
     try {
       const snapshot = await firebase.firestore().collection(`users/${getters.uid}/items`).get();
-      snapshot.forEach(doc => commit('set', { id: doc.id, item: doc.data() }));
+      snapshot.forEach(doc => commit('add', { id: doc.id, item: doc.data() }));
     } catch (error) {
       console.error('アイテム取得失敗', error);
     }

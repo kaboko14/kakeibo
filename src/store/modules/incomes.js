@@ -29,7 +29,7 @@ const getters = {
   }
 };
 const mutations = {
-  set (state, { id, item }) {
+  add (state, { id, item }) {
     const newItem = {
       ...item,
       id: id
@@ -37,6 +37,12 @@ const mutations = {
     state.list = {
       ...state.list,
       [id]: newItem
+    };
+  },
+  update(state, item) {
+    state.list = {
+      ...state.list,
+      [item.id]: item
     };
   },
   remove (state, item) {
@@ -54,17 +60,27 @@ const actions = {
       };
       if (getters.uid) {
         const doc = await firebase.firestore().collection(`users/${getters.uid}/incomes`).add(newItem);
-        commit('set', { id: doc.id, item: newItem });
+        commit('add', { id: doc.id, item: newItem });
       }
     } catch (error) {
       console.error('入金品目追加失敗', error);
+    }
+  },
+  async update({ getters, commit }, item) {
+    try {
+      if (getters.uid) {
+        await firebase.firestore().collection(`users/${getters.uid}/incomes`).doc(item.id).update(item);
+        commit('update', item);
+      }
+    } catch (error) {
+      console.error(error);
     }
   },
   async fetchIncomes({ getters, commit }) {
     try {
       console.log('incomes fetch');
       const snapshot = await firebase.firestore().collection(`users/${getters.uid}/incomes`).get();
-      snapshot.forEach(doc => commit('set', { id: doc.id, item: doc.data() }));
+      snapshot.forEach(doc => commit('add', { id: doc.id, item: doc.data() }));
     } catch (error) {
       console.error('入金品目取得失敗', error);
     }
