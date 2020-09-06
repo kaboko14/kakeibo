@@ -46,8 +46,15 @@ const actions = {
   },
   deleteLoginUser({ commit }) {
     commit('deleteLoginUser');
+  },
+  async confirmRegistration({ getters }) {
+    const result = await firebase.firestore().collection('users').doc(getters.uid).get();
+    const a = !!result.data();
+    return a;
+  },
+  async userTimestamp({ getters }) {
+    firebase.firestore().collection('users').doc(getters.uid).set({ createdAt: new Date() });
   }
-
 };
 
 export default {

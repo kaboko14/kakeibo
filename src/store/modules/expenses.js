@@ -3,13 +3,14 @@ import 'firebase/auth';
 import 'firebase/firestore';
 
 const initialState = {
-  list: {
-    0: { id: 0, name: 'コンビニ', price: 150 },
-    1: { id: 1, name: 'スーパー', price: 2000 },
-    2: { id: 2, name: '外食', price: 1000 },
-    3: { id: 3, name: '自販機', price: 130 },
-    4: { id: 4, name: '消耗品', price: 200 }
-  }
+  list: {},
+  initialList: [
+    { name: 'コンビニ', price: -150 },
+    { name: 'スーパー', price: -2000 },
+    { name: '外食', price: -1000 },
+    { name: '自販機', price: -130 },
+    { name: '消耗品', price: -200 }
+  ]
 };
 const getters = {
   uid(state, getters, rootState) {
@@ -87,6 +88,10 @@ const actions = {
     } catch (error) {
       console.error('出金品目取得失敗', error);
     }
+  },
+  addInitialExpenses({ state, dispatch }) {
+    console.log(state.initialList);
+    state.initialList.forEach(item => dispatch('add', item));
   }
 };
 

@@ -42,17 +42,25 @@ export default {
     // 全ページでログインユーザー情報を取得できるようにAppでユーザー取得処理を行う
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        console.log('create');
-        // storeにuser情報があるとき（ログイン時）の処理
+        console.log(user);
+        // 現在ログインしているユーザーがいるときの処理
         this.setLoginUser(user);
-        this.fetchItems();
-        this.fetchExpenses();
-        this.fetchIncomes();
-        if (this.$router.currentRoute.name === 'Login') {
-          this.$router.push('/home');
-        }
+        this.confirmRegistration()
+          .then(result => {
+            if (!result) {
+              this.userTimestamp();
+              this.addInitialExpenses();
+            }
+          }).then(() => {
+            this.fetchItems();
+            this.fetchExpenses();
+            this.fetchIncomes();
+            if (this.$router.currentRoute.name === 'Login') {
+              this.$router.push('/home');
+            }
+          });
       } else {
-      // userがnullの場合（ログアウト時）の処理
+      // ログアウト時の処理
         this.deleteLoginUser();
         if (this.$router.currentRoute.name !== 'Login') {
           this.$router.push('/login');
@@ -61,9 +69,9 @@ export default {
     });
   },
   methods: {
-    ...mapActions('auth', ['setLoginUser', 'logout', 'deleteLoginUser']),
+    ...mapActions('auth', ['setLoginUser', 'userTimestamp', 'logout', 'deleteLoginUser', 'confirmRegistration']),
     ...mapActions('items', ['fetchItems']),
-    ...mapActions('expenses', ['fetchExpenses']),
+    ...mapActions('expenses', ['addInitialExpenses', 'fetchExpenses']),
     ...mapActions('incomes', ['fetchIncomes'])
   }
 };
