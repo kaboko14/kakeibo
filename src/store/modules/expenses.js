@@ -2,15 +2,17 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 
+// 初回ログイン時に登録する出金品目
+const initialList = [
+  { name: 'コンビニ', price: 150 },
+  { name: 'スーパー', price: 2000 },
+  { name: '外食', price: 1000 },
+  { name: '自販機', price: 130 },
+  { name: '消耗品', price: 200 }
+];
+
 const initialState = {
-  list: {},
-  initialList: [
-    { name: 'コンビニ', price: 150 },
-    { name: 'スーパー', price: 2000 },
-    { name: '外食', price: 1000 },
-    { name: '自販機', price: 130 },
-    { name: '消耗品', price: 200 }
-  ]
+  list: {}
 };
 const getters = {
   uid(state, getters, rootState) {
@@ -33,7 +35,8 @@ const getters = {
   }
 };
 const mutations = {
-  add (state, { id, item }) {
+  add(state, { id, item }) {
+    console.log(id);
     const newItem = {
       ...item,
       id: id
@@ -89,9 +92,8 @@ const actions = {
       console.error('出金品目取得失敗', error);
     }
   },
-  addInitialExpenses({ state, dispatch }) {
-    console.log(state.initialList);
-    state.initialList.forEach(item => dispatch('add', item));
+  addInitialExpenses({ dispatch }) {
+    initialList.forEach(item => dispatch('add', item));
   }
 };
 

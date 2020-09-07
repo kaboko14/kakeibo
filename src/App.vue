@@ -46,15 +46,14 @@ export default {
         // 現在ログインしているユーザーがいるときの処理
         this.setLoginUser(user);
         this.fetchUser()
-          .then(result => {
-            if (!result) {
-              this.userTimestamp();
-              this.addInitialExpenses();
+          .then(fetchedUser => {
+            console.log(fetchedUser);
+            if (!fetchedUser) {
+              this.createUser();
+              this.addInitialCategories();
             }
           }).then(() => {
-            this.fetchItems();
-            this.fetchExpenses();
-            this.fetchIncomes();
+            this.fetchItemsAndCategories();
             if (this.$router.currentRoute.name === 'Login') {
               this.$router.push('/home');
             }
@@ -69,10 +68,19 @@ export default {
     });
   },
   methods: {
-    ...mapActions('auth', ['setLoginUser', 'userTimestamp', 'logout', 'deleteLoginUser', 'fetchUser']),
+    ...mapActions('auth', ['setLoginUser', 'createUser', 'logout', 'deleteLoginUser', 'fetchUser']),
     ...mapActions('items', ['fetchItems']),
     ...mapActions('expenses', ['addInitialExpenses', 'fetchExpenses']),
-    ...mapActions('incomes', ['fetchIncomes'])
+    ...mapActions('incomes', ['addInitialIncomes', 'fetchIncomes']),
+    fetchItemsAndCategories() {
+      this.fetchItems();
+      this.fetchExpenses();
+      this.fetchIncomes();
+    },
+    addInitialCategories() {
+      this.addInitialExpenses();
+      this.addInitialIncomes();
+    }
   }
 };
 </script>

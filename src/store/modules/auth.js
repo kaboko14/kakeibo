@@ -48,12 +48,14 @@ const actions = {
     commit('deleteLoginUser');
   },
   async fetchUser({ getters }) {
-    const result = await firebase.firestore().collection('users').doc(getters.uid).get();
-    const a = !!result.data();
-    return a;
+    const fetchedUser = await firebase.firestore().collection('users').doc(getters.uid).get();
+    return fetchedUser.data();
   },
-  async userTimestamp({ getters }) {
-    firebase.firestore().collection('users').doc(getters.uid).set({ createdAt: new Date() });
+  async createUser({ getters }) {
+    firebase.firestore().collection('users').doc(getters.uid).set({
+      balance: 0,
+      createdAt: new Date()
+    });
   }
 };
 

@@ -2,11 +2,13 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 
+// 初回ログイン時に登録する入金品目
+const initialList = [
+  { name: 'ATM', price: 0 },
+  { name: '給料', price: 2000 }
+];
 const initialState = {
-  list: {
-    0: { id: 0, name: 'ATM', price: 0 },
-    1: { id: 1, name: '給料', price: 2000 }
-  }
+  list: {}
 };
 const getters = {
   uid(state, getters, rootState) {
@@ -84,6 +86,9 @@ const actions = {
     } catch (error) {
       console.error('入金品目取得失敗', error);
     }
+  },
+  addInitialIncomes({ dispatch }) {
+    initialList.forEach(item => dispatch('add', item));
   }
 };
 
