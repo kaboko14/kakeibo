@@ -62,6 +62,16 @@ const actions = {
       console.error('アイテム追加失敗', error);
     }
   },
+  async remove({ getters, commit }, item) {
+    try {
+      if (getters.uid) {
+        await firebase.firestore().collection(`users/${getters.uid}/items`).doc(item.id).delete();
+        commit('remove', item);
+      }
+    } catch (error) {
+      console.error('出金品目削除失敗', error);
+    }
+  },
   async fetchItems({ getters, commit }) {
     try {
       const snapshot = await firebase.firestore().collection(`users/${getters.uid}/items`).get();

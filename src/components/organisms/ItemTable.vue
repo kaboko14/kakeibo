@@ -10,7 +10,7 @@
 </template>
 <script>
 import GridTable from '@/components/molecules/GridTable.vue';
-import { mapActions, mapMutations } from 'vuex';
+import { mapActions } from 'vuex';
 export default {
   name: 'ItemTable',
   components: {
@@ -23,7 +23,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('items', ['remove']),
+    ...mapActions('items', ['remove']),
     ...mapActions('balance', ['deposit']),
     removeItem (item) {
       this.remove(item);
