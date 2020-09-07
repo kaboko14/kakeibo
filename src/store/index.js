@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import createPersistedState from 'vuex-persistedstate';
 import auth from './modules/auth';
 import balance from './modules/balance';
 import expenses from './modules/expenses';
@@ -25,7 +24,6 @@ export default new Vuex.Store({
       state.activeViewName = viewName;
     }
   },
-  plugins: [createPersistedState({ key: 'myKakeibo' })],
   modules: {
     auth,
     items,
