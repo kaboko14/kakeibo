@@ -26,7 +26,7 @@ import 'firebase/auth';
 import 'firebase/firestore';
 import MobileHeader from '@/components/organisms/MobileHeader.vue';
 import NavigationBar from '@/components/organisms/NavigationBar.vue';
-import { mapActions } from 'vuex';
+import { mapMutations, mapActions } from 'vuex';
 
 export default {
   components: {
@@ -42,15 +42,15 @@ export default {
     // 全ページでログインユーザー情報を取得できるようにAppでユーザー取得処理を行う
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        console.log(user);
         // 現在ログインしているユーザーがいるときの処理
         this.setLoginUser(user);
         this.fetchUser()
           .then(fetchedUser => {
-            console.log(fetchedUser);
             if (!fetchedUser) {
               this.createUser();
               this.addInitialCategories();
+            } else {
+              this.update(fetchedUser.balance);
             }
           }).then(() => {
             this.fetchItemsAndCategories();
@@ -68,6 +68,7 @@ export default {
     });
   },
   methods: {
+    ...mapMutations('balance', ['update']),
     ...mapActions('auth', ['setLoginUser', 'createUser', 'logout', 'deleteLoginUser', 'fetchUser']),
     ...mapActions('items', ['fetchItems']),
     ...mapActions('expenses', ['addInitialExpenses', 'fetchExpenses']),

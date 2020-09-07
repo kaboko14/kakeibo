@@ -33,7 +33,6 @@ export default {
     firebase.auth().onAuthStateChanged(user => {
       // ログアウト時はuserはnull
       const currentUser = user;
-      console.log(user);
       store.commit('onAuthStateChange', currentUser);
     });
   },

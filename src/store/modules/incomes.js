@@ -80,7 +80,6 @@ const actions = {
   },
   async fetchIncomes({ getters, commit }) {
     try {
-      console.log('incomes fetch');
       const snapshot = await firebase.firestore().collection(`users/${getters.uid}/incomes`).get();
       snapshot.forEach(doc => commit('add', { id: doc.id, item: doc.data() }));
     } catch (error) {

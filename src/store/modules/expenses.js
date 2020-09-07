@@ -36,7 +36,6 @@ const getters = {
 };
 const mutations = {
   add(state, { id, item }) {
-    console.log(id);
     const newItem = {
       ...item,
       id: id
@@ -85,7 +84,6 @@ const actions = {
   },
   async fetchExpenses({ getters, commit }) {
     try {
-      console.log('expense fetch');
       const snapshot = await firebase.firestore().collection(`users/${getters.uid}/expenses`).get();
       snapshot.forEach(doc => commit('add', { id: doc.id, item: doc.data() }));
     } catch (error) {
