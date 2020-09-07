@@ -5,11 +5,11 @@ import 'firebase/firestore';
 const initialState = {
   list: {},
   initialList: [
-    { name: 'コンビニ', price: -150 },
-    { name: 'スーパー', price: -2000 },
-    { name: '外食', price: -1000 },
-    { name: '自販機', price: -130 },
-    { name: '消耗品', price: -200 }
+    { name: 'コンビニ', price: 150 },
+    { name: 'スーパー', price: 2000 },
+    { name: '外食', price: 1000 },
+    { name: '自販機', price: 130 },
+    { name: '消耗品', price: 200 }
   ]
 };
 const getters = {

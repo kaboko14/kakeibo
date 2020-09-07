@@ -45,7 +45,7 @@ export default {
         console.log(user);
         // 現在ログインしているユーザーがいるときの処理
         this.setLoginUser(user);
-        this.confirmRegistration()
+        this.fetchUser()
           .then(result => {
             if (!result) {
               this.userTimestamp();
@@ -69,7 +69,7 @@ export default {
     });
   },
   methods: {
-    ...mapActions('auth', ['setLoginUser', 'userTimestamp', 'logout', 'deleteLoginUser', 'confirmRegistration']),
+    ...mapActions('auth', ['setLoginUser', 'userTimestamp', 'logout', 'deleteLoginUser', 'fetchUser']),
     ...mapActions('items', ['fetchItems']),
     ...mapActions('expenses', ['addInitialExpenses', 'fetchExpenses']),
     ...mapActions('incomes', ['fetchIncomes'])

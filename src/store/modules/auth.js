@@ -47,7 +47,7 @@ const actions = {
   deleteLoginUser({ commit }) {
     commit('deleteLoginUser');
   },
-  async confirmRegistration({ getters }) {
+  async fetchUser({ getters }) {
     const result = await firebase.firestore().collection('users').doc(getters.uid).get();
     const a = !!result.data();
     return a;
