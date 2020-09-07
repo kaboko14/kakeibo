@@ -18,7 +18,7 @@
 <script>
 import CategoryItems from '@/components/molecules/CategoryItems.vue';
 import ChangeCategoryModal from '@/components/organisms/ChangeCategoryModal.vue';
-import { mapGetters, mapMutations } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 export default {
   name: 'IncomeCategoryLibrary',
   components: {
@@ -41,7 +41,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('incomes', ['update', 'remove']),
+    ...mapActions('incomes', ['update', 'remove']),
     onChange (categoryItem) {
       this.categoryItem = categoryItem;
     },

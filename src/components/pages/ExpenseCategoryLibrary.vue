@@ -18,7 +18,7 @@
 <script>
 import CategoryItems from '@/components/molecules/CategoryItems.vue';
 import ChangeCategoryModal from '@/components/organisms/ChangeCategoryModal.vue';
-import { mapGetters, mapMutations, mapActions } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 export default {
   name: 'ExpenseCategoryLibrary',
   components: {
@@ -41,8 +41,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('expenses', ['remove']),
-    ...mapActions('expenses', ['update']),
+    ...mapActions('expenses', ['update', 'remove']),
     onChange (categoryItem) {
       this.categoryItem = categoryItem;
     },

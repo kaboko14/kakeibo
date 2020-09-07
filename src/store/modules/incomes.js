@@ -68,6 +68,16 @@ const actions = {
       console.error('入金品目追加失敗', error);
     }
   },
+  async remove({ getters, commit }, item) {
+    try {
+      if (getters.uid) {
+        await firebase.firestore().collection(`users/${getters.uid}/incomes`).doc(item.id).delete();
+        commit('remove', item);
+      }
+    } catch (error) {
+      console.error('入金品目削除失敗', error);
+    }
+  },
   async update({ getters, commit }, item) {
     try {
       if (getters.uid) {
