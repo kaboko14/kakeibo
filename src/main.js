@@ -8,15 +8,16 @@ import 'firebase/firestore';
 
 Vue.config.productionTip = false;
 
+console.log(process.env.VUE_APP_API_KEY);
 const firebaseConfig = {
-  apiKey: 'AIzaSyC2dbskhPSf-skGW1unjSCARDzfjHNFP7I',
-  authDomain: 'kakeibo-3ef76.firebaseapp.com',
-  databaseURL: 'https://kakeibo-3ef76.firebaseio.com',
-  projectId: 'kakeibo-3ef76',
-  storageBucket: 'kakeibo-3ef76.appspot.com',
-  messagingSenderId: '977920121954',
-  appId: '1:977920121954:web:6802fa88a5f6fe40d2853b',
-  measurementId: 'G-VJXXGZR2HV'
+  apiKey: process.env.VUE_APP_API_KEY,
+  authDomain: process.env.VUE_APP_AUTH_DOMAIN,
+  databaseURL: process.env.VUE_APP_DATABASE_URL,
+  projectId: process.env.VUE_APP_PROJECT_ID,
+  storageBucket: process.env.VUE_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.VUE_APP_MESSAGING_SENDER_ID,
+  appId: process.env.VUE_APP_APP_ID,
+  measurementId: process.env.VUE_APP_MEASUREMENT_ID
 };
 
 firebase.initializeApp(firebaseConfig);
