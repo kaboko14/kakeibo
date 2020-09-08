@@ -26,7 +26,7 @@ export default {
 <style scoped lang="scss">
 .button {
   display: inline-block;
-  width: 200px;
+  width: 250px;
   max-width: 100%;
   height: 100%;
   padding: 6px 4px;

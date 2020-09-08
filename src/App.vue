@@ -11,13 +11,13 @@
     <router-view />
 
     <!-- 仮のログアウトボタン -->
-    <button
+    <!-- <button
       v-show="loginUser"
       class="logout-button"
       @click="logout"
     >
       logout
-    </button>
+    </button> -->
   </div>
 </template>
 <script>

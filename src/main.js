@@ -8,7 +8,6 @@ import 'firebase/firestore';
 
 Vue.config.productionTip = false;
 
-console.log(process.env.VUE_APP_API_KEY);
 const firebaseConfig = {
   apiKey: process.env.VUE_APP_API_KEY,
   authDomain: process.env.VUE_APP_AUTH_DOMAIN,
