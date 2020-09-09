@@ -1,6 +1,7 @@
 <template>
   <div
     :style="userIconStyle"
+    @click="$emit('user-icon-click')"
   />
 </template>
 <script>
@@ -44,5 +45,6 @@ div {
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 50%;
+  cursor: pointer;
 }
 </style>

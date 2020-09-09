@@ -8,16 +8,7 @@
       v-show="loginUser"
       class="app__navigation-bar"
     />
-    <router-view />
-
-    <!-- 仮のログアウトボタン -->
-    <!-- <button
-      v-show="loginUser"
-      class="logout-button"
-      @click="logout"
-    >
-      logout
-    </button> -->
+    <router-view class="app__view" />
   </div>
 </template>
 <script>
@@ -69,7 +60,7 @@ export default {
   },
   methods: {
     ...mapMutations('balance', ['update']),
-    ...mapActions('auth', ['setLoginUser', 'createUser', 'logout', 'deleteLoginUser', 'fetchUser']),
+    ...mapActions('auth', ['setLoginUser', 'createUser', 'deleteLoginUser', 'fetchUser']),
     ...mapActions('items', ['fetchItems']),
     ...mapActions('expenses', ['addInitialExpenses', 'fetchExpenses']),
     ...mapActions('incomes', ['addInitialIncomes', 'fetchIncomes']),
@@ -97,6 +88,7 @@ a {
   text-decoration: none;
 }
 #app {
+  position: relative;
   min-height: 100vh;
   background-color: $bg-color;
 }
@@ -104,19 +96,15 @@ a {
   &__mobile-header {
     position: fixed;
     top: 0;
-    z-index: 30;
+    z-index: 3;
   }
   &__navigation-bar {
     position: fixed;
     bottom: 0;
-    z-index: 30;
+    z-index: 2;
+  }
+  &__view {
+    z-index: -1;
   }
 }
-// 仮のログアウトボタン
-.logout-button {
-  top: 8px;
-right: 40px;
-  z-index: 40;
-  position: fixed;
-    }
 </style>
