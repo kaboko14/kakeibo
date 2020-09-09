@@ -6,21 +6,39 @@
       :button-properties="addItemProperties.categoryButtonProperties"
       @category-button-click="onChange"
     />
+    <Button
+      v-show="!formsView"
+      class="add-item__form-open-button"
+      :button-color="'color-main'"
+      @click="openForms()"
+    >
+      <p>
+        フォーム入力
+      </p>
+    </Button>
     <Forms
+      v-show="formsView"
       class="add-item__forms"
       :text-form-placeholder="addItemProperties.initialCategory"
       :new-item="newItem"
       @form-input="onChange"
     />
     <IncrementButtons
+      v-show="formsView"
       class="add-item__increment-buttons"
       :new-item="newItem"
       :button-numbers="addItemProperties.incrementButtonNumbers"
       @increment-button-click="onChange"
     />
-    <p v-show="!newItem.price">
-      ※金額を入力してください
-    </p>
+    <Button
+      v-show="!newItem.price && formsView"
+      class="add-item__add-item-button"
+      :button-color="'color-disable'"
+    >
+      <p>
+        {{ addItemProperties.addItemButtonLabel }}
+      </p>
+    </Button>
     <Button
       v-show="newItem.price"
       class="add-item__add-item-button"
@@ -63,7 +81,7 @@ export default {
         type: '',
         createdAt: ''
       },
-      formView: false
+      formsView: false
     };
   },
   computed: {
@@ -79,9 +97,13 @@ export default {
   methods: {
     onChange (item) {
       this.item = item;
+      this.openForms();
     },
-    openForm () {
-      this.formView = !this.formView;
+    openForms () {
+      this.formsView = true;
+    },
+    closeForms () {
+      this.formsView = false;
     },
     addNewItem () {
       this.newItem.type = this.addItemProperties.itemType;
@@ -89,6 +111,7 @@ export default {
         this.newItem.category = this.addItemProperties.initialCategory;
       }
       this.$emit('add-item-button-click', this.newItem);
+      this.closeForms();
       this.itemInit();
     },
     itemInit () {
@@ -105,16 +128,21 @@ export default {
     text-align: center;
   }
   &__category-buttons {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+  }
+  &__form-open-button {
+    width: 100%;
+    padding: 10px;
   }
   &__forms {
     opacity: 1;
-    margin-bottom: 20px;
+    margin: 20px 0px;
   }
   &__increment-buttons {
     margin-bottom: 20px;
   }
   &__add-item-button {
+    width: 100%;
     font-weight: bold;
     padding: 10px;
   }

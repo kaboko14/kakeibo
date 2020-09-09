@@ -26,7 +26,7 @@ export default {
 <style scoped lang="scss">
 .button {
   display: inline-block;
-  width: 250px;
+  width: 200px;
   max-width: 100%;
   height: 100%;
   padding: 6px 4px;
@@ -34,6 +34,10 @@ export default {
   border-radius: 4px;
   overflow: hidden;
   cursor: pointer;
+
+  &.button--color-disable{
+    @include button-decoration-active($button-thickness)
+  }
 
   &:focus{
     outline: 0;
