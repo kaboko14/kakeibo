@@ -4,11 +4,11 @@ import 'firebase/firestore';
 
 // 初回ログイン時に登録する出金品目
 const initialList = [
-  { name: 'コンビニ', price: 150 },
+  { name: 'コンビニ', price: 0 },
   { name: 'スーパー', price: 2000 },
   { name: '外食', price: 1000 },
   { name: '自販機', price: 130 },
-  { name: '消耗品', price: 200 }
+  { name: '消耗品', price: 0 }
 ];
 
 const initialState = {

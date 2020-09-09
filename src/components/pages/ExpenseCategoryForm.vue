@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>出金品目</p>
+    <p class="expense-category-form__text">出金品目</p>
     <AddCategoryForms
       :category-item="categoryItem"
       @add-category-form-input="onChange"
@@ -62,3 +62,10 @@ export default {
 
 };
 </script>
+<style lang="scss" scoped>
+.expense-category-form {
+  &__text {
+    margin-bottom: 10px;
+  }
+}
+</style>

@@ -9,10 +9,11 @@
     <Form
       :value="categoryItem.price"
       :form-property="priceFormProperty"
-      class="add-category-forms__category-form"
       @input="onChange($event,'price')"
     />
-    <slot />
+    <div class="add-category-forms__button-container">
+      <slot />
+    </div>
   </div>
 </template>
 <script>
@@ -59,9 +60,13 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-  .add-category-forms {
+  div .add-category-forms {
     &__category-form {
       margin-bottom: 10px;
+    }
+    &__button-container {
+      margin-top: 20px;
+      text-align: center;
     }
   }
 </style>

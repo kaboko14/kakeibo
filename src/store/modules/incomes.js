@@ -5,7 +5,7 @@ import 'firebase/firestore';
 // 初回ログイン時に登録する入金品目
 const initialList = [
   { name: 'ATM', price: 0 },
-  { name: '給料', price: 2000 }
+  { name: '給料', price: 10000 }
 ];
 const initialState = {
   list: {}
