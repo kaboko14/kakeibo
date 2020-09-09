@@ -45,18 +45,24 @@ export default {
 .history {
   &__container {
     width: 100vw;
-    height: 100vh;
-    padding: 60px 10px 80px;
+    min-height: 100vh;
+    padding: 110px 10px 80px;
     background-color: $base-color;
-  }
-  &__router-view {
-    max-width: 500px;
-    margin: 0 auto;
   }
   &__router-link-tags {
     display: flex;
     justify-content: center;
-    margin-bottom: 16px;
+    padding: 54px 0px 10px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: $base-color;
+    border-bottom: 1px solid $gray-3;
+  }
+  &__router-view {
+    max-width: 500px;
+    margin: 0 auto;
   }
 }
 </style>

@@ -10,16 +10,24 @@ export const sortItems = items => {
   });
 };
 
-// 配列内の一番大きなID＋１の数字を返す
-export const getItemId = items => {
-  return items.reduce((maxId, item) => Math.max(maxId, item.id), 0) + 1;
+// 作成日でソート
+export const sortByCreatedAt = items => {
+  items.sort((a, b) => {
+    if (a.createdAt > b.createdAt) return -1;
+    if (a.createdAt < b.createdAt) return 1;
+  });
 };
 
-// オブジェクト内の一番大きなkey(ID)＋１の数字を返す
-export const getObjectId = items => {
-  const idList = Object.keys(items);
-  return idList.reduce((maxId, id) => Math.max(maxId, id), 0) + 1;
-};
+// // 配列内の一番大きなID＋１の数字を返す
+// export const getItemId = items => {
+//   return items.reduce((maxId, item) => Math.max(maxId, item.id), 0) + 1;
+// };
+
+// // オブジェクト内の一番大きなkey(ID)＋１の数字を返す
+// export const getObjectId = items => {
+//   const idList = Object.keys(items);
+//   return idList.reduce((maxId, id) => Math.max(maxId, id), 0) + 1;
+// };
 
 // moment.jsで現在の日付を取得(YYYY-MM-DD)
 export const getDate = () => {

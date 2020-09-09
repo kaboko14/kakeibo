@@ -56,14 +56,14 @@ export default {
 <style scoped lang="scss">
 .library {
   &__container {
-    padding: 60px 20px 80px;
+    padding: 54px 10px 70px;
     max-width: 1100px;
     min-height: 100vh;
     margin: 0 auto;
     background-color: transparent;
   }
   &__category-items  {
-    margin-bottom: 20px;
+    margin-bottom: $card-margin-bottom;
   }
   &__router-link-tags {
     display: flex;

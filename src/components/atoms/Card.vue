@@ -21,7 +21,7 @@ export default {
 <style lang="scss" scoped>
 .card {
   width: 100%;
-  padding: 10px;
+  padding: 10px 10px 20px;
   background-color: $base-color;
   border-radius: 4px;
   overflow: hidden;

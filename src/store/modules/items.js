@@ -1,7 +1,7 @@
+import { sortItems, sortByCreatedAt } from '@/utils';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
-import { sortItems } from '@/utils';
 
 const initialState = {
   list: {}
@@ -14,6 +14,12 @@ const getters = {
     const list = Object.values(state.list);
     sortItems(list);
     return list;
+  },
+  recentlyItems(state) {
+    const list = Object.values(state.list);
+    sortByCreatedAt(list);
+    console.log(list.slice(0, 4));
+    return list.slice(0, 5);
   },
   expenseItems (state) {
     const list = Object.values(state.list);
