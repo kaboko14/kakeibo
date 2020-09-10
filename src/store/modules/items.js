@@ -18,7 +18,6 @@ const getters = {
   recentlyItems(state) {
     const list = Object.values(state.list);
     sortByCreatedAt(list);
-    console.log(list.slice(0, 4));
     return list.slice(0, 5);
   },
   expenseItems (state) {

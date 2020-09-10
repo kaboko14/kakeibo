@@ -79,6 +79,9 @@ export default {
 
 <style lang="scss">
 @import './styles/HTML5_Doctor_CSS Reset.css';
+// html {
+//   overflow-y:scroll;
+// }
 * {
   box-sizing: border-box;
   font-family: "Yu-Gothic",sans-serif;

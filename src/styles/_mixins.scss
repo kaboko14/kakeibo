@@ -10,4 +10,5 @@ $button-thickness: 2px;// ボタンの厚み
   margin-top: $button-thickness;
   border-bottom: none;
   box-shadow: 0 0 0px rgba(0, 0, 0, 0);
+  cursor: unset;
 }
