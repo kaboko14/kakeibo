@@ -1,0 +1,58 @@
+// color pallet
+  // main-color
+  $main-color: #7DD983;
+  $main-color-light: lighten($main-color, 15%);
+  $main-color-dark: darken($main-color, 15%);
+
+  // sub-color
+  $sub-color: #7DD3D9;
+  $sub-color-light: lighten($sub-color, 5%);
+  $sub-color-dark: darken($sub-color, 5%);
+
+  // accent-color
+  $accent-color: #D9807D;
+  $accent-color-light: lighten($accent-color, 5%);
+  $accent-color-dark: darken($accent-color, 5%);
+
+  // achromatic (grayscale)
+  $black: #231815;
+  $white: #ffffff;
+
+  $gray-1 :#EFEFEF;
+  $gray-2 :#C9CACA;
+  $gray-3 :#9FA0A0;
+  $gray-4 :#727171;
+  $gray-5 :#3e3a39;
+
+
+    // color Use
+    // background-color
+    $bg-color: #EFEFEF;
+    $base-color: $white;
+
+    // font-color
+    $font-color-bk: $gray-5;
+    $font-color-wh: $white;
+    $font-color-caution: $accent-color-dark;
+
+    // navigation
+    $nav-color-active: $white;
+    $nav-color-inactive: $gray-4;
+
+    // router-tag
+    $router-tag-color-active: $main-color;
+    $router-tag-color-inactive: $gray-1;
+
+    // button
+    $button-color-main: $main-color;
+    $button-color-sub: $sub-color;
+    $button-color-accent: $accent-color;
+    $button-color-gray-light: $gray-3;
+    $button-color-gray-dark: $gray-4;
+    $button-color-disable: $gray-2;
+
+// Bar・Cardの影
+$box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
+
+// Card間のマージン
+$card-margin-bottom: 14px;

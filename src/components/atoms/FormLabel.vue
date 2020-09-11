@@ -11,11 +11,12 @@ export default {
       default: ''
     }
   }
-}
+};
 </script>
 <style scoped lang="scss">
 .label {
-  font-size: 18px;
+  font-size: 16px;
   line-height: 26px;
+  white-space: nowrap;
 }
 </style>

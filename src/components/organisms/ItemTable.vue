@@ -1,42 +1,42 @@
 <template>
   <table class="item-table__container">
     <GridTable
-      v-for="(item, index) in items"
-      :key="index"
+      v-for="item in items"
+      :key="item.id"
       :item="item"
-      @clickDeleteItemButton="sendDeleteItemId"
+      @remove-button-click="removeItem"
     />
   </table>
 </template>
 <script>
-import GridTable from '@/components/molecules/GridTable.vue'
+import GridTable from '@/components/molecules/GridTable.vue';
+import { mapActions } from 'vuex';
 export default {
   name: 'ItemTable',
   components: {
     GridTable
   },
-  // props: {
-  //   items: {
-  //     type: Array,
-  //     required: true
-  //   }
-  // },
-  computed: {
-    items () {
-      return this.$store.state.items
+  props: {
+    items: {
+      type: Array,
+      required: true
     }
   },
   methods: {
-    sendDeleteItemId (id) {
-      this.$emit('clickDeleteItemButton', id)
+    ...mapActions('items', ['remove']),
+    ...mapActions('balance', ['deposit']),
+    removeItem (item) {
+      this.remove(item);
+      this.deposit(item.price * -1);
     }
   }
-}
+};
 </script>
 <style scoped lang="scss">
 .item-table {
   &__container {
     width: 100%;
+    table-layout: fixed;
   }
 }
 

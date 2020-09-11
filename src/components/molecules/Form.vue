@@ -1,28 +1,30 @@
 <template>
   <div class="form__container">
     <FormLabel
+      v-show="formProperty.labelText"
       :label-text="formProperty.labelText"
       class="form__label"
     />
     <div class="form__wrapper">
       <Input
         :input-type="formProperty.inputType"
-        :value="value"
         :placeholder="formProperty.placeholder"
+        :min="formProperty.min"
+        :value="value? value.toLocaleString() : value"
         @input="onChange"
       />
       <FormClearButton
         v-show="formProperty.inputType !== 'date'"
         class="form__clear-button"
-        @click="onChange(null)"
+        @click="onChange('')"
       />
     </div>
   </div>
 </template>
 <script>
-import FormLabel from '@/components/atoms/FormLabel.vue'
-import Input from '@/components/atoms/Input.vue'
-import FormClearButton from '@/components/atoms/FormClearButton.vue'
+import FormLabel from '@/components/atoms/FormLabel.vue';
+import Input from '@/components/atoms/Input.vue';
+import FormClearButton from '@/components/atoms/FormClearButton.vue';
 export default {
   name: 'Form',
   components: {
@@ -37,28 +39,38 @@ export default {
     },
     value: {
       type: [String, Number],
-      required: true
+      required: false,
+      default: null
     }
   },
   data () {
     return {
       formValue: this.value
-    }
+    };
   },
   methods: {
     onChange (value) {
-      this.formValue = value
-      this.$emit('input', this.formValue)
+      this.formValue = this.formProperty.inputType === 'tel'
+        ? value.replace(/[^0-9]/g, '')
+        : value;
+      this.$emit('input', this.formValue);
     }
   }
-}
+};
 </script>
 <style scoped lang="scss">
 .form {
+  &__container {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__label {
+    text-align: start;
+  }
   &__wrapper {
+    flex-grow:1;
     display: inline-block;
     position: relative;
-    width: 80%;
     border-radius: 4px;
     overflow: hidden;
     vertical-align: top;

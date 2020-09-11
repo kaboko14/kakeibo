@@ -1,28 +1,30 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
-import firebase from 'firebase'
+import Vue from 'vue';
+import App from './App.vue';
+import router from './router';
+import store from './store';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyC2dbskhPSf-skGW1unjSCARDzfjHNFP7I',
-  authDomain: 'kakeibo-3ef76.firebaseapp.com',
-  databaseURL: 'https://kakeibo-3ef76.firebaseio.com',
-  projectId: 'kakeibo-3ef76',
-  storageBucket: 'kakeibo-3ef76.appspot.com',
-  messagingSenderId: '977920121954',
-  appId: '1:977920121954:web:6802fa88a5f6fe40d2853b',
-  measurementId: 'G-VJXXGZR2HV'
-}
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig)
-firebase.analytics()
+  apiKey: process.env.VUE_APP_API_KEY,
+  authDomain: process.env.VUE_APP_AUTH_DOMAIN,
+  databaseURL: process.env.VUE_APP_DATABASE_URL,
+  projectId: process.env.VUE_APP_PROJECT_ID,
+  storageBucket: process.env.VUE_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.VUE_APP_MESSAGING_SENDER_ID,
+  appId: process.env.VUE_APP_APP_ID,
+  measurementId: process.env.VUE_APP_MEASUREMENT_ID
+};
+
+firebase.initializeApp(firebaseConfig);
+// 認証状態の永続性 タブを閉じるまで保持
+firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
 
 new Vue({
   router,
   store,
   render: h => h(App)
-}).$mount('#app')
+}).$mount('#app');

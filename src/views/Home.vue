@@ -1,87 +1,83 @@
 <template>
   <div class="home__container">
-    <AddItem
+    <Balance class="home__balance" />
+    <Card
+      :card-title="'入力'"
       class="home__add-item"
-      @clickAddItemButton="addItem"
-    />
-    <ItemTable
-      :items="items"
-      class="home__item-table"
-      @clickDeleteItemButton="deleteItem"
+    >
+      <RouterLinkTags
+        :router-links="routerLinks"
+        class="home__router-link-tags"
+      />
+      <router-view
+        class="home__router-view"
+      />
+    </Card>
+    <RecentlyHistory
+      class="home__recentry-history"
     />
   </div>
 </template>
 
 <script>
-import AddItem from '@/components/templates/AddItem.vue'
-import ItemTable from '@/components/organisms/ItemTable.vue'
-
+import Card from '@/components/atoms/Card.vue';
+import RouterLinkTags from '@/components/molecules/RouterLinkTags.vue';
+import Balance from '@/components/organisms/Balance.vue';
+import RecentlyHistory from '@/components/organisms/RecentlyHistory.vue';
 export default {
   name: 'Home',
   components: {
-    AddItem,
-    ItemTable
+    Card,
+    RouterLinkTags,
+    Balance,
+    RecentlyHistory
   },
   data () {
     return {
-      items: []
-    }
+      routerLinks: [
+        {
+          tagLabel: '出金',
+          linkTo: '/home'
+        },
+        {
+          tagLabel: '入金',
+          linkTo: '/home/income'
+        }
+      ]
+    };
   },
-  computed: {
-    itemId () {
-      return this.$store.state.items.reduce((maxId, item) => Math.max(maxId, item.id), 0) + 1
-    }
-  },
-  mounted () {
-    this.items = [...this.$store.state.items]
-  },
-  methods: {
-    addItem (item) {
-      const newItem = Object.assign({}, item)
-      newItem.id = this.itemId
-      this.items.push(newItem)
-      this.sortItems()
-      this.$store.commit('updateItems', [...this.items])
-    },
-    sortItems () {
-      this.items.sort((a, b) => {
-        if (a.date > b.date) return -1
-        if (a.date < b.date) return 1
-        if (a.id > b.id) return -1
-        if (a.id < b.id) return 1
-      })
-    },
-    deleteItem (id) {
-      this.items = this.items.filter((item) => id !== item.id)
-      this.$store.commit('updateItems', [...this.items])
-    }
-    // setItems () {
-    //   this.$ls.set('items', this.items)
-    // }
-    // getRemainder() {
-    //   let expense = this.items.reduce((result, item) => {
-    //     return result + item.price;
-    //   }, 0);
-    //   return this.remainder - expense;
-    // },
+  created () {
+    this.$store.commit('updateActiveViewName', 'ホーム・入力');
   }
-}
+};
 </script>
 <style scoped lang="scss">
 .home {
   &__container {
-    display: flex;
+    padding: 54px 10px 70px;
     max-width: 1100px;
+    min-height: 100vh;
     margin: 0 auto;
+    background-color: transparent;
+  }
+  &__navi {
+    text-align: center;
     padding: 10px;
+  }
+  &__balance {
+    margin-bottom: $card-margin-bottom;
   }
   &__add-item {
-    width: 30%;
-    min-width: 320px;
-    padding: 10px;
+    margin-bottom: $card-margin-bottom;
   }
-  &__item-table {
-    width: 65%;
+  &__router-link-tags {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+  &__router-view {
+    max-width: 380px;
+    margin: 0 auto;
   }
 }
 </style>
