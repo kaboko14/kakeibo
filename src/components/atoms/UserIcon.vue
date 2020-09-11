@@ -1,6 +1,7 @@
 <template>
   <div
     :style="userIconStyle"
+    @click="$emit('user-icon-click')"
   />
 </template>
 <script>
@@ -28,14 +29,14 @@ export default {
       const style = {
         width: this.imageWidth,
         height: this.imageHeight
-      }
+      };
       if (this.userPhotoUrl) {
-        style.backgroundImage = `url(${this.userPhotoUrl})`
+        style.backgroundImage = `url(${this.userPhotoUrl})`;
       }
-      return style
+      return style;
     }
   }
-}
+};
 </script>
 <style scoped lang="scss">
 div {
@@ -44,5 +45,6 @@ div {
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 50%;
+  cursor: pointer;
 }
 </style>

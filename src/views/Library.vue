@@ -16,38 +16,26 @@
       :card-title="'新規登録'"
       class="library__add-category"
     >
-      <AddCategoryForms
-        class="library__add-category-forms"
-        :new-category-item="newCategoryItem"
-        :button-properties="addCategoryModalButtons"
-        @inputAddCategoryForm="onChange"
-        @clickEnterButton="onChangeCateboryItems"
+      <router-view
+        name="addCategoryForm"
+        class="library__router-view"
       />
-      <Button
-        :button-class="'button-sub-color'"
-        class="library__add-item-button"
-      >
-        新規登録
-      </Button>
     </Card>
   </div>
 </template>
 
 <script>
-import Card from '@/components/atoms/Card.vue'
-import Button from '@/components/atoms/Button.vue'
-import RouterLinkTags from '@/components/molecules/RouterLinkTags.vue'
-import AddCategoryForms from '@/components/organisms/AddCategoryForms.vue'
+import Card from '@/components/atoms/Card.vue';
+import RouterLinkTags from '@/components/molecules/RouterLinkTags.vue';
 export default {
   name: 'Home',
   components: {
     Card,
-    Button,
-    RouterLinkTags,
-    AddCategoryForms
+    RouterLinkTags
   },
   data () {
     return {
+      activeView: '',
       routerLinks: [
         {
           tagLabel: '出金',
@@ -58,24 +46,24 @@ export default {
           linkTo: '/library/income'
         }
       ]
-    }
+    };
   },
   created () {
-    this.$store.commit('changeActiveViewName', '品目登録')
+    this.$store.commit('updateActiveViewName', '品目登録');
   }
-}
+};
 </script>
 <style scoped lang="scss">
 .library {
   &__container {
-    padding: 60px 20px 80px;
+    padding: 54px 10px 70px;
     max-width: 1100px;
     min-height: 100vh;
     margin: 0 auto;
     background-color: transparent;
   }
   &__category-items  {
-    margin-bottom: 20px;
+    margin-bottom: $card-margin-bottom;
   }
   &__router-link-tags {
     display: flex;
@@ -91,6 +79,14 @@ export default {
   }
   &__add-item-button {
     margin: 0 auto;
+  }
+  &__modal__button-container {
+    width:100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(40%,1fr));
+    gap: 10px;
+    justify-items: center;
+    align-items: center;
 
   }
 }

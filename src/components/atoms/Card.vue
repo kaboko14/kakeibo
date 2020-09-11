@@ -16,19 +16,19 @@ export default {
       default: ''
     }
   }
-}
+};
 </script>
 <style lang="scss" scoped>
 .card {
   width: 100%;
-  padding: 10px;
+  padding: 10px 10px 20px;
   background-color: $base-color;
   border-radius: 4px;
   overflow: hidden;
-  box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
+  box-shadow: $box-shadow;
   &__title {
+    font-weight: bold;
     margin-bottom: 16px;
   }
 }
-
 </style>

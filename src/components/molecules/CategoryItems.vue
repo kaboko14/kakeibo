@@ -3,12 +3,14 @@
     <Button
       v-for="button in buttonProperties"
       :key="button.id"
-      :button-class="button.className"
+      :button-color="'color-main'"
       class="category-items__item"
       @click="onChange(button)"
     >
-      {{ button.labelName }}<br>
-      {{ button.labelPrice }}<br>
+      <p>
+        {{ button.labelName }}<br>
+        {{ button.labelPrice }}<br>
+      </p>
       <img
         src="../../assets/edit.svg"
         alt="[編集する]"
@@ -18,7 +20,7 @@
   </div>
 </template>
 <script>
-import Button from '@/components/atoms/Button.vue'
+import Button from '@/components/atoms/Button.vue';
 
 export default {
   name: 'CategoryItems',
@@ -27,54 +29,35 @@ export default {
   },
   props: {
     buttonProperties: {
-      type: Array,
+      type: Object,
       required: true
-    }
-  },
-  data () {
-    return {
-    }
-  },
-  computed: {
-    categoryItems () {
-      return Object.assign([], this.categories)
     }
   },
   methods: {
     onChange (categoryItem) {
-      const newCategoryItem = categoryItem.price
-        ? {
-          ...this.newCategoryItem,
-          id: categoryItem.id,
-          name: categoryItem.name,
-          price: categoryItem.price
-        }
-        : {
-          ...this.newCategoryItem,
-          id: categoryItem.id,
-          name: categoryItem.name
-        }
-      this.$emit('clickCategoryButton', newCategoryItem)
-    },
-    sendDeleteCategoryId (id) {
-      this.$emit('clickDeleteCategoryButton', id)
+      const selectedCategoryItem = {
+        id: categoryItem.id,
+        name: categoryItem.name,
+        price: categoryItem.price
+      };
+      this.$emit('category-button-click', selectedCategoryItem);
     }
   }
-}
+};
 </script>
 <style lang="scss" scoped>
 .category-items {
   &__container {
-    width:100%;
+    width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(30%,1fr));
+    grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
     gap: 10px;
     justify-items: center;
     align-items: center;
   }
   &__item {
     position: relative;
-    padding: 20px 0px;
+    padding: 10px 0px 20px;
   }
   &__edit-icon {
     position: absolute;

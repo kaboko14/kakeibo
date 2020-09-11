@@ -3,16 +3,18 @@
     <Button
       v-for="button in buttonProperties"
       :key="button.id"
-      :button-class="button.className"
+      :button-color="'color-main'"
       @click="onChange(button)"
     >
-      {{ button.labelName }}<br>
-      {{ button.labelPrice }}
+      <p>
+        {{ button.labelName }}<br>
+        {{ button.labelPrice }}
+      </p>
     </Button>
   </div>
 </template>
 <script>
-import Button from '@/components/atoms/Button.vue'
+import Button from '@/components/atoms/Button.vue';
 
 export default {
   name: 'CategoryButtons',
@@ -25,11 +27,9 @@ export default {
       required: true
     },
     buttonProperties: {
-      type: Array,
+      type: Object,
       required: true
     }
-  },
-  computed: {
   },
   methods: {
     onChange (item) {
@@ -42,19 +42,19 @@ export default {
         : {
           ...this.newItem,
           category: item.name
-        }
-      this.$emit('clickCategoryButton', newItem)
+        };
+      this.$emit('category-button-click', newItem);
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
 .category-buttons {
   &__container {
-    width:100%;
+    width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(30%,1fr));
+    grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
     gap: 10px;
     justify-items: center;
     align-items: center;

@@ -1,24 +1,20 @@
 <template>
   <div>
     <ItemTable
-      :items="expenseItems"
+      :items="incomeItems"
     />
   </div>
 </template>
 <script>
-import ItemTable from '@/components/organisms/ItemTable.vue'
+import ItemTable from '@/components/organisms/ItemTable.vue';
+import { mapGetters } from 'vuex';
 export default {
   name: 'IncomeHistory',
   components: {
     ItemTable
   },
   computed: {
-    items () {
-      return this.$store.state.items
-    },
-    expenseItems () {
-      return this.items.filter(item => item.purpose === 'income')
-    }
+    ...mapGetters('items', ['incomeItems'])
   }
-}
+};
 </script>

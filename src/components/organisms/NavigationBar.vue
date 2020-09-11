@@ -38,11 +38,11 @@
   </Bar>
 </template>
 <script>
-import Bar from '@/components/atoms/Bar.vue'
-import HomeIcon from '@/components/icons/HomeIcon.vue'
-import HistoryIcon from '@/components/icons/HistoryIcon.vue'
-import BookIcon from '@/components/icons/BookIcon.vue'
-import NavigationIcon from '@/components/molecules/NavigationIcon.vue'
+import Bar from '@/components/atoms/Bar.vue';
+import HomeIcon from '@/components/icons/HomeIcon.vue';
+import HistoryIcon from '@/components/icons/HistoryIcon.vue';
+import BookIcon from '@/components/icons/BookIcon.vue';
+import NavigationIcon from '@/components/molecules/NavigationIcon.vue';
 export default {
   name: 'NavigationBar',
   components: {
@@ -57,9 +57,9 @@ export default {
       homeLabel: 'ホーム・入力',
       historyLabel: '履歴',
       libraryLabel: '品目登録'
-    }
+    };
   }
-}
+};
 </script>
 <style lang="scss" scoped>
   .navigation-bar {
@@ -72,11 +72,11 @@ export default {
       justify-content: space-around;
     }
     &__link {
-      color: $inactive-color;
-      stroke: $inactive-color;
+      color: $nav-color-inactive;
+      stroke: $nav-color-inactive;
       &--active {
-        color: #ffffff;
-        stroke: #ffffff;
+        color: $nav-color-active;
+        stroke: $nav-color-active;
       }
     }
   }

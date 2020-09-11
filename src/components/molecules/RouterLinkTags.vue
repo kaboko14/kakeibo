@@ -17,7 +17,7 @@
   </div>
 </template>
 <script>
-import Tag from '@/components/atoms/Tag.vue'
+import Tag from '@/components/atoms/Tag.vue';
 export default {
   nama: 'RouterLinkTags',
   components: {
@@ -29,7 +29,7 @@ export default {
       required: true
     }
   }
-}
+};
 </script>
 <style lang="scss" scoped>
 .router-link-tags {
@@ -40,7 +40,8 @@ export default {
     margin-right: 10px;
     &--active{
       & .router-link-tags__tag {
-        background-color: $main-color;
+        background-color: $router-tag-color-active;
+        @include button-decoration-active($button-thickness);
       }
     }
     &:last-child {
@@ -48,7 +49,8 @@ export default {
     }
   }
   &__tag {
-    background-color: $bg-color;
+    background-color: $router-tag-color-inactive;
+    @include button-decoration($router-tag-color-inactive);
   }
 }
 </style>

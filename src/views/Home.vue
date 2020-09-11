@@ -3,6 +3,7 @@
     <Balance class="home__balance" />
     <Card
       :card-title="'入力'"
+      class="home__add-item"
     >
       <RouterLinkTags
         :router-links="routerLinks"
@@ -12,19 +13,24 @@
         class="home__router-view"
       />
     </Card>
+    <RecentlyHistory
+      class="home__recentry-history"
+    />
   </div>
 </template>
 
 <script>
-import Card from '@/components/atoms/Card.vue'
-import RouterLinkTags from '@/components/molecules/RouterLinkTags.vue'
-import Balance from '@/components/organisms/Balance.vue'
+import Card from '@/components/atoms/Card.vue';
+import RouterLinkTags from '@/components/molecules/RouterLinkTags.vue';
+import Balance from '@/components/organisms/Balance.vue';
+import RecentlyHistory from '@/components/organisms/RecentlyHistory.vue';
 export default {
   name: 'Home',
   components: {
     Card,
     RouterLinkTags,
-    Balance
+    Balance,
+    RecentlyHistory
   },
   data () {
     return {
@@ -38,17 +44,17 @@ export default {
           linkTo: '/home/income'
         }
       ]
-    }
+    };
   },
   created () {
-    this.$store.commit('changeActiveViewName', 'ホーム・入力')
+    this.$store.commit('updateActiveViewName', 'ホーム・入力');
   }
-}
+};
 </script>
 <style scoped lang="scss">
 .home {
   &__container {
-    padding: 50px 10px 70px;
+    padding: 54px 10px 70px;
     max-width: 1100px;
     min-height: 100vh;
     margin: 0 auto;
@@ -59,7 +65,10 @@ export default {
     padding: 10px;
   }
   &__balance {
-    margin-bottom: 10px;
+    margin-bottom: $card-margin-bottom;
+  }
+  &__add-item {
+    margin-bottom: $card-margin-bottom;
   }
   &__router-link-tags {
     display: flex;

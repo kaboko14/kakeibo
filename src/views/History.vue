@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import RouterLinkTags from '@/components/molecules/RouterLinkTags.vue'
+import RouterLinkTags from '@/components/molecules/RouterLinkTags.vue';
 
 export default {
   name: 'History',
@@ -34,30 +34,35 @@ export default {
           linkTo: '/history/income'
         }
       ]
-    }
+    };
   },
   created () {
-    this.$store.commit('changeActiveViewName', '履歴')
+    this.$store.commit('updateActiveViewName', '履歴');
   }
-}
+};
 </script>
 <style scoped lang="scss">
 .history {
   &__container {
     width: 100vw;
-    height: 100vh;
-    padding: 60px 0px 80px;
+    min-height: 100vh;
+    padding: 110px 10px 80px;
     background-color: $base-color;
-  }
-  &__router-view {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 5px;
   }
   &__router-link-tags {
     display: flex;
     justify-content: center;
-    margin-bottom: 16px;
+    padding: 54px 0px 10px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: $base-color;
+    border-bottom: 1px solid $gray-3;
+  }
+  &__router-view {
+    max-width: 500px;
+    margin: 0 auto;
   }
 }
 </style>

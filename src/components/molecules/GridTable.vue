@@ -1,24 +1,23 @@
 <template>
   <tr class="grid-table__wrapper">
     <td>
-      <p class="grid-table__date">
-        {{ momentFromatJa(item.date) }}
+      <p
+        class="grid-table__date"
+      >
+        {{ itemDate }}
       </p>
       <span
-        class="grid-table__purpose"
-        :class="item.purpose"
+        class="grid-table__type"
+        :class="item.type"
       >
-        <template v-if="item.purpose==='need'">
-          NEED
+        <template v-if="item.type==='expense'">
+          出金
         </template>
-        <template v-else-if="item.purpose==='want'">
-          WANT
-        </template>
-        <template v-else-if="item.purpose==='income'">
+        <template v-else-if="item.type==='income'">
           入金
         </template>
-        <template v-else-if="item.purpose==='balance'">
-          残高調整
+        <template v-else-if="item.type==='balance'">
+          調整
         </template>
       </span>
       <span class="grid-table__category">
@@ -26,21 +25,23 @@
       </span>
     </td>
     <td class="grid-table__price">
-      ￥{{ item.price.toLocaleString() }}
+      \{{ item.price.toLocaleString() }}
     </td>
-    <td class="grid-table__delete-button">
+    <td class="grid-table__remove-button">
       <Button
-        :button-class="'button-delete-item'"
-        @click="sendDeleteItemId(item.id)"
+        :button-color="'color-gray-dark'"
+        @click="sendRemoveItem(item)"
       >
-        ×
+        <p>
+          ×
+        </p>
       </Button>
     </td>
   </tr>
 </template>
 <script>
-import Button from '@/components/atoms/Button.vue'
-import moment from 'moment'
+import Button from '@/components/atoms/Button.vue';
+import { formatDate } from '@/utils';
 export default {
   name: 'GridTable',
   components: {
@@ -52,22 +53,17 @@ export default {
       required: true
     }
   },
-  data () {
-    return {}
+  computed: {
+    itemDate () {
+      return formatDate(this.item.date);
+    }
   },
   methods: {
-    sendDeleteItemId (id) {
-      this.$store.commit('deleteItem', id)
-    },
-    momentFromatJa (date) {
-      moment.updateLocale('ja', {
-        weekdaysShort: ['日', '月', '火', '水', '木', '金', '土']
-      })
-      const m = moment(date, 'YYYY-MM-DD')
-      return m.format('M/D(ddd)')
+    sendRemoveItem (item) {
+      this.$emit('remove-button-click', item);
     }
   }
-}
+};
 </script>
 <style scoped lang="scss">
 td {
@@ -77,26 +73,26 @@ td {
   &__wrapper {
     text-align: start;
     & > td {
-      border-bottom: 1px solid #707070;
-      padding: 2px 10px;
+      border-bottom: 1px solid $gray-2;
+      padding: 6px 4px 2px;
     }
   }
   &__date {
-    margin: 6px 0px 4px;
+    margin-bottom: 4px;
     font-size: 12px;
   }
-  &__purpose {
+  &__type {
     margin-right: 6px;
     font-size: 14px;
     font-weight: bolder;
-    &.need {
-      color: #7dd3d9;
-    }
-    &.want {
-      color: #d97d7d;
+    &.expense {
+      color: $accent-color;
     }
     &.income {
-      color: #d9c07d;
+      color: $sub-color;
+    }
+    &.balance {
+      color: $gray-3;
     }
   }
   &__category {
@@ -106,8 +102,16 @@ td {
   &__price {
     text-align: end;
   }
-  &__delete-button {
-    width: 30px;
+  &__remove-button {
+    width: 36px;
+    text-align: end;
+    & > button {
+      margin-left: auto;
+      padding: 0;
+      line-height: 20px;
+      width: 20px;
+      height: 20px;
+    }
   }
 }
 </style>

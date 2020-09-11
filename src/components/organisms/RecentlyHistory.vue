@@ -1,20 +1,24 @@
 <template>
-  <div>
+  <Card
+    :card-title="'最近の入力'"
+  >
     <ItemTable
-      :items="expenseItems"
+      :items="recentlyItems"
     />
-  </div>
+  </Card>
 </template>
 <script>
+import Card from '@/components/atoms/Card.vue';
 import ItemTable from '@/components/organisms/ItemTable.vue';
 import { mapGetters } from 'vuex';
 export default {
-  name: 'ExpenseHistory',
+  name: 'RecentlyHostory',
   components: {
+    Card,
     ItemTable
   },
   computed: {
-    ...mapGetters('items', ['expenseItems'])
+    ...mapGetters('items', ['recentlyItems'])
   }
 };
 </script>

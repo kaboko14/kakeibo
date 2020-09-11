@@ -28,10 +28,10 @@ export default {
   },
   methods: {
     onChange (event) {
-      this.$emit('input', event.target.value)
+      this.$emit('input', event.target.value);
     }
   }
-}
+};
 </script>
 <style scoped lang="scss">
 .input {
@@ -39,8 +39,8 @@ export default {
   width: 100%;
   height: 26px;
   padding: 0 4px;
-  background-color: #ffffff;
-  border: 1px solid #707070;
+  background-color: $base-color;
+  border: 1px solid $gray-4;
   border-radius: 4px;
   font-size: 16px;
   line-height: 1.5;

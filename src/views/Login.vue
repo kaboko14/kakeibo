@@ -1,48 +1,62 @@
 <template>
-  <div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <button @click="doLogin">
-      signin
-    </button>
-    <button @click="doLogout">
-      signout
-    </button>
-    <br>
-    ({{ user }})
+  <div class="login__container">
+    <Card class="login__card">
+      <div class="login__card-inner">
+        <img
+          class="login__image"
+          src="../assets/lock-alt.svg"
+          alt="ログイン"
+        >
+        <Button
+          :button-color="'color-sub'"
+          @click="login"
+        >
+          <p>
+            Googleアカウントでログインする
+          </p>
+        </Button>
+      </div>
+    </Card>
   </div>
 </template>
 <script>
-import Firebase from './../firebase'
-
+import Button from '@/components/atoms/Button.vue';
+import Card from '@/components/atoms/Card.vue';
+import { mapActions } from 'vuex';
 export default {
   name: 'Login',
-  computed: {
-    user () {
-      return this.$store.getters.user
-    }
-  },
-  created () {
-    Firebase.onAuth()
+  components: {
+    Button,
+    Card
   },
   methods: {
-    doLogin () {
-      Firebase.login()
-    },
-    doLogout () {
-      Firebase.logout()
-    }
+    ...mapActions('auth', ['login'])
   }
-}
+};
+
 </script>
 <style lang="scss" scoped>
-  .a {
-    width: 30px;
-    height: 30px;
-    border-radius: 30px;
-    background-size: cover;
+.login {
+  &__container {
+    padding: 50px 10px 70px;
+    max-width: 1100px;
+    min-height: 100vh;
+    margin: 0 auto;
   }
-
+  &__card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    &-inner {
+      height: 100%
+    }
+  }
+  &__image {
+    display: block;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 20px;
+  }
+}
 </style>

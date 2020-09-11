@@ -3,16 +3,14 @@
     :class="className"
     @click.stop="$emit('click')"
   >
-    <p class="button__label">
-      <slot />
-    </p>
+    <slot />
   </button>
 </template>
 <script>
 export default {
   name: 'Button',
   props: {
-    buttonClass: {
+    buttonColor: {
       type: String,
       required: false,
       default: ''
@@ -20,80 +18,52 @@ export default {
   },
   computed: {
     className () {
-      return `button ${this.buttonClass}`
+      return `button button--${this.buttonColor}`;
     }
   }
-}
+};
 </script>
 <style scoped lang="scss">
-// @import "@/styles/global";
 .button {
-  display: block;
-  width:150px;
+  display: inline-block;
+  width: 250px;
   max-width: 100%;
-  padding: 4px;
+  height: 100%;
+  padding: 6px 4px;
   border: none;
-  border-radius: 3px;
+  border-radius: 4px;
+  overflow: hidden;
   cursor: pointer;
 
-  &__label {
+  &.button--color-disable{
+    @include button-decoration-active($button-thickness)
+  }
+
+  &:focus{
+    outline: 0;
+  }
+  &:active {
+    @include button-decoration-active($button-thickness)
+  }
+  &  * {
     color: #ffffff;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
-
-  &-category {
-    min-height: 60px;
-    background: #7dd983;
-  }
-
-  &-plus {
-    min-height: 40px;
-    background: #d97d90;
-  }
-
-  &-minus {
-    height: 40px;
-    background: #7d99d9;
-  }
-
-  &-need,
-  &-add {
-    height: 50px;
-    background: #7dd3d9;
-    font-size: 18px;
-  }
-
-  &-want,
-  &-change {
-    height: 50px;
-    background: #d97d7d;
-    font-size: 18px;
-  }
-
-  &-income {
-    height: 58px;
-    background-color: #d9c07d;
-    font-size: 18px;
-  }
-  &-delete-item {
-    width: 26px;
-    height: 26px;
-    background-color: #777;
-  }
-  &-delete-category {
-    height: 26px;
-    background-color: #777;
-  }
-  &-add-category {
-    height: 58px;
-    background: #d97d7d;
-    font-weight: bold;
-    font-size: 18px;
-  }
-  &-sub-color {
-    background-color: $sub-color;
+}
+// クラスごとの色の指定
+$button-color: (
+  "button--color-main": $button-color-main,
+  "button--color-sub": $button-color-sub,
+  "button--color-accent": $button-color-accent,
+  "button--color-gray-light": $button-color-gray-light,
+  "button--color-gray-dark": $button-color-gray-dark,
+  "button--color-disable": $button-color-disable,
+);
+@each $key, $color in $button-color {
+  .#{$key} {
+    @include button-decoration($color)
   }
 }
 </style>

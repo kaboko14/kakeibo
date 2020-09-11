@@ -31,5 +31,5 @@
 <script>
 export default {
   name: 'HistoryIcon'
-}
+};
 </script>

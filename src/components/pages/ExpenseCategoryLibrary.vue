@@ -1,64 +1,65 @@
 <template>
   <div>
-    <CategoryLibrary
+    <CategoryItems
       class="category-library"
-      :category-button-properties="categoryButtonProperties"
-      @clickAddCategoryButton="addCategoryItem"
-      @clickChangeCategoryButton="changeCategoryItem"
-      @clickDeleteCategoryButton="deleteCategoryItem"
+      :button-properties="buttonProperties"
+      @category-button-click="openChangeCategoryModal"
+    />
+    <ChangeCategoryModal
+      v-show="modalView"
+      :selected-category-item="selectedCategoryItem"
+      @close-button-click="closeModal"
+      @update-button-click="updateCategoryItem"
+      @remove-button-click="removeCategoryItem"
+      @input-form="onChange"
     />
   </div>
 </template>
 <script>
-import CategoryLibrary from '@/components/organisms/CategoryLibrary.vue'
+import CategoryItems from '@/components/molecules/CategoryItems.vue';
+import ChangeCategoryModal from '@/components/organisms/ChangeCategoryModal.vue';
+import { mapGetters, mapActions } from 'vuex';
 export default {
   name: 'ExpenseCategoryLibrary',
   components: {
-    CategoryLibrary
+    ChangeCategoryModal,
+    CategoryItems
+  },
+  data () {
+    return {
+      categoryItem: {},
+      modalView: false
+    };
   },
   computed: {
-    categoryItems () {
-      return [...this.$store.state.expenseCategoryItems]
-    },
-    categoryButtonProperties () {
-      return this.$store.getters.expenseCategoryButtonProperties
-    },
-    categoryId () {
-      return (
-        this.categoryItems.reduce((maxId, categoryItem) => Math.max(maxId, categoryItem.id), 0) + 1
-      )
+    ...mapGetters('expenses', ['buttonProperties']),
+    selectedCategoryItem () {
+      return {
+        ...this.categoryItem,
+        price: this.categoryItem.price * 1
+      };
     }
   },
   methods: {
-    addCategoryItem (categoryItem) {
-      const newCategoryItem = { ...categoryItem }
-      newCategoryItem.id = this.categoryId
-      this.categoryItems.push(newCategoryItem)
-      this.$store.commit('updateExpenseCategoryItems', [...this.categoryItems])
+    ...mapActions('expenses', ['update', 'remove']),
+    onChange (categoryItem) {
+      this.categoryItem = categoryItem;
     },
-    changeCategoryItem (categoryItem) {
-      const newCategoryItem = { ...categoryItem }
-      const filteredCategoryItems = this.filterItems(this.categoryItems, newCategoryItem.id)
-      filteredCategoryItems.push(newCategoryItem)
-      this.sortItems(filteredCategoryItems)
-      this.$store.commit('updateExpenseCategoryItems', filteredCategoryItems)
+    openChangeCategoryModal (categoryItem) {
+      this.onChange(categoryItem);
+      this.modalView = true;
     },
-    deleteCategoryItem (id) {
-      const filteredCategoryItems = this.filterItems(this.categoryItems, id)
-      this.$store.commit('updateExpenseCategoryItems', filteredCategoryItems)
+    closeModal () {
+      this.modalView = false;
     },
-    filterItems (items, id) {
-      return items.filter(item => item.id !== id)
+    updateCategoryItem () {
+      this.update(this.selectedCategoryItem);
+      this.closeModal();
     },
-    sortItems (items) {
-      items.sort((a, b) => {
-        if (a.id > b.id) return 1
-        if (a.id < b.id) return -1
-      })
+    removeCategoryItem () {
+      this.remove(this.selectedCategoryItem);
+      this.closeModal();
     }
   }
-}
+};
 </script>
-<style lang="scss" scoped>
-
-</style>
