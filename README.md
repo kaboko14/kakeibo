@@ -1,28 +1,14 @@
-<<<<<<< HEAD
 # kakeibo
+現金の入出金をざっくりと記録するためのアプリです。
 
-## Project setup
-```
-npm install
-```
+## アプリについて
+Googleアカウントでログインし、ユーザーごとに入出金の記録をつけることが出来ます。
+よく使う品目は登録することも可能です。
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## 使い方
+ホーム・入力画面：残高の修正、入出金の記録、最近の入力の確認（5件）
+履歴：全ての履歴の表示、出金・入金の履歴の表示
+品目登録：登録済みの品目の編集、新規品目の登録
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-=======
-# kakeibo
->>>>>>> origin/master
+## 使用言語・環境
+Vue.js + Firestore + FirebaseAuthentication 
