@@ -1,19 +1,36 @@
 <template>
   <div class="increment-buttons__container">
-    <Button
+    <div
       v-for="(button, index) in buttonProperties"
       :key="index"
-      :button-color="'color-gray-light '"
-      class="increment-buttons__button"
-      @click="incrementPrice(button.incrementNumber)"
+      class="increment-buttons__wrapper"
     >
-      <span class="increment-buttons__icon">
-        {{ button.icon }}
-      </span>
-      <p>
-        {{ button.label }}
-      </p>
-    </Button>
+      <Button
+        v-if="button.active"
+        :button-color="'color-gray-light '"
+        class="increment-buttons__button"
+        @click="incrementPrice(button.incrementNumber)"
+      >
+        <span class="increment-buttons__icon">
+          {{ button.icon }}
+        </span>
+        <p>
+          {{ button.label }}
+        </p>
+      </Button>
+      <Button
+        v-else
+        :button-color="'color-disable'"
+        class="increment-buttons__button"
+      >
+        <span class="increment-buttons__icon">
+          {{ button.icon }}
+        </span>
+        <p>
+          {{ button.label }}
+        </p>
+      </Button>
+    </div>
   </div>
 </template>
 
@@ -42,12 +59,14 @@ export default {
           ? {
             label: `￥${number.toLocaleString()}`,
             icon: '+',
-            incrementNumber: number
+            incrementNumber: number,
+            active: true
           }
           : {
             label: `￥${(-1 * number).toLocaleString()}`,
             icon: '-',
-            incrementNumber: number
+            incrementNumber: number,
+            active: this.newItem.price >= number * -1
           };
       });
     }
@@ -73,6 +92,9 @@ export default {
     gap: 10px;
     justify-items: center;
     align-items: center;
+  }
+  &__wrapper {
+    width: 100%;
   }
   &__button {
     position: relative;
