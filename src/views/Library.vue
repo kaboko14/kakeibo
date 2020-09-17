@@ -8,18 +8,28 @@
         :router-links="routerLinks"
         class="library__router-link-tags"
       />
-      <router-view
-        class="library__router-view"
-      />
+      <transition
+        name="library__fade"
+        mode="out-in"
+      >
+        <router-view
+          class="library__router-view"
+        />
+      </transition>
     </Card>
     <Card
       :card-title="'新規登録'"
       class="library__add-category"
     >
-      <router-view
-        name="addCategoryForm"
-        class="library__router-view"
-      />
+      <transition
+        name="library__fade"
+        mode="out-in"
+      >
+        <router-view
+          name="addCategoryForm"
+          class="library__router-view"
+        />
+      </transition>
     </Card>
   </div>
 </template>
@@ -54,6 +64,12 @@ export default {
 };
 </script>
 <style scoped lang="scss">
+.library__fade-enter-active {
+  animation: fade-in 0.1s ease-out;
+}
+.library__fade-leave-active {
+  animation: fade-in 0.1s ease-in reverse;
+}
 .library {
   &__container {
     padding: 54px 10px 70px;

@@ -89,6 +89,7 @@ export default {
   &__logout {
     display: inline-block;
     text-decoration: underline;
+    cursor: pointer;
     &:hover {
       color: $gray-3;
     }

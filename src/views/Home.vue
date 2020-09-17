@@ -9,9 +9,14 @@
         :router-links="routerLinks"
         class="home__router-link-tags"
       />
-      <router-view
-        class="home__router-view"
-      />
+      <transition
+        name="home__fade"
+        mode="out-in"
+      >
+        <router-view
+          class="home__router-view"
+        />
+      </transition>
     </Card>
     <RecentlyHistory
       class="home__recentry-history"
@@ -52,6 +57,12 @@ export default {
 };
 </script>
 <style scoped lang="scss">
+.home__fade-enter-active {
+  animation: fade-in 0.1s ease-out;
+}
+.home__fade-leave-active {
+  animation: fade-in 0.1s ease-in reverse;
+}
 .home {
   &__container {
     padding: 54px 10px 70px;

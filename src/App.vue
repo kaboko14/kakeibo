@@ -8,7 +8,9 @@
       v-show="loginUser"
       class="app__navigation-bar"
     />
-    <router-view class="app__view" />
+    <transition name="app__fade">
+      <router-view class="app__view" />
+    </transition>
   </div>
 </template>
 <script>
@@ -94,6 +96,9 @@ a {
   position: relative;
   min-height: 100vh;
   background-color: $bg-color;
+}
+.app__fade-enter-active {
+  animation: fade-in 0.3s ease-out;
 }
 .app {
   &__mobile-header {
