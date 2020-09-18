@@ -55,6 +55,9 @@ const mutations = {
     const list = { ...state.list };
     delete list[item.id];
     state.list = list;
+  },
+  deleteExpenses(state) {
+    state.list = {};
   }
 };
 const actions = {
@@ -102,6 +105,9 @@ const actions = {
   },
   addInitialExpenses({ dispatch }) {
     initialList.forEach(item => dispatch('add', item));
+  },
+  deleteExpenses({ commit }) {
+    commit('deleteExpenses');
   }
 };
 

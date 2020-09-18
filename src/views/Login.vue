@@ -8,11 +8,21 @@
           alt="ログイン"
         >
         <Button
+          class="login__google-login-button"
           :button-color="'color-sub'"
           @click="login"
         >
           <p>
             Googleアカウントでログインする
+          </p>
+        </Button><br>
+        <Button
+          class="login__gest-login-button"
+          :button-color="'color-main'"
+          @click="gestLogin"
+        >
+          <p>
+            ゲストとしてログインする
           </p>
         </Button>
       </div>
@@ -30,7 +40,7 @@ export default {
     Card
   },
   methods: {
-    ...mapActions('auth', ['login'])
+    ...mapActions('auth', ['login', 'gestLogin'])
   }
 };
 
@@ -57,6 +67,9 @@ export default {
     width: 100px;
     height: 100px;
     margin: 0 auto 20px;
+  }
+  &__google-login-button {
+    margin-bottom: 10px;
   }
 }
 </style>

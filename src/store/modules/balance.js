@@ -16,6 +16,9 @@ const getters = {
 const mutations = {
   update(state, price) {
     state.balance = price;
+  },
+  deleteBalance(state) {
+    state.balance = 0;
   }
 };
 const actions = {
@@ -31,6 +34,9 @@ const actions = {
     } catch (error) {
       console.error(error);
     }
+  },
+  deleteBalance({ commit }) {
+    commit('deleteBalance');
   }
 };
 export default {
