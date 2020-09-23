@@ -7,7 +7,7 @@ Googleアカウントでログインし、ユーザーごとに入出金の記�
 よく使う品目は登録することも可能です。
 
 ## 使い方
-<table style="font-size: 12px; background-color: transparent;">
+<table  bgcolor=transparent>
   <thead>
     <tr>
       <th>画面</th>
