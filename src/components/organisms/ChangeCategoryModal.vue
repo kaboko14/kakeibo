@@ -17,7 +17,17 @@
           </p>
         </Button>
         <Button
+          v-if="selectedCategoryItem.name"
           :button-color="'color-sub'"
+          @click="updateCategoryItem"
+        >
+          <p>
+            内容を更新
+          </p>
+        </Button>
+        <Button
+          v-else
+          :button-color="'color-disable'"
           @click="updateCategoryItem"
         >
           <p>
