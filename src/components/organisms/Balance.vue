@@ -145,7 +145,7 @@ export default {
         font-size: 14px;
         // text-align: center;
         &-price {
-          font-size: 20px;
+          font-size: 16px;
           line-height: 2;
         }
       }
