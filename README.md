@@ -3,7 +3,8 @@
 ※このアプリは開発途中です。
 
 ## 機能一覧
-![zaKKuri_機能一覧.pdf](https://github.com/kaboko14/kakeibo/files/5272574/zaKKuri_.pdf)
+![zaKKuri_機能一覧-1](https://user-images.githubusercontent.com/66770688/94085799-0991c200-fe44-11ea-9a2e-6b98174cbd55.png)
+
 #### 履歴画面
 <table>
   <thead>
