@@ -1,16 +1,29 @@
 <template>
   <div>
-    <p class="expense-category-form__text">出金品目</p>
+    <p
+      class="expense-category-form__note"
+    >
+      ※品目は必ず入力してください
+    </p>
     <AddCategoryForms
       :category-item="categoryItem"
       @add-category-form-input="onChange"
     >
       <Button
+        v-if="item.name"
         :button-color="'color-sub'"
         @click="addCategoryItem"
       >
         <p>
-          新規登録
+          {{ buttonLabel }}
+        </p>
+      </Button>
+      <Button
+        v-else
+        :button-color="'color-disable'"
+      >
+        <p>
+          {{ buttonLabel }}
         </p>
       </Button>
     </AddCategoryForms>
@@ -32,7 +45,8 @@ export default {
         name: '',
         price: 0,
         createdAt: ''
-      }
+      },
+      buttonLabel: '出金品目を登録'
     };
   },
   computed: {
@@ -64,7 +78,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 .expense-category-form {
-  &__text {
+  &__note {
+    font-size: 12px;
     margin-bottom: 10px;
   }
 }
