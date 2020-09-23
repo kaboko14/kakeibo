@@ -45,7 +45,7 @@ export default {
       priceFormProperty: {
         inputType: 'tel',
         labelText: '金額',
-        placeholder: '入力してください'
+        placeholder: '0'
       }
     };
   },
