@@ -4,9 +4,14 @@
       class="history__router-link-tags"
       :router-links="routerLinks"
     />
-    <router-view
-      class="history__router-view"
-    />
+    <transition
+      name="history__fade"
+      mode="out-in"
+    >
+      <router-view
+        class="history__router-view"
+      />
+    </transition>
   </div>
 </template>
 
@@ -42,6 +47,12 @@ export default {
 };
 </script>
 <style scoped lang="scss">
+.history__fade-enter-active {
+  animation: fade-in 0.1s ease-out;
+}
+.history__fade-leave-active {
+  animation: fade-in 0.1s ease-in reverse;
+}
 .history {
   &__container {
     width: 100vw;

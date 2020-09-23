@@ -1,23 +1,25 @@
 <template>
-  <div class="modal__background">
-    <div class="modal__window">
-      <p
-        v-show="modalTitle"
-        class="modal__title"
-      >
-        {{ modalTitle }}
-      </p>
-      <div class="modal__wrapper">
-        <div
-          class="modal__close-button"
-          @click="$emit('close-button-click')"
+  <transition name="modal__fade">
+    <div class="modal__background">
+      <div class="modal__window">
+        <p
+          v-show="modalTitle"
+          class="modal__title"
         >
-          ×
+          {{ modalTitle }}
+        </p>
+        <div class="modal__wrapper">
+          <div
+            class="modal__close-button"
+            @click="$emit('close-button-click')"
+          >
+            ×
+          </div>
+          <slot />
         </div>
-        <slot />
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 <script>
 export default {
@@ -32,19 +34,25 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.modal__fade-enter-active {
+  animation: fade-in 0.1s ease-out;
+}
+.modal__fade-leave-active {
+  animation: fade-in 0.1s ease-out reverse;
+}
 .modal {
   &__background {
     display: flex;
     align-items: center;
     justify-content: center;
     position: fixed;
-    z-index: 30;
+    z-index: 10;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     padding: 0px 30px;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
   }
   &__window {
     position: relative;

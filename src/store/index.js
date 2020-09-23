@@ -12,9 +12,6 @@ export default new Vuex.Store({
     activeViewName: ''
   },
   getters: {
-    balance (state) {
-      return state.balance;
-    },
     activeViewName (state) {
       return state.activeViewName;
     }

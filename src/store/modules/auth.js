@@ -2,6 +2,14 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 
+// ゲストユーザー情報
+const gestUser = {
+  email: 'kakeibo@gest.com',
+  password: 'kakeibo-gest'
+};
+// ゲストログイン時の注意メッセージ
+const gestCaution = '機能確認用のゲストアカウントです。ゲストとしてログインしますか？';
+
 const initialState = {
   loginUser: null
 };
@@ -37,6 +45,11 @@ const actions = {
   login() {
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider);
+  },
+  gestLogin() {
+    if (confirm(gestCaution)) {
+      firebase.auth().signInWithEmailAndPassword(gestUser.email, gestUser.password);
+    }
   },
   logout() {
     firebase.auth().signOut();

@@ -46,6 +46,9 @@ const mutations = {
     const list = { ...state.list };
     delete list[item.id];
     state.list = list;
+  },
+  deleteItems(state) {
+    state.list = {};
   }
 };
 const actions = {
@@ -84,6 +87,9 @@ const actions = {
     } catch (error) {
       console.error('アイテム取得失敗', error);
     }
+  },
+  deleteItems({ commit }) {
+    commit('deleteItems');
   }
 };
 export default {

@@ -8,7 +8,9 @@
       v-show="loginUser"
       class="app__navigation-bar"
     />
-    <router-view class="app__view" />
+    <transition name="app__fade">
+      <router-view class="app__view" />
+    </transition>
   </div>
 </template>
 <script>
@@ -33,6 +35,7 @@ export default {
     // 全ページでログインユーザー情報を取得できるようにAppでユーザー取得処理を行う
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
+        console.log(user);
         // 現在ログインしているユーザーがいるときの処理
         this.setLoginUser(user);
         this.fetchUser()
@@ -51,7 +54,7 @@ export default {
           });
       } else {
       // ログアウト時の処理
-        this.deleteLoginUser();
+        this.storeInit();
         if (this.$router.currentRoute.name !== 'Login') {
           this.$router.push('/login');
         }
@@ -59,11 +62,11 @@ export default {
     });
   },
   methods: {
-    ...mapMutations('balance', ['update']),
+    ...mapMutations('balance', ['update', 'deleteBalance']),
     ...mapActions('auth', ['setLoginUser', 'createUser', 'deleteLoginUser', 'fetchUser']),
-    ...mapActions('items', ['fetchItems']),
-    ...mapActions('expenses', ['addInitialExpenses', 'fetchExpenses']),
-    ...mapActions('incomes', ['addInitialIncomes', 'fetchIncomes']),
+    ...mapActions('items', ['fetchItems', 'deleteItems']),
+    ...mapActions('expenses', ['addInitialExpenses', 'fetchExpenses', 'deleteExpenses']),
+    ...mapActions('incomes', ['addInitialIncomes', 'fetchIncomes', 'deleteIncomes']),
     fetchItemsAndCategories() {
       this.fetchItems();
       this.fetchExpenses();
@@ -72,6 +75,13 @@ export default {
     addInitialCategories() {
       this.addInitialExpenses();
       this.addInitialIncomes();
+    },
+    storeInit() {
+      this.deleteLoginUser();
+      this.deleteBalance();
+      this.deleteItems();
+      this.deleteExpenses();
+      this.deleteIncomes();
     }
   }
 };
@@ -94,6 +104,9 @@ a {
   position: relative;
   min-height: 100vh;
   background-color: $bg-color;
+}
+.app__fade-enter-active {
+  animation: fade-in 0.3s ease-out;
 }
 .app {
   &__mobile-header {

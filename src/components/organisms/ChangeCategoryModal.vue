@@ -9,6 +9,15 @@
     >
       <div class="update-category-modal__buttons-container">
         <Button
+          :button-color="'color-accent'"
+          @click="removeCategoryItem"
+        >
+          <p>
+            品目を削除
+          </p>
+        </Button>
+        <Button
+          v-if="selectedCategoryItem.name"
           :button-color="'color-sub'"
           @click="updateCategoryItem"
         >
@@ -17,11 +26,12 @@
           </p>
         </Button>
         <Button
-          :button-color="'color-accent'"
-          @click="removeCategoryItem"
+          v-else
+          :button-color="'color-disable'"
+          @click="updateCategoryItem"
         >
           <p>
-            品目を削除
+            内容を更新
           </p>
         </Button>
       </div>

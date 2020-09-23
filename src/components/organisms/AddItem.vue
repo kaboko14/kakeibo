@@ -6,49 +6,51 @@
       :button-properties="addItemProperties.categoryButtonProperties"
       @category-button-click="onChange"
     />
-    <Button
-      v-show="!formsView"
-      class="add-item__form-open-button"
-      :button-color="'color-main'"
-      @click="openForms()"
-    >
-      <p>
-        フォーム入力
-      </p>
-    </Button>
-    <Forms
-      v-show="formsView"
-      class="add-item__forms"
-      :text-form-placeholder="addItemProperties.initialCategory"
-      :new-item="newItem"
-      @form-input="onChange"
-    />
-    <IncrementButtons
-      v-show="formsView"
-      class="add-item__increment-buttons"
-      :new-item="newItem"
-      :button-numbers="addItemProperties.incrementButtonNumbers"
-      @increment-button-click="onChange"
-    />
-    <Button
-      v-show="!newItem.price && formsView"
-      class="add-item__add-item-button"
-      :button-color="'color-disable'"
-    >
-      <p>
-        {{ addItemProperties.addItemButtonLabel }}
-      </p>
-    </Button>
-    <Button
-      v-show="newItem.price"
-      class="add-item__add-item-button"
-      :button-color="'color-sub'"
-      @click="addNewItem"
-    >
-      <p>
-        {{ addItemProperties.addItemButtonLabel }}
-      </p>
-    </Button>
+    <transition name="fade">
+      <Button
+        v-if="!formsView"
+        class="add-item__form-open-button"
+        :button-color="'color-main'"
+        @click="openForms()"
+      >
+        <p>
+          フォーム入力
+        </p>
+      </Button>
+      <div v-else>
+        <Forms
+          class="add-item__forms"
+          :text-form-placeholder="addItemProperties.initialCategory"
+          :new-item="newItem"
+          @form-input="onChange"
+        />
+        <IncrementButtons
+          class="add-item__increment-buttons"
+          :new-item="newItem"
+          :button-numbers="addItemProperties.incrementButtonNumbers"
+          @increment-button-click="onChange"
+        />
+        <Button
+          v-if="!newItem.price"
+          class="add-item__add-item-button"
+          :button-color="'color-disable'"
+        >
+          <p>
+            {{ addItemProperties.addItemButtonLabel }}
+          </p>
+        </Button>
+        <Button
+          v-else
+          class="add-item__add-item-button"
+          :button-color="'color-sub'"
+          @click="addNewItem"
+        >
+          <p>
+            {{ addItemProperties.addItemButtonLabel }}
+          </p>
+        </Button>
+      </div>
+    </transition>
   </div>
 </template>
 <script>
@@ -123,6 +125,9 @@ export default {
 };
 </script>
 <style scoped lang="scss">
+.fade-enter-active {
+  animation: fade-in 0.4s;
+}
 .add-item {
   &__container {
     text-align: center;

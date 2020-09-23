@@ -15,7 +15,7 @@ export default {
 </script>
 <style scoped lang="scss">
 .label {
-  font-size: 16px;
+  font-size: 12px;
   line-height: 26px;
   white-space: nowrap;
 }
