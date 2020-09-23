@@ -68,7 +68,7 @@ export default {
       margin: 0 auto;
       padding: 10px 0px;
       width: 100%;
-      max-width: 1100px;
+      max-width: $view-max-width;
       justify-content: space-around;
     }
     &__link {

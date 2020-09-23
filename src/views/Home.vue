@@ -66,7 +66,7 @@ export default {
 .home {
   &__container {
     padding: 54px 10px 70px;
-    max-width: 1100px;
+    max-width: $view-max-width;
     min-height: 100vh;
     margin: 0 auto;
     background-color: transparent;

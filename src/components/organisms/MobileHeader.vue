@@ -1,28 +1,30 @@
 <template>
   <Bar class="mobile-header__bar">
-    <h2 class="mobile-header__title">
-      {{ activeViewName }}
-    </h2>
-    <UserIcon
-      tabindex="0"
-      :user-photo-url="photoURL"
-      :image-width="'30px'"
-      :image-height="'30px'"
-      class="mobile-header__user-icon"
-      @user-icon-click="openDropDown"
-    />
-    <DropDown
-      v-show="dropDownView"
-      class="mobile-header__drop-down"
-      @drop-down-background-click="closeDropDown"
-    >
-      <p
-        class="mobile-header__logout"
-        @click="logoutApp"
+    <div class="mobile-header__container">
+      <h2 class="mobile-header__title">
+        {{ activeViewName }}
+      </h2>
+      <UserIcon
+        tabindex="0"
+        :user-photo-url="photoURL"
+        :image-width="'30px'"
+        :image-height="'30px'"
+        class="mobile-header__user-icon"
+        @user-icon-click="openDropDown"
+      />
+      <DropDown
+        v-show="dropDownView"
+        class="mobile-header__drop-down"
+        @drop-down-background-click="closeDropDown"
       >
-        ログアウト
-      </p>
-    </DropDown>
+        <p
+          class="mobile-header__logout"
+          @click="logoutApp"
+        >
+          ログアウト
+        </p>
+      </DropDown>
+    </div>
   </Bar>
 </template>
 <script>
@@ -65,9 +67,13 @@ export default {
 </script>
 <style scoped lang="scss">
 .mobile-header {
-  position: relative;
   &__bar {
     height: 40px;
+  }
+  &__container {
+    position: relative;
+    max-width: $view-max-width;
+    margin: 0 auto;
   }
   &__title{
     color: $font-color-wh;
