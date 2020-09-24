@@ -34,6 +34,7 @@ export default {
   border-radius: 4px;
   overflow: hidden;
   cursor: pointer;
+  touch-action: manipulation;
 
   &.button--color-disable{
     @include button-decoration-active($button-thickness)

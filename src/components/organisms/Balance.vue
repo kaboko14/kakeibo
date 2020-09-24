@@ -42,7 +42,7 @@
           class="
         balance__modal__difference-price"
         >
-          \{{ difference.toLocaleString() }}
+          ￥{{ difference.toLocaleString() }}
         </span>
       </p>
       <Button
