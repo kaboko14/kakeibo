@@ -2,29 +2,38 @@
   <div class="login__container">
     <Card class="login__card">
       <div class="login__card-inner">
-        <img
-          class="login__image"
-          src="../assets/lock-alt.svg"
-          alt="ログイン"
-        >
-        <Button
-          class="login__google-login-button"
-          :button-color="'color-sub'"
-          @click="login"
-        >
-          <p>
-            Googleアカウントでログインする
+        <div class="login__rogo-wrapper">
+          <img
+            class="login__rogo"
+            src="../assets/zaKKuri_rogo.svg"
+            alt="zaKKuriロゴ"
+          >
+          <p class="login__text">
+            お財布の入出金を<br>
+            <span class="login__text--strong">ざっくり</span>
+            記録！
           </p>
-        </Button><br>
-        <Button
-          class="login__gest-login-button"
-          :button-color="'color-main'"
-          @click="gestLogin"
-        >
-          <p>
-            ゲストとしてログインする
-          </p>
-        </Button>
+        </div>
+        <div class="login__button-wrapper">
+          <Button
+            class="login__google-login-button"
+            :button-color="'color-sub'"
+            @click="login"
+          >
+            <p>
+              Googleアカウントでログインする
+            </p>
+          </Button><br>
+          <Button
+            class="login__gest-login-button"
+            :button-color="'color-main'"
+            @click="gestLogin"
+          >
+            <p>
+              ゲストとしてログインする
+            </p>
+          </Button>
+        </div>
       </div>
     </Card>
   </div>
@@ -54,22 +63,38 @@ export default {
     margin: 0 auto;
   }
   &__card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 50px;
     &-inner {
-      height: 100%
+      display: flex;
+      height: 100%;
+      align-items: center;
+      justify-content: space-around;
+      flex-wrap: wrap;
     }
   }
-  &__image {
+  &__rogo-wrapper {
+    padding: 0px 10px 20px;
+  }
+  &__rogo {
     display: block;
-    width: 100px;
-    height: 100px;
-    margin: 0 auto 20px;
+    width: 200px;
+    height: 150px;
+    margin: 0 auto 10px;
+  }
+  &__text {
+    font-size: 18px;
+    text-align: center;
+    line-height: 1.6;
+    &--strong {
+      color: $main-color;
+      font-size: 24px;
+      font-weight: bold;
+    }
+  }
+  &__button-wrapper {
+    height: 100%;
   }
   &__google-login-button {
-    margin-bottom: 10px;
+    margin-bottom: 16px;
   }
 }
 </style>
