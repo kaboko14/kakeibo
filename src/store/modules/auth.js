@@ -4,8 +4,8 @@ import 'firebase/firestore';
 
 // ゲストユーザー情報
 const gestUser = {
-  email: 'kakeibo@gest.com',
-  password: 'kakeibo-gest'
+  email: 'zaKKuri@gest.com',
+  password: 'zaKKuri-gest'
 };
 // ゲストログイン時の注意メッセージ
 const gestCaution = '機能確認用のゲストアカウントです。ゲストとしてログインしますか？';
