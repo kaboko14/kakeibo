@@ -8,7 +8,7 @@
     >
       <p>
         {{ button.labelName }}<br>
-        {{ button.labelPrice }}
+        {{ button.labelPrice }}<br>
       </p>
     </Button>
   </div>

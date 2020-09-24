@@ -35,6 +35,7 @@ export default {
 </script>
 <style scoped lang="scss">
 .input {
+  -webkit-appearance: none;
   display: inline-block;
   width: 100%;
   height: 26px;
