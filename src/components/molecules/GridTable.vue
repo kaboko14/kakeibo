@@ -25,7 +25,7 @@
       </span>
     </td>
     <td class="grid-table__price">
-      \{{ item.price.toLocaleString() }}
+      ￥{{ item.price.toLocaleString() }}
     </td>
     <td class="grid-table__remove-button">
       <Button

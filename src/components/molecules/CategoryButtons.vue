@@ -8,7 +8,7 @@
     >
       <p>
         {{ button.labelName }}<br>
-        {{ button.labelPrice }}<br>
+        {{ button.labelPrice }}
       </p>
     </Button>
   </div>
@@ -55,6 +55,7 @@ export default {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+    grid-auto-rows: 60px;
     gap: 10px;
     justify-items: center;
     align-items: center;
