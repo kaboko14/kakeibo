@@ -65,10 +65,10 @@ export default {
 </script>
 <style scoped lang="scss">
 .library__fade-enter-active {
-  animation: fade-in 0.1s ease-out;
+  animation: fade-in 0.3s ease-out;
 }
 .library__fade-leave-active {
-  animation: fade-in 0.1s ease-in reverse;
+  opacity: 0;
 }
 .library {
   &__container {
