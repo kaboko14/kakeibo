@@ -48,10 +48,10 @@ export default {
 </script>
 <style scoped lang="scss">
 .history__fade-enter-active {
-  animation: fade-in 0.1s ease-out;
+  animation: fade-in 0.3s ease-out;
 }
-.history__fade-leave-active {
-  animation: fade-in 0.1s ease-in reverse;
+.history__fade-leave {
+  opacity: 0;
 }
 .history {
   &__container {

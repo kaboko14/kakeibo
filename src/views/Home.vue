@@ -58,10 +58,10 @@ export default {
 </script>
 <style scoped lang="scss">
 .home__fade-enter-active {
-  animation: fade-in 0.1s ease-out;
+  animation: fade-in 0.3s ease-out;
 }
-.home__fade-leave-active {
-  animation: fade-in 0.1s ease-in reverse;
+.home__fade-leave {
+  opacity: 0;
 }
 .home {
   &__container {

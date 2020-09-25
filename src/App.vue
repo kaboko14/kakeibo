@@ -105,6 +105,9 @@ a {
   min-height: 100vh;
   background-color: $bg-color;
 }
+.app__fade-leave {
+  opacity: 0;
+}
 .app__fade-enter-active {
   animation: fade-in 0.3s ease-out;
 }
