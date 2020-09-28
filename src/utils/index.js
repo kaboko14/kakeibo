@@ -10,8 +10,15 @@ export const sortItems = items => {
   });
 };
 
-// 作成日でソート
-export const sortByCreatedAt = items => {
+// 作成日で昇順ソート
+export const ascSortByCreatedAt = items => {
+  items.sort((a, b) => {
+    if (a.createdAt < b.createdAt) return -1;
+    if (a.createdAt > b.createdAt) return 1;
+  });
+};
+// 作成日で降順ソート
+export const descSortByCreatedAt = items => {
   items.sort((a, b) => {
     if (a.createdAt > b.createdAt) return -1;
     if (a.createdAt < b.createdAt) return 1;

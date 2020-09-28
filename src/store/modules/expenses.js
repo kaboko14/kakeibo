@@ -1,3 +1,4 @@
+import { ascSortByCreatedAt } from '@/utils';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
@@ -18,10 +19,11 @@ const getters = {
   uid(state, getters, rootState) {
     return rootState.auth.loginUser.uid;
   },
-  buttonProperties (state) {
-    const properties = {};
-    for (const id in state.list) {
-      const item = state.list[id];
+  buttonProperties(state) {
+    const list = Object.values(state.list);
+    ascSortByCreatedAt(list);
+    const properties = [];
+    list.forEach(item => {
       const property = {
         id: item.id,
         name: item.name,
@@ -29,8 +31,8 @@ const getters = {
         labelName: item.name,
         labelPrice: item.price ? `￥${item.price.toLocaleString()}` : null
       };
-      properties[id] = property;
-    }
+      properties.push(property);
+    });
     return properties;
   }
 };

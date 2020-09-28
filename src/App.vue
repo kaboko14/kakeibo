@@ -35,8 +35,10 @@ export default {
     // 全ページでログインユーザー情報を取得できるようにAppでユーザー取得処理を行う
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        console.log(user);
         // 現在ログインしているユーザーがいるときの処理
+        if (this.$router.currentRoute.name === 'Login') {
+          this.$router.push('/home');
+        }
         this.setLoginUser(user);
         this.fetchUser()
           .then(fetchedUser => {
@@ -45,11 +47,7 @@ export default {
               this.addInitialCategories();
             } else {
               this.update(fetchedUser.balance);
-            }
-          }).then(() => {
-            this.fetchItemsAndCategories();
-            if (this.$router.currentRoute.name === 'Login') {
-              this.$router.push('/home');
+              this.fetchItemsAndCategories();
             }
           });
       } else {

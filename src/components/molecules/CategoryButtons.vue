@@ -27,7 +27,7 @@ export default {
       required: true
     },
     buttonProperties: {
-      type: Object,
+      type: Array,
       required: true
     }
   },

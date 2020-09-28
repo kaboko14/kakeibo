@@ -29,7 +29,7 @@ export default {
   },
   props: {
     buttonProperties: {
-      type: Object,
+      type: Array,
       required: true
     }
   },
