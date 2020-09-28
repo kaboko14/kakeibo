@@ -74,15 +74,13 @@ export default {
   &__title {
     font-size: 16px;
     font-weight: bold;
-    text-align: center;
     position: absolute;
     top: 16px;
-    left: 50%;
-    transform: translateX(-50%);
   }
   &__wrapper {
-    text-align: center;
     padding: 20px 0px 0px;
+    font-size: 14px;
+    line-height: 1.2;
   }
 }
 

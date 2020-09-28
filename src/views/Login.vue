@@ -27,12 +27,24 @@
           <Button
             class="login__gest-login-button"
             :button-color="'color-main'"
-            @click="gestLogin"
+            @click="openConfirmModal"
           >
             <p>
               ゲストとしてログインする
             </p>
           </Button>
+          <ConfirmModal
+            v-show="confirmModalView"
+            :confirm-modal-title="'ゲストとしてログイン'"
+            @close-button-click="closeConfirmModal"
+            @confirm-button-click="confirmGestLogin"
+          >
+            <p>
+              機能確認用に用意されたゲストアカウントでログインします。<br>
+              ログイン中に登録した内容を個人のアカウントに引き継ぐことはできません。<br>
+              ゲストとしてログインしますか？
+            </p>
+          </ConfirmModal>
         </div>
       </div>
     </Card>
@@ -41,15 +53,36 @@
 <script>
 import Button from '@/components/atoms/Button.vue';
 import Card from '@/components/atoms/Card.vue';
+import ConfirmModal from '@/components/molecules/ConfirmModal.vue';
 import { mapActions } from 'vuex';
 export default {
   name: 'Login',
   components: {
     Button,
-    Card
+    Card,
+    ConfirmModal
+  },
+  data() {
+    return {
+      confirmModalView: false
+    };
   },
   methods: {
-    ...mapActions('auth', ['login', 'gestLogin'])
+    ...mapActions('auth', ['login', 'gestLogin']),
+    openConfirmModal() {
+      this.confirmModalView = true;
+    },
+    closeConfirmModal() {
+      this.confirmModalView = false;
+    },
+    confirmGestLogin(answer) {
+      if (answer) {
+        this.gestLogin();
+        this.closeConfirmModal();
+      } else {
+        this.closeConfirmModal();
+      }
+    }
   }
 };
 
