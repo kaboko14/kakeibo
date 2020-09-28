@@ -78,10 +78,8 @@ export default {
     confirmGestLogin(answer) {
       if (answer) {
         this.gestLogin();
-        this.closeConfirmModal();
-      } else {
-        this.closeConfirmModal();
       }
+      this.closeConfirmModal();
     }
   }
 };
