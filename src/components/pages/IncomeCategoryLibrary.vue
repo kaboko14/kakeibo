@@ -8,27 +8,42 @@
     <ChangeCategoryModal
       v-show="modalView"
       :selected-category-item="selectedCategoryItem"
-      @close-button-click="closeModal"
+      @close-button-click="closeChangeCategoryModal"
       @update-button-click="updateCategoryItem"
-      @remove-button-click="removeCategoryItem"
+      @remove-button-click="openConfirmModal"
       @input-form="onChange"
     />
+    <ConfirmModal
+      v-show="confirmModalView"
+      :confirm-modal-title="'削除しますか？'"
+      @close-button-click="closeConfirmModal"
+      @confirm-button-click="removeCategoryItem($event)"
+    >
+      <p>
+        【入金品目】
+        {{ selectedCategoryItem.name }}
+        ￥{{ selectedCategoryItem.price }}
+      </p>
+    </ConfirmModal>
   </div>
 </template>
 <script>
+import ConfirmModal from '@/components/molecules/ConfirmModal.vue';
 import CategoryItems from '@/components/molecules/CategoryItems.vue';
 import ChangeCategoryModal from '@/components/organisms/ChangeCategoryModal.vue';
 import { mapGetters, mapActions } from 'vuex';
 export default {
   name: 'IncomeCategoryLibrary',
   components: {
+    ConfirmModal,
     ChangeCategoryModal,
     CategoryItems
   },
   data () {
     return {
       categoryItem: {},
-      modalView: false
+      modalView: false,
+      confirmModalView: false
     };
   },
   computed: {
@@ -49,16 +64,25 @@ export default {
       this.onChange(categoryItem);
       this.modalView = true;
     },
-    closeModal () {
+    closeChangeCategoryModal () {
       this.modalView = false;
+    },
+    openConfirmModal() {
+      this.closeChangeCategoryModal();
+      this.confirmModalView = true;
+    },
+    closeConfirmModal() {
+      this.confirmModalView = false;
     },
     updateCategoryItem () {
       this.update(this.selectedCategoryItem);
-      this.closeModal();
+      this.closeChangeCategoryModal();
     },
-    removeCategoryItem () {
-      this.remove(this.selectedCategoryItem);
-      this.closeModal();
+    removeCategoryItem ($event) {
+      if ($event) {
+        this.remove(this.selectedCategoryItem);
+      }
+      this.closeConfirmModal();
     }
   }
 };

@@ -11,7 +11,6 @@
 <script>
 import GridTable from '@/components/molecules/GridTable.vue';
 import { mapActions } from 'vuex';
-import { formatDate } from '@/utils';
 export default {
   name: 'ItemTable',
   components: {
