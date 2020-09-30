@@ -11,7 +11,6 @@
 <script>
 import GridTable from '@/components/molecules/GridTable.vue';
 import { mapActions } from 'vuex';
-import { formatDate } from '@/utils';
 export default {
   name: 'ItemTable',
   components: {
@@ -27,13 +26,8 @@ export default {
     ...mapActions('items', ['remove']),
     ...mapActions('balance', ['deposit']),
     removeItem (item) {
-      const itemCategory = item.type === 'balance'
-        ? '残高調整'
-        : item.category;
-      if (confirm(`"${formatDate(item.date)} ${itemCategory} ￥${item.price.toLocaleString()}" を削除しますか？`)) {
-        this.remove(item);
-        this.deposit(item.price * -1);
-      }
+      this.remove(item);
+      this.deposit(item.price * -1);
     }
   }
 };

@@ -10,15 +10,7 @@
         class="grid-table__type"
         :class="item.type"
       >
-        <template v-if="item.type==='expense'">
-          出金
-        </template>
-        <template v-else-if="item.type==='income'">
-          入金
-        </template>
-        <template v-else-if="item.type==='balance'">
-          調整
-        </template>
+        {{ itemType }}
       </span>
       <span class="grid-table__category">
         {{ item.category }}
@@ -30,22 +22,37 @@
     <td class="grid-table__remove-button">
       <Button
         :button-color="'color-gray-dark'"
-        @click="sendRemoveItem(item)"
+        @click="openConfirmModal"
       >
         <p>
           ×
         </p>
       </Button>
+      <ConfirmModal
+        v-show="confirmModalView"
+        :confirm-modal-title="'削除しますか？'"
+        @close-button-click="closeConfirmModal"
+        @confirm-button-click="sendRemoveItem($event, item)"
+      >
+        <p>
+          【{{ itemType }}】<br>
+          {{ itemDate }}
+          {{ item.category }}
+          ￥{{ item.price.toLocaleString() }}
+        </p>
+      </ConfirmModal>
     </td>
   </tr>
 </template>
 <script>
 import Button from '@/components/atoms/Button.vue';
+import ConfirmModal from '@/components/molecules/ConfirmModal.vue';
 import { formatDate } from '@/utils';
 export default {
   name: 'GridTable',
   components: {
-    Button
+    Button,
+    ConfirmModal
   },
   props: {
     item: {
@@ -53,14 +60,40 @@ export default {
       required: true
     }
   },
+  data() {
+    return {
+      confirmModalView: false
+    };
+  },
   computed: {
     itemDate () {
       return formatDate(this.item.date);
+    },
+    itemType () {
+      let itemType = '';
+      switch (this.item.type) {
+        case 'expense': itemType = '出金';
+          break;
+        case 'income': itemType = '入金';
+          break;
+        case 'balance': itemType = '調整';
+          break;
+      }
+      return itemType;
     }
   },
   methods: {
-    sendRemoveItem (item) {
-      this.$emit('remove-button-click', item);
+    sendRemoveItem ($event, item) {
+      if ($event) {
+        this.$emit('remove-button-click', item);
+      }
+      this.closeConfirmModal();
+    },
+    openConfirmModal() {
+      this.confirmModalView = true;
+    },
+    closeConfirmModal() {
+      this.confirmModalView = false;
     }
   }
 };
@@ -104,7 +137,6 @@ td {
   }
   &__remove-button {
     width: 36px;
-    text-align: end;
     & > button {
       margin-left: auto;
       padding: 0;

@@ -7,8 +7,6 @@ const gestUser = {
   email: 'zaKKuri@gest.com',
   password: 'zaKKuri-gest'
 };
-// ゲストログイン時の注意メッセージ
-const gestCaution = '機能確認用のゲストアカウントです。ゲストとしてログインしますか？';
 
 const initialState = {
   loginUser: null
@@ -47,9 +45,7 @@ const actions = {
     firebase.auth().signInWithPopup(provider);
   },
   gestLogin() {
-    if (confirm(gestCaution)) {
-      firebase.auth().signInWithEmailAndPassword(gestUser.email, gestUser.password);
-    }
+    firebase.auth().signInWithEmailAndPassword(gestUser.email, gestUser.password);
   },
   logout() {
     firebase.auth().signOut();
